@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6128031103636b1419b08310897ecd58, type: 3}
-  m_Name: Dummy Test
+  m_Name: DummyTest
   m_EditorClassIdentifier: 
   firstLine: 
   OptionDataSet:
@@ -67,4 +67,4 @@ MonoBehaviour:
   NarrativeDataSet: []
   left: {fileID: 0}
   right: {fileID: 0}
-  nextfile: 
+  nextfile: DummyTest

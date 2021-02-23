@@ -6,18 +6,17 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
-    private Camera cam;
     private UIhandler uIhandler;
     private UseItem useItem;
 
     void Awake()
     {
-        cam = Camera.main;
-        uIhandler = cam.GetComponent<UIhandler>();
-        useItem = cam.GetComponent<UseItem>();
+        uIhandler = Camera.main.GetComponent<UIhandler>();
+        useItem = Camera.main.GetComponent<UseItem>();
     }
 
     [Header("Data")]
+    public AudioClip sound;
     public bool canMoveHere;
     public string dialogue;
     public string correctItem;
@@ -30,20 +29,21 @@ public class NPC : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
+            uIhandler.StartConversation();
+
             if (counter == 0)
             {
-                uIhandler.StartConversation();
                 convCtrl.currentConv = startingConvo;
-                convCtrl.ConvoStarted(2);
                 loopingConvo = Resources.Load<Conversation>("Text/" + startingConvo.nextfile);
                 counter++;
             }
             else
             {
-                uIhandler.StartConversation();
                 convCtrl.currentConv = loopingConvo;
-                convCtrl.ConvoStarted(1);
             }
+            convCtrl.ConvoStarted(1);
+            convCtrl.audioSource.clip = sound;
+            convCtrl.audioSource.PlayDelayed(3f);
         }
 
         /*

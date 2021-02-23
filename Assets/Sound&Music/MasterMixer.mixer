@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!243 &-8442845090895735050
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SoundEffects
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 3dcf9eb6b240f5148852c97fc6758697
+  m_Children: []
+  m_Volume: 9c2a88174c6adb24abb030798b8de6c7
+  m_Pitch: 89a6da8ba16744640a10ad32afffc8fa
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 2018722103569023124}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -16,7 +35,11 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters: []
-  m_AudioMixerGroupViews: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 80c633fe3cc5af747a6995c68e5473ba
+    - 3dcf9eb6b240f5148852c97fc6758697
+    name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
@@ -28,7 +51,8 @@ AudioMixerGroupController:
   m_Name: Master
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 80c633fe3cc5af747a6995c68e5473ba
-  m_Children: []
+  m_Children:
+  - {fileID: -8442845090895735050}
   m_Volume: 7782e6ab25f78ae4db71dd6dfe1e5608
   m_Pitch: 9a5e63c74b3af104b9511dc575a7cd33
   m_Send: 00000000000000000000000000000000
@@ -63,3 +87,33 @@ AudioMixerSnapshotController:
   m_SnapshotID: ee4723773d881904798e121337a7a3e3
   m_FloatValues: {}
   m_TransitionOverrides: {}
+--- !u!244 &2018722103569023124
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 1c3c19b6708bec64fb26ada2bc8b9d3e
+  m_EffectName: Attenuation
+  m_MixLevel: 0b4643a14c8f8d44c90510ad583f3f7f
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &8318600268332048379
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 5baf5f060cb0eb64081454e1204ad6cd
+  m_EffectName: Highpass Simple
+  m_MixLevel: 7ef373906d43aaa41b6f741283b47680
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: a7a0ab7d9ae77a64a8ddc54e038bb871
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0

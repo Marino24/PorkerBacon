@@ -9,10 +9,11 @@ public class ConvController : MonoBehaviour
 {
     [Header("References")]
 
-    public UIhandler uIhandler;
+    private UIhandler uIhandler;
     public Conversation currentConv;
-    public RectTransform convoOptions;
+    public RectTransform convoOptions; private GridLayoutGroup gridLayout;
     public GameObject[] buttons = new GameObject[10];
+    public AudioSource audioSource;
 
 
     [Header("References - UI")]
@@ -38,6 +39,11 @@ public class ConvController : MonoBehaviour
     private float maxScroll;
     private float scroll = -5;
 
+    void Awake()
+    {
+        uIhandler = Camera.main.GetComponent<UIhandler>();
+        gridLayout = convoOptions.gameObject.GetComponent<GridLayoutGroup>();
+    }
     public void ConvoStarted(int cooldown)
     {
         /*
@@ -70,7 +76,8 @@ public class ConvController : MonoBehaviour
             buttons[i].SetActive(true);
             buttons[i].GetComponentInChildren<Text>().text = currentConv.optionDataSet[i].option;
         }
-        maxScroll = 45 * (currentConv.optionDataSet.Count - 4);
+        int elementSize = Mathf.RoundToInt(gridLayout.cellSize.y + gridLayout.spacing.y);
+        maxScroll = elementSize * (currentConv.optionDataSet.Count - Mathf.RoundToInt(convoOptions.rect.height / elementSize));
     }
     public void OptionClicked()
     {
