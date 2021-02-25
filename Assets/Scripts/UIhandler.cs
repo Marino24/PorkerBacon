@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class UIhandler : MonoBehaviour
 {
     [Header("References")]
-    public Text textRoom;
     public GameObject inventory;
+    public GameObject menu;
+
+
 
     [Header("Inventory")]
     public GameObject[] items = new GameObject[4];
@@ -20,9 +22,25 @@ public class UIhandler : MonoBehaviour
     public GameObject MenuStage;
 
 
-
+    public static bool GameisPaused = false;
+    public void Resume()
+    {
+        menu.SetActive(false);
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        GameisPaused = false;
+    }
+    void Pause()
+    {
+        menu.SetActive(true);
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
+        GameisPaused = true;
+    }
     void Awake()
     {
+        menu.SetActive(false);
+
         //maybe create the inventory here instead of in editor
 
         //fill up the array with inventory
@@ -39,6 +57,11 @@ public class UIhandler : MonoBehaviour
         {
             invOpen = !invOpen;
             OpenCloseInv();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameisPaused) Resume(); else Pause();
         }
 
     }

@@ -15,7 +15,6 @@ public class Object : MonoBehaviour
         cam = Camera.main;
         itemSprite = GetComponent<SpriteRenderer>().sprite;
         useItem = cam.GetComponent<UseItem>();
-        textRoom = cam.GetComponent<UIhandler>().textRoom;
     }
 
     [Header("Data")]
@@ -37,7 +36,7 @@ public class Object : MonoBehaviour
         if (useItem.itemUsed == "")
         {
             //default text for just interacting
-            textRoom.text = objDesc;
+            //textRoom.text = objDesc;
 
             if (canPickUp)
             {
@@ -52,7 +51,7 @@ public class Object : MonoBehaviour
         }
         else
         {
-            textRoom.text = "I cant do that";
+            //textRoom.text = "I cant do that";
         }
 
     }
