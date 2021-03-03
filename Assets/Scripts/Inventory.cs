@@ -34,7 +34,7 @@ public class Inventory : MonoBehaviour
             itemsDisplay.transform.parent.transform.localPosition = new Vector3(0, -50, 0);
     }
 
-    void ItemStored(Sprite itemSprite)
+    public void ItemStored(Sprite itemSprite)
     {
         //looks for an empty spot and set the item there
         for (int i = 0; i < items.Length; i++)
