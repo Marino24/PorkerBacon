@@ -7,12 +7,13 @@ public class UIhandler : MonoBehaviour
 {
     [Header("References")]
     public GameObject inventory;
+    public GameObject itemsUi;
     public GameObject menu;
 
 
-
     [Header("Inventory")]
-    public GameObject[] items = new GameObject[4];
+    public Image[] items;
+
     public bool invOpen;
 
     [Header("Conversation")]
@@ -40,14 +41,7 @@ public class UIhandler : MonoBehaviour
     void Awake()
     {
         menu.SetActive(false);
-
-        //maybe create the inventory here instead of in editor
-
-        //fill up the array with inventory
-        for (int i = 0; i < 4; i++)
-        {
-            items[i] = inventory.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject;
-        }
+        items = itemsUi.GetComponentsInChildren<Image>();
     }
 
     void Update()
@@ -69,10 +63,10 @@ public class UIhandler : MonoBehaviour
     {
         if (invOpen)
         {
-            inventory.transform.localPosition = new Vector3(0, -150, 0);
+            itemsUi.transform.localPosition = new Vector3(0, 5, 0);
         }
         else
-            inventory.transform.localPosition = new Vector3(0, -250, 0);
+            itemsUi.transform.localPosition = new Vector3(0, -50, 0);
     }
 
     public void StartConversation()
@@ -86,15 +80,14 @@ public class UIhandler : MonoBehaviour
         conversationStage.SetActive(false);
     }
 
-    public void ItemStored(string itemName, Sprite itemSprite)
+    public void ItemStored(Sprite itemSprite)
     {
         //looks for an empty spot and set the item there
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < items.Length; i++)
         {
-            if (items[i].name == "Empty")
+            if (items[i] == null)
             {
-                items[i].name = itemName;
-                items[i].GetComponent<Image>().sprite = itemSprite;
+                items[i].sprite = itemSprite;
                 break;
             }
         }

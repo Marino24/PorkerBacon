@@ -32,26 +32,10 @@ public class Object : MonoBehaviour
 
     void OnMouseDown()
     {
-
-        if (useItem.itemUsed == "")
+        if (canPickUp)
         {
-            //default text for just interacting
-            //textRoom.text = objDesc;
-
-            if (canPickUp)
-            {
-                cam.GetComponent<UIhandler>().ItemStored(objName, itemSprite);
-                Destroy(gameObject);
-            }
-
-        }
-        else if (useItem.itemUsed == correctItem)
-        {
-            //do something here
-        }
-        else
-        {
-            //textRoom.text = "I cant do that";
+            cam.GetComponent<UIhandler>().ItemStored(itemSprite);
+            Destroy(gameObject);
         }
 
     }

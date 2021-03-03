@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Conversation", menuName = "New conversation", order = 1)]
 public class Conversation : ScriptableObject
 {
-
     [System.Serializable]
     public class OptionData
     {
@@ -24,7 +23,7 @@ public class Conversation : ScriptableObject
     [SerializeField]
     private List<OptionData> OptionDataSet = new List<OptionData>();
 
-    [System.NonSerialized]
+    [SerializeField]
     public List<OptionData> optionDataSet = new List<OptionData>();
 
 
