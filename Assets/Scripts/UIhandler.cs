@@ -7,14 +7,8 @@ public class UIhandler : MonoBehaviour
 {
     [Header("References")]
     public GameObject inventory;
-    public GameObject itemsUi;
     public GameObject menu;
 
-
-    [Header("Inventory")]
-    public Image[] items;
-
-    public bool invOpen;
 
     [Header("Conversation")]
     public GameObject conversationStage;
@@ -41,17 +35,10 @@ public class UIhandler : MonoBehaviour
     void Awake()
     {
         menu.SetActive(false);
-        items = itemsUi.GetComponentsInChildren<Image>();
     }
 
     void Update()
     {
-        //open close inventory manually
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            invOpen = !invOpen;
-            OpenCloseInv();
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -59,19 +46,9 @@ public class UIhandler : MonoBehaviour
         }
 
     }
-    void OpenCloseInv()
-    {
-        if (invOpen)
-        {
-            itemsUi.transform.localPosition = new Vector3(0, 5, 0);
-        }
-        else
-            itemsUi.transform.localPosition = new Vector3(0, -50, 0);
-    }
 
     public void StartConversation()
     {
-        invOpen = false;
         conversationStage.SetActive(true);
     }
 
@@ -79,19 +56,5 @@ public class UIhandler : MonoBehaviour
     {
         conversationStage.SetActive(false);
     }
-
-    public void ItemStored(Sprite itemSprite)
-    {
-        //looks for an empty spot and set the item there
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (items[i] == null)
-            {
-                items[i].sprite = itemSprite;
-                break;
-            }
-        }
-    }
-
 
 }

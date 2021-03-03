@@ -2209,6 +2209,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
@@ -2238,14 +2239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 1946433559}
-  itemsUi: {fileID: 1994032561}
   menu: {fileID: 252111937}
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  invOpen: 0
   conversationStage: {fileID: 0}
   MenuStage: {fileID: 0}
 --- !u!20 &519420031
@@ -2318,10 +2312,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combos:
-  - result: apple
+  - result: {fileID: 21300000, guid: c193608741f5ccd4fa8b85cd2161d782, type: 3}
     item1: gun
     item2: ballon
-  item: {fileID: 0}
+  isItemInHand: 0
+  itemInHand: {fileID: 2063182690}
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1ec04c4a513a24e9144b32f5e67eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  itemsDisplay: {fileID: 2000293937}
+  empty: {fileID: 0}
+  invOpen: 0
 --- !u!1 &540130644
 GameObject:
   m_ObjectHideFlags: 0
@@ -4395,7 +4406,7 @@ RectTransform:
   m_GameObject: {fileID: 1024904912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 662570203}
   - {fileID: 1946433560}
@@ -4405,8 +4416,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 602.9, y: 338.1}
+  m_AnchoredPosition: {x: -0.000022888, y: -0.000024796}
+  m_SizeDelta: {x: 640, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1143516380
 GameObject:
@@ -6677,7 +6688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

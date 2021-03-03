@@ -34,7 +34,7 @@ public class Object : MonoBehaviour
     {
         if (canPickUp)
         {
-            cam.GetComponent<UIhandler>().ItemStored(itemSprite);
+            cam.GetComponent<Inventory>().ItemStored(itemSprite);
             Destroy(gameObject);
         }
 

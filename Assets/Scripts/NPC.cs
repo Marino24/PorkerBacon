@@ -27,7 +27,7 @@ public class NPC : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject() && !useItem.isItemInHand)
         {
             uIhandler.StartConversation();
 
