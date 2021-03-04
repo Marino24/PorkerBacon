@@ -2240,7 +2240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 1946433559}
   menu: {fileID: 252111937}
-  conversationStage: {fileID: 0}
+  conversationStage: {fileID: 662570202}
   MenuStage: {fileID: 0}
 --- !u!20 &519420031
 Camera:
@@ -2311,12 +2311,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee85470be3f85b4dbf90987fb63a5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInHand: {fileID: 2063182690}
   combos:
   - result: {fileID: 21300000, guid: c193608741f5ccd4fa8b85cd2161d782, type: 3}
     item1: gun
     item2: ballon
   isItemInHand: 0
-  itemInHand: {fileID: 2063182690}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3323,7 +3323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.49056602, g: 0.21982911, b: 0.21982911, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3635,7 +3635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6902,7 +6902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.33147916, b: 0.33147916, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

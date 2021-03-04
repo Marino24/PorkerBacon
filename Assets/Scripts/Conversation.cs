@@ -22,8 +22,7 @@ public class Conversation : ScriptableObject
 
     [SerializeField]
     private List<OptionData> OptionDataSet = new List<OptionData>();
-
-    [SerializeField]
+    [System.NonSerialized]
     public List<OptionData> optionDataSet = new List<OptionData>();
 
 

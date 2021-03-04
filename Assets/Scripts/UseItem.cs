@@ -9,6 +9,7 @@ public class UseItem : MonoBehaviour
 {
     private Camera cam;
     private Inventory inventory;
+    public Image itemInHand;
 
     [Header("Item combos")]
     public List<ItemCombo> combos = new List<ItemCombo>();
@@ -20,10 +21,10 @@ public class UseItem : MonoBehaviour
         public string item2;
     }
 
+    [HideInInspector]
     public bool isItemInHand = false;
     private Image currentButton; private Image previousButton;
 
-    public Image itemInHand;
 
     void Awake()
     {
