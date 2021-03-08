@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIhandler : MonoBehaviour
 {
     [Header("References")]
     public GameObject inventory;
     public GameObject menu;
+    public RectTransform monologue;
+    public TMP_Text monologueText;
 
 
     [Header("Conversation")]
     public GameObject conversationStage;
+
 
     [Header("Menu")]
     public GameObject MenuStage;

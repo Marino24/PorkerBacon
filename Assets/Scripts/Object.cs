@@ -7,14 +7,20 @@ public class Object : MonoBehaviour
 {
     private Camera cam;
     private Sprite itemSprite;
+    private UIhandler uIhandler;
     private UseItem useItem;
-    private Text textRoom;
+
+    private TextWritter textWritter;
+
+    public float off;
 
     void Awake()
     {
         cam = Camera.main;
         itemSprite = GetComponent<SpriteRenderer>().sprite;
+        uIhandler = cam.GetComponent<UIhandler>();
         useItem = cam.GetComponent<UseItem>();
+        textWritter = cam.GetComponent<TextWritter>();
     }
 
     [Header("Data")]
@@ -24,7 +30,6 @@ public class Object : MonoBehaviour
     public bool canPickUp;
 
     [Tooltip("This will be for all of the logic with checking")]
-    public string objName;
     public string objDesc;
 
     [Tooltip("What item should be used on this")]
@@ -32,12 +37,22 @@ public class Object : MonoBehaviour
 
     void OnMouseDown()
     {
+        textWritter.Write(objDesc, uIhandler.monologueText);
+
+
         if (canPickUp)
         {
             cam.GetComponent<Inventory>().ItemStored(itemSprite);
             Destroy(gameObject);
+            return;
         }
 
+
+
+
+
     }
+
+
 
 }

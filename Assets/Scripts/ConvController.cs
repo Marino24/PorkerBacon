@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 using UnityEngine.UI;
 
 
@@ -10,6 +11,7 @@ public class ConvController : MonoBehaviour
     [Header("References")]
 
     private UIhandler uIhandler;
+    private TextWritter textWritter;
     public Conversation currentConv;
     public RectTransform convoOptions; private GridLayoutGroup gridLayout;
     public GameObject[] buttons = new GameObject[10];
@@ -17,7 +19,7 @@ public class ConvController : MonoBehaviour
 
 
     [Header("References - UI")]
-    public Text textRoom;
+    public TMP_Text textRoom;
 
     [Header("References/Data")]
     public Image left;
@@ -43,6 +45,7 @@ public class ConvController : MonoBehaviour
     {
         uIhandler = Camera.main.GetComponent<UIhandler>();
         gridLayout = convoOptions.gameObject.GetComponent<GridLayoutGroup>();
+        textWritter = Camera.main.GetComponent<TextWritter>();
     }
     public void ConvoStarted(int cooldown)
     {
@@ -69,7 +72,7 @@ public class ConvController : MonoBehaviour
 
     void DisplayOptions()
     {
-        textRoom.text = currentConv.firstLine;
+        textWritter.Write(currentConv.firstLine, textRoom);
         //set buttons
         for (int i = 0; i < currentConv.optionDataSet.Count; i++)
         {
@@ -108,11 +111,11 @@ public class ConvController : MonoBehaviour
         {
             if (isNarrConvo)
             {
-                textRoom.text = currentConv.NarrativeDataSet[convoIndex].textSet;
+                textWritter.Write(currentConv.NarrativeDataSet[convoIndex].textSet, textRoom);
             }
             else
             {
-                textRoom.text = currentConv.optionDataSet[optionNumSelected].responses[convoIndex];
+                textWritter.Write(currentConv.optionDataSet[optionNumSelected].responses[convoIndex], textRoom);
             }
 
             /*

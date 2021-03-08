@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private Camera cam;
 
     public float speed;
     private Rigidbody2D rb;
+    private UIhandler uIhandler;
+
     void Awake()
     {
+        cam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
+        uIhandler = cam.GetComponent<UIhandler>();
+
     }
 
     void Update()
     {
+        uIhandler.monologue.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 3f, 0));
 
 
     }
@@ -25,5 +32,9 @@ public class Player : MonoBehaviour
         Vector3 move = new Vector3(xPos, yPos);
 
         rb.velocity = move * speed;
+
+        if (xPos < 0) transform.rotation = Quaternion.Euler(0, 180, 0);
+        if (xPos > 0) transform.rotation = Quaternion.Euler(0, 0, 0); ;
+
     }
 }
