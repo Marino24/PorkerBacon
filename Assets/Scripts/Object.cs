@@ -9,10 +9,8 @@ public class Object : MonoBehaviour
     private Sprite itemSprite;
     private UIhandler uIhandler;
     private UseItem useItem;
-
+    private Player player;
     private TextWritter textWritter;
-
-    public float off;
 
     void Awake()
     {
@@ -20,39 +18,40 @@ public class Object : MonoBehaviour
         itemSprite = GetComponent<SpriteRenderer>().sprite;
         uIhandler = cam.GetComponent<UIhandler>();
         useItem = cam.GetComponent<UseItem>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         textWritter = cam.GetComponent<TextWritter>();
     }
 
     [Header("Data")]
-    public bool canMoveHere;
 
     [Tooltip("Is this an item")]
     public bool canPickUp;
+    public string objDesc; private string reachDesc;
+    public List<string> reachOptions = new List<string>(); private float reach = 7f; private bool outOfReach;
 
-    [Tooltip("This will be for all of the logic with checking")]
-    public string objDesc;
 
     [Tooltip("What item should be used on this")]
     public string correctItem;
 
     void OnMouseDown()
     {
-        textWritter.Write(objDesc, uIhandler.monologueText);
 
+        if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
-        if (canPickUp)
+        if (canPickUp && outOfReach) reachDesc = reachOptions[Random.Range(0, reachOptions.Count)];
+
+        textWritter.Write(objDesc + reachDesc, uIhandler.monologueText);
+
+        if (canPickUp && !outOfReach)
         {
             cam.GetComponent<Inventory>().ItemStored(itemSprite);
             Destroy(gameObject);
-            return;
         }
 
 
 
 
-
     }
-
 
 
 }
