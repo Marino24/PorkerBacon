@@ -10,10 +10,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6128031103636b1419b08310897ecd58, type: 3}
-  m_Name: Conversation
+  m_Name: optionTest
   m_EditorClassIdentifier: 
   firstLine: 
-  OptionDataSet: []
+  OptionDataSet:
+  - option: Soooo
+    responses:
+    - giooo
+    nextfile: 
+    unlockedOption: {fileID: 0}
+  - option: nnnn
+    responses:
+    - giooo
+    nextfile: 
+    unlockedOption: {fileID: 0}
+  - option: nnnn
+    responses:
+    - giooo
+    nextfile: 
+    unlockedOption: {fileID: 0}
+  - option: nnnn
+    responses:
+    - giooo
+    nextfile: 
+    unlockedOption: {fileID: 0}
+  - option: nnnn
+    responses:
+    - giooo
+    nextfile: 
+    unlockedOption: {fileID: 0}
+  - option: nnnn
+    responses:
+    - giooo
+    nextfile: 
+    unlockedOption: {fileID: 0}
+  - option: nnnn
+    responses:
+    - giooo
+    nextfile: 
+    unlockedOption: {fileID: 0}
   NarrativeDataSet: []
   left: {fileID: 0}
   right: {fileID: 0}
