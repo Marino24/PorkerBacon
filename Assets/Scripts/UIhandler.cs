@@ -9,8 +9,9 @@ public class UIhandler : MonoBehaviour
     [Header("References")]
     public GameObject inventory;
     public GameObject menu;
-    public RectTransform monologue;
+    public GameObject monologue;
     public TMP_Text monologueText;
+    public Player player;
 
 
     [Header("Conversation")]
@@ -36,6 +37,7 @@ public class UIhandler : MonoBehaviour
         AudioListener.pause = true;
         GameisPaused = true;
     }
+
     void Awake()
     {
         menu.SetActive(false);
@@ -49,16 +51,26 @@ public class UIhandler : MonoBehaviour
             if (GameisPaused) Resume(); else Pause();
         }
 
+
     }
+
 
     public void StartConversation()
     {
         conversationStage.SetActive(true);
+
+        inventory.SetActive(false);
+        monologueText.text = "";
+        player.enabled = false;
     }
 
     public void EndConversation()
     {
         conversationStage.SetActive(false);
+
+        inventory.SetActive(true);
+        player.enabled = true;
+
     }
 
 }

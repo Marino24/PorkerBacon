@@ -17,15 +17,14 @@ public class Inventory : MonoBehaviour
     }
     void Update()
     {
-        //open close inventory manually
         if (Input.GetKeyDown(KeyCode.I))
         {
-            invOpen = !invOpen;
             OpenCloseInv();
         }
     }
-    void OpenCloseInv()
+    public void OpenCloseInv()
     {
+        invOpen = !invOpen;
         if (invOpen)
         {
             itemsDisplay.transform.parent.transform.localPosition = new Vector3(0, 5, 0);

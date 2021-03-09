@@ -72,7 +72,7 @@ public class ConvController : MonoBehaviour
 
     void DisplayOptions()
     {
-        textWritter.Write(currentConv.firstLine, textRoom);
+        textWritter.Write(currentConv.firstLine, textRoom, true);
         //set buttons
         for (int i = 0; i < currentConv.optionDataSet.Count; i++)
         {
@@ -111,11 +111,11 @@ public class ConvController : MonoBehaviour
         {
             if (isNarrConvo)
             {
-                textWritter.Write(currentConv.NarrativeDataSet[convoIndex].textSet, textRoom);
+                textWritter.Write(currentConv.NarrativeDataSet[convoIndex].textSet, textRoom, true);
             }
             else
             {
-                textWritter.Write(currentConv.optionDataSet[optionNumSelected].responses[convoIndex], textRoom);
+                textWritter.Write(currentConv.optionDataSet[optionNumSelected].responses[convoIndex], textRoom, true);
             }
 
             /*
@@ -237,7 +237,9 @@ public class ConvController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     //advance the narrative...
-                    AdvanceConvo(currentConv.NarrativeDataSet.Count);
+                    if (TextWritter.textEnded) AdvanceConvo(currentConv.NarrativeDataSet.Count);
+                    else
+                        textWritter.FastForward();
                 }
             }
             else
@@ -245,13 +247,20 @@ public class ConvController : MonoBehaviour
                 if (isOptionSelected && Input.GetKeyDown(KeyCode.Space))
                 {
                     //advance the responses...
-                    AdvanceConvo(currentConv.optionDataSet[optionNumSelected].responses.Count);
+                    if (TextWritter.textEnded) AdvanceConvo(currentConv.optionDataSet[optionNumSelected].responses.Count);
+                    else
+                        textWritter.FastForward();
 
                 }
 
             }
         }
 
+        Scroll();
+    }
+
+    private void Scroll()
+    {
         if (Input.GetKey(KeyCode.S))
         {
             if (scroll < maxScroll)

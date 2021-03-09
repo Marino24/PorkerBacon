@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Object : MonoBehaviour
@@ -35,12 +36,13 @@ public class Object : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
 
         if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
         if (canPickUp && outOfReach) reachDesc = reachOptions[Random.Range(0, reachOptions.Count)];
 
-        textWritter.Write(objDesc + reachDesc, uIhandler.monologueText);
+        textWritter.Write(objDesc + reachDesc, uIhandler.monologueText, false);
 
         if (canPickUp && !outOfReach)
         {
