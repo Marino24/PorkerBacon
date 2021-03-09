@@ -38,11 +38,12 @@ public class Object : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
+        //range check
         if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
         if (canPickUp && outOfReach) reachDesc = reachOptions[Random.Range(0, reachOptions.Count)];
 
-        textWritter.Write(objDesc + reachDesc, uIhandler.monologueText, false);
+        textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false);
 
         if (canPickUp && !outOfReach)
         {
