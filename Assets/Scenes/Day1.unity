@@ -2047,7 +2047,7 @@ MonoBehaviour:
   menu: {fileID: 252111937}
   monologue: {fileID: 266111489}
   monologueText: {fileID: 131897084}
-  player: {fileID: 0}
+  player: {fileID: 1357008099}
   conversationStage: {fileID: 662570202}
   MenuStage: {fileID: 252111937}
 --- !u!20 &519420031
@@ -2121,7 +2121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInHand: {fileID: 2063182690}
   combos:
-  - result: {fileID: 21300000, guid: c193608741f5ccd4fa8b85cd2161d782, type: 3}
+  - result: {fileID: 21300000, guid: dcbdce78894e2c54f97d7df0368c63f4, type: 3}
     item1: gun
     item2: ballon
   isItemInHand: 0
@@ -4563,7 +4563,7 @@ MonoBehaviour:
   sound: {fileID: 8300000, guid: c1ffbea1b9ce12847b352e6c1a20e82f, type: 3}
   correctItem: gun
   convCtrl: {fileID: 662570204}
-  startingConvo: {fileID: 11400000, guid: ee7e8daa2771040468587c27220029f4, type: 2}
+  startingConvo: {fileID: 11400000, guid: af4d7e90144e94248a7ba02e26daa86c, type: 2}
 --- !u!1 &1230816797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5197,7 +5197,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357008096}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9fe8900eb1d8624fa5a6923fef8cb4c, type: 3}
   m_Name: 

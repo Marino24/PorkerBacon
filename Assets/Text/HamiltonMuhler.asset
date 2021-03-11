@@ -18,11 +18,11 @@ MonoBehaviour:
   - textSet: How are you?
     ZeroOrOne: 0
   - textSet: Good and you?
-    ZeroOrOne: 0
+    ZeroOrOne: 1
   - textSet: Fantastic, bye
     ZeroOrOne: 0
   - textSet: I have to go aswell
     ZeroOrOne: 0
-  left: {fileID: 0}
-  right: {fileID: 0}
-  nextConvo: {fileID: 0}
+  left: {fileID: 21300000, guid: 1755fdeeebf197f4daccb4bd7ef76e89, type: 3}
+  right: {fileID: 21300000, guid: dcbdce78894e2c54f97d7df0368c63f4, type: 3}
+  nextConvo: {fileID: 11400000, guid: ccf6c0146c0243645b4ad0bc7380f48b, type: 2}
