@@ -16,11 +16,11 @@ MonoBehaviour:
   OptionDataSet: []
   NarrativeDataSet:
   - textSet: Im trapped
-    rightSpeaking: 0
+    ZeroOrOne: 0
   - textSet: Need to escape
-    rightSpeaking: 0
+    ZeroOrOne: 0
   - textSet: Before its too late
-    rightSpeaking: 0
-  left: {fileID: 0}
+    ZeroOrOne: 0
+  left: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   right: {fileID: 0}
   nextConvo: {fileID: 0}

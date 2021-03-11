@@ -32,7 +32,6 @@ public class TextWritter : MonoBehaviour
 
         if (convo)
         {
-            Debug.Log("All text");
             UiText.text = text;
         }
 

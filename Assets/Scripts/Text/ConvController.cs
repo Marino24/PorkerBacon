@@ -47,11 +47,13 @@ public class ConvController : MonoBehaviour
         gridLayout = convoOptions.gameObject.GetComponent<GridLayoutGroup>();
         textWritter = Camera.main.GetComponent<TextWritter>();
     }
+
+
     public void ConvoStarted(int cooldown)
     {
 
-        if (left.sprite != null) left.sprite = currentConv.left;
-        if (right.sprite != null) right.sprite = currentConv.right;
+        if (left != null) left.sprite = currentConv.left;
+        if (right != null) right.sprite = currentConv.right;
 
 
         isConvoEnded = false; timer = cooldown;
@@ -101,15 +103,12 @@ public class ConvController : MonoBehaviour
     }
     void AdvanceConvo(int amount)
     {
-        //who is talking
-        if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0) left.gameObject.SetActive(true);
-        if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1) right.gameObject.SetActive(true);
-
-
         //go through each text block/response
         if (convoIndex < amount)
         {
-            Debug.Log("still more");
+            //who is talking
+            if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0) left.gameObject.SetActive(true);
+            if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1) right.gameObject.SetActive(true);
 
             if (isNarrConvo)
             {
@@ -124,11 +123,9 @@ public class ConvController : MonoBehaviour
         }
         else
         {
-            Debug.Log("nooo");
             //convo is ending...
             if (isNarrConvo)
             {
-                Debug.Log("fff");
                 EndCurrentConvo(currentConv.nextConvo);
             }
             else

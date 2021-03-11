@@ -15,8 +15,10 @@ public class Player : MonoBehaviour
     {
         if (introConvo != null)
         {
+            uIhandler.StartConversation();
+
             convController.currentConv = introConvo;
-            convController.ConvoStarted(2);
+            convController.ConvoStarted(1);
         }
     }
     void Awake()
