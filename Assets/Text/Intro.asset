@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6128031103636b1419b08310897ecd58, type: 3}
-  m_Name: test
+  m_Name: Intro
   m_EditorClassIdentifier: 
   firstLine: 
   OptionDataSet: []
   NarrativeDataSet:
-  - textSet: 'hello there mister my name is, hello there mister my name is '
+  - textSet: Im trapped
     rightSpeaking: 0
-  - textSet: 'hello there mister my name is, hello there mister my name is '
+  - textSet: Need to escape
     rightSpeaking: 0
-  - textSet: 'hello there mister my name is, hello there mister my name is '
+  - textSet: Before its too late
     rightSpeaking: 0
   left: {fileID: 0}
   right: {fileID: 0}
-  nextfile: 
+  nextConvo: {fileID: 0}

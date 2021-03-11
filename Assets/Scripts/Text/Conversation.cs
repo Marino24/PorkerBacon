@@ -12,7 +12,7 @@ public class Conversation : ScriptableObject
         public string option;
         [TextArea]
         public List<string> responses = new List<string>();
-        public string nextfile;
+        public Conversation nextConvo;
         public UnlockedOption unlockedOption;
 
     }
@@ -38,7 +38,7 @@ public class Conversation : ScriptableObject
     {
         [TextArea(2, 5)]
         public string textSet;
-        public bool rightSpeaking;
+        public int ZeroOrOne;
     }
     [Header("Narrative")]
     public List<NarrativeData> NarrativeDataSet = new List<NarrativeData>();
@@ -46,5 +46,5 @@ public class Conversation : ScriptableObject
     [Header("Basic")]
     public Sprite left;
     public Sprite right;
-    public string nextfile;
+    public Conversation nextConvo;
 }

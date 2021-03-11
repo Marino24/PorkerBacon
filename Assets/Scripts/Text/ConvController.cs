@@ -49,10 +49,11 @@ public class ConvController : MonoBehaviour
     }
     public void ConvoStarted(int cooldown)
     {
-        /*
-        left.sprite = currentConv.left;
-        right.sprite = currentConv.right;
-        */
+
+        if (left.sprite != null) left.sprite = currentConv.left;
+        if (right.sprite != null) right.sprite = currentConv.right;
+
+
         isConvoEnded = false; timer = cooldown;
 
         if (currentConv.NarrativeDataSet.Count == 0)
@@ -67,6 +68,7 @@ public class ConvController : MonoBehaviour
             isNarrConvo = true;
             AdvanceConvo(currentConv.NarrativeDataSet.Count);
         }
+
     }
 
 
@@ -100,15 +102,15 @@ public class ConvController : MonoBehaviour
     void AdvanceConvo(int amount)
     {
         //who is talking
-        if (currentConv.left != null)
-        {
-            left.gameObject.SetActive(true);
-            right.gameObject.SetActive(true);
-        }
+        if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0) left.gameObject.SetActive(true);
+        if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1) right.gameObject.SetActive(true);
+
 
         //go through each text block/response
         if (convoIndex < amount)
         {
+            Debug.Log("still more");
+
             if (isNarrConvo)
             {
                 textWritter.Write(currentConv.NarrativeDataSet[convoIndex].textSet, textRoom, true);
@@ -118,27 +120,16 @@ public class ConvController : MonoBehaviour
                 textWritter.Write(currentConv.optionDataSet[optionNumSelected].responses[convoIndex], textRoom, true);
             }
 
-            /*
-            //set sizes for char that is talking
-            if (currentConv.NarrativeDataSet[convoIndex].rightSpeaking)
-            {
-                right.GetComponent<Transform>().localScale = new Vector3(3, 3, 1);
-                left.GetComponent<Transform>().localScale = new Vector3(2, 2, 1);
-            }
-            else
-            {
-                left.GetComponent<Transform>().localScale = new Vector3(3, 3, 1);
-                right.GetComponent<Transform>().localScale = new Vector3(2, 2, 1);
-            }
-            */
             convoIndex++;
         }
         else
         {
+            Debug.Log("nooo");
             //convo is ending...
             if (isNarrConvo)
             {
-                EndCurrentConvo(currentConv.nextfile);
+                Debug.Log("fff");
+                EndCurrentConvo(currentConv.nextConvo);
             }
             else
             {
@@ -174,7 +165,7 @@ public class ConvController : MonoBehaviour
                     }
                 }
 
-                EndCurrentConvo(currentConv.optionDataSet[optionNumSelected].nextfile);
+                EndCurrentConvo(currentConv.optionDataSet[optionNumSelected].nextConvo);
                 //remove the option  
                 currentConv.optionDataSet.RemoveAt(optionNumSelected);
             }
@@ -203,7 +194,7 @@ public class ConvController : MonoBehaviour
         }
     }
 
-    void EndCurrentConvo(string nextFile)
+    void EndCurrentConvo(Conversation nextConvo)
     {
         textRoom.text = "";
         convoIndex = 0;
@@ -212,9 +203,9 @@ public class ConvController : MonoBehaviour
         right.gameObject.SetActive(false);
 
 
-        if (nextFile != "")
+        if (nextConvo != null)
         {
-            currentConv = Resources.Load<Conversation>("Text/" + nextFile);
+            currentConv = nextConvo;
             ConvoStarted(0);
         }
         else ConvoEnded();
@@ -239,7 +230,7 @@ public class ConvController : MonoBehaviour
                     //advance the narrative...
                     if (TextWritter.textEnded) AdvanceConvo(currentConv.NarrativeDataSet.Count);
                     else
-                        textWritter.FastForward();
+                        TextWritter.textEnded = true;
                 }
             }
             else
@@ -249,7 +240,7 @@ public class ConvController : MonoBehaviour
                     //advance the responses...
                     if (TextWritter.textEnded) AdvanceConvo(currentConv.optionDataSet[optionNumSelected].responses.Count);
                     else
-                        textWritter.FastForward();
+                        TextWritter.textEnded = true;
 
                 }
 

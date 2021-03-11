@@ -17,10 +17,6 @@ public class TextWritter : MonoBehaviour
         StartCoroutine(WriteC(text, UiText, convo));
     }
 
-    public void FastForward()
-    {
-        textEnded = true;
-    }
 
     private IEnumerator WriteC(string text, TMP_Text UiText, bool convo)
     {

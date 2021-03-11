@@ -9,7 +9,16 @@ public class Player : MonoBehaviour
     public float speed;
     private Rigidbody2D rb;
     private UIhandler uIhandler;
-
+    public ConvController convController;
+    public Conversation introConvo;
+    void Start()
+    {
+        if (introConvo != null)
+        {
+            convController.currentConv = introConvo;
+            convController.ConvoStarted(2);
+        }
+    }
     void Awake()
     {
         cam = Camera.main;

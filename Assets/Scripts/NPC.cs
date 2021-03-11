@@ -17,8 +17,6 @@ public class NPC : MonoBehaviour
 
     [Header("Data")]
     public AudioClip sound;
-    public bool canMoveHere;
-    public string dialogue;
     public string correctItem;
 
     public ConvController convCtrl;
@@ -34,7 +32,7 @@ public class NPC : MonoBehaviour
             if (counter == 0)
             {
                 convCtrl.currentConv = startingConvo;
-                loopingConvo = Resources.Load<Conversation>("Text/" + startingConvo.nextfile);
+                loopingConvo = startingConvo.nextConvo;
                 counter++;
             }
             else
