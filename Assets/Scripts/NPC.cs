@@ -39,7 +39,7 @@ public class NPC : MonoBehaviour
             {
                 convCtrl.currentConv = loopingConvo;
             }
-            convCtrl.ConvoStarted(1);
+            convCtrl.ConvoStarted();
             convCtrl.audioSource.clip = sound;
             convCtrl.audioSource.PlayDelayed(3f);
         }

@@ -35,7 +35,7 @@ public class TextWritter : MonoBehaviour
             UiText.text = text;
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         textEnded = true;
 

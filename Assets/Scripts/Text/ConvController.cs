@@ -20,6 +20,7 @@ public class ConvController : MonoBehaviour
 
     [Header("References - UI")]
     public TMP_Text textRoom;
+    public TMP_Text textCharName;
 
     [Header("References/Data")]
     public Image left;
@@ -34,7 +35,8 @@ public class ConvController : MonoBehaviour
     //convo var
     private bool isNarrConvo;
     private bool isConvoEnded;
-    private bool isOptionSelected; private int optionNumSelected; private float timer;
+
+    private bool isOptionSelected; private int optionNumSelected; private float timer; //skipping text speed
     private int convoIndex;
 
     //scroll var
@@ -49,14 +51,14 @@ public class ConvController : MonoBehaviour
     }
 
 
-    public void ConvoStarted(int cooldown)
+    public void ConvoStarted()
     {
 
         if (left != null) left.sprite = currentConv.left;
         if (right != null) right.sprite = currentConv.right;
 
 
-        isConvoEnded = false; timer = cooldown;
+        isConvoEnded = false;
 
         if (currentConv.NarrativeDataSet.Count == 0)
         {
@@ -103,12 +105,22 @@ public class ConvController : MonoBehaviour
     }
     void AdvanceConvo(int amount)
     {
+        timer = 10f; //skipping text speed
+
         //go through each text block/response
         if (convoIndex < amount)
         {
             //who is talking
-            if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0) left.gameObject.SetActive(true);
-            if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1) right.gameObject.SetActive(true);
+            if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0)
+            {
+                textCharName.text = left.sprite.name + ":";
+                left.gameObject.SetActive(true);
+            }
+            if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1)
+            {
+                textCharName.text = right.sprite.name + ":";
+                right.gameObject.SetActive(true);
+            }
 
             if (isNarrConvo)
             {
@@ -203,7 +215,7 @@ public class ConvController : MonoBehaviour
         if (nextConvo != null)
         {
             currentConv = nextConvo;
-            ConvoStarted(0);
+            ConvoStarted();
         }
         else ConvoEnded();
     }
