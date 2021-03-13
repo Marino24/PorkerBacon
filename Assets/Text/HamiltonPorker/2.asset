@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6128031103636b1419b08310897ecd58, type: 3}
-  m_Name: HamiltonPorker
+  m_Name: 2
   m_EditorClassIdentifier: 
   firstLine: 
   OptionDataSet:
-  - option: Hamilton, please...
-    responses: []
+  - option: "That\u2019s the trouble with us pigs, you see: we see too much of either
+      side, and not enough of what\u2019s before us, right under our noses."
+    responses:
+    - That is spoken like a pearl.
     nextConvo: {fileID: 0}
-    unlockedOption: {fileID: 0}
+    unlockedOption: {fileID: 11400000, guid: 1124d6e6a928e274f8f59b0be5385886, type: 2}
   NarrativeDataSet: []
   left: {fileID: 21300000, guid: f64d2e2bcae54b9468805390444477c8, type: 3}
   right: {fileID: 21300000, guid: c12a5d0436494b44eae45f75441d1347, type: 3}
-  nextConvo: {fileID: 0}
+  nextConvo: {fileID: 11400000, guid: fbc9fc1b73336ea409a8ce9c23540038, type: 2}

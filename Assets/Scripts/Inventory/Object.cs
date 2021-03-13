@@ -28,7 +28,7 @@ public class Object : MonoBehaviour
     [Tooltip("Is this an item")]
     public bool canPickUp;
     public string objDesc; private string reachDesc;
-    public List<string> reachOptions = new List<string>(); private float reach = 7f; private bool outOfReach;
+    private float reach = 7f; private bool outOfReach;
 
 
     [Tooltip("What item should be used on this")]
@@ -41,7 +41,7 @@ public class Object : MonoBehaviour
         //range check
         if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
-        if (canPickUp && outOfReach) reachDesc = reachOptions[Random.Range(0, reachOptions.Count)];
+        if (canPickUp && outOfReach) reachDesc = player.reachOptions[Random.Range(0, player.reachOptions.Count)];
 
         textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false);
 

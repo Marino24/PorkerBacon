@@ -10,13 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00ed6504aa592c24da3c5ebce3035263, type: 3}
-  m_Name: p1
+  m_Name: 2c&d
   m_EditorClassIdentifier: 
-  requiredAmount: 0
-  id: 
-  unlockedOptionLocation: {fileID: 0}
+  requiredAmount: 1
+  id: dkadkakekek
+  unlockedOptionLocation: {fileID: 11400000, guid: fbc9fc1b73336ea409a8ce9c23540038,
+    type: 2}
   UnlockedOptionDataSet:
-  - option: 
-    responses: []
+  - option: I don't mean to cast it in your face, Ham.
+    responses:
+    - "It\u2019s all right. I could use a stratagem from time to time."
+    nextConvo: {fileID: 0}
+    unlockedOption: {fileID: 0}
+  - option: How did you get across the Fence?
+    responses:
+    - I burrowed. That's just Common Sense.
     nextConvo: {fileID: 0}
     unlockedOption: {fileID: 0}
