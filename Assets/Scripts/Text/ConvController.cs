@@ -109,11 +109,12 @@ public class ConvController : MonoBehaviour
         if (convoIndex < amount)
         {
             //who is talking
-            if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0) left.gameObject.SetActive(true);
-            if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1) right.gameObject.SetActive(true);
 
             if (isNarrConvo)
             {
+                if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0) left.gameObject.SetActive(true);
+                if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1) right.gameObject.SetActive(true);
+
                 textWritter.Write(currentConv.NarrativeDataSet[convoIndex].textSet, textRoom, true);
             }
             else
@@ -164,10 +165,18 @@ public class ConvController : MonoBehaviour
                     }
                 }
 
+                //is not exit button
                 if (!currentConv.optionDataSet[optionNumSelected].isExitOption)
                 {
-                    //remove if not exit option
+
+                    Conversation temp = currentConv.optionDataSet[optionNumSelected].nextConvo;
+
                     currentConv.optionDataSet.RemoveAt(optionNumSelected);
+
+                    if (temp != null)
+                    {
+                        currentConv = temp;
+                    }
                     ConvoStarted(0);
                 }
                 else

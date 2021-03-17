@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
             uIhandler.StartConversation();
 
             convController.currentConv = introConvo;
-            convController.ConvoStarted();
+            convController.ConvoStarted(1);
         }
     }
     void Awake()
