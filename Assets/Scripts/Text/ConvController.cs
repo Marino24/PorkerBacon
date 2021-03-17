@@ -8,20 +8,22 @@ using UnityEngine.UI;
 
 public class ConvController : MonoBehaviour
 {
-    [Header("References")]
 
     private UIhandler uIhandler;
     private TextWritter textWritter;
+    [System.NonSerialized]
+    public NPC npc;
+
+    [Header("References")]
     public Conversation currentConv;
-    public RectTransform convoOptions; private GridLayoutGroup gridLayout;
+
     public GameObject[] buttons = new GameObject[10];
     public AudioSource audioSource;
 
 
     [Header("References - UI")]
     public TMP_Text textRoom;
-
-    [Header("References/Data")]
+    public RectTransform convoOptions; private GridLayoutGroup gridLayout;
     public Image left;
     public Image right;
 
@@ -56,7 +58,7 @@ public class ConvController : MonoBehaviour
         if (right != null) right.sprite = currentConv.right;
 
 
-        isConvoEnded = false; timer = cooldown;
+        isConvoEnded = false; convoIndex = 0; timer = cooldown;
 
         if (currentConv.NarrativeDataSet.Count == 0)
         {
@@ -126,7 +128,7 @@ public class ConvController : MonoBehaviour
             //convo is ending...
             if (isNarrConvo)
             {
-                EndCurrentConvo(currentConv.nextConvo);
+                EndCurrentConvo();
             }
             else
             {
@@ -162,9 +164,19 @@ public class ConvController : MonoBehaviour
                     }
                 }
 
-                EndCurrentConvo(currentConv.optionDataSet[optionNumSelected].nextConvo);
-                //remove the option  
-                currentConv.optionDataSet.RemoveAt(optionNumSelected);
+                if (!currentConv.optionDataSet[optionNumSelected].isExitOption)
+                {
+                    //remove if not exit option
+                    currentConv.optionDataSet.RemoveAt(optionNumSelected);
+                    ConvoStarted(0);
+                }
+                else
+                {
+                    EndCurrentConvo();
+                    npc.conversation = currentConv;
+                }
+
+
             }
         }
     }
@@ -191,18 +203,17 @@ public class ConvController : MonoBehaviour
         }
     }
 
-    void EndCurrentConvo(Conversation nextConvo)
+    void EndCurrentConvo()
     {
         textRoom.text = "";
-        convoIndex = 0;
 
         left.gameObject.SetActive(false);
         right.gameObject.SetActive(false);
 
 
-        if (nextConvo != null)
+        if (currentConv.nextConvo != null)
         {
-            currentConv = nextConvo;
+            currentConv = currentConv.nextConvo;
             ConvoStarted(0);
         }
         else ConvoEnded();

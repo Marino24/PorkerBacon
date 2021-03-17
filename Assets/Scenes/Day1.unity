@@ -2745,7 +2745,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentConv: {fileID: 0}
-  convoOptions: {fileID: 426045812}
   buttons:
   - {fileID: 1012709053}
   - {fileID: 851427922}
@@ -2759,6 +2758,7 @@ MonoBehaviour:
   - {fileID: 2131214292}
   audioSource: {fileID: 662570205}
   textRoom: {fileID: 1334895147}
+  convoOptions: {fileID: 426045812}
   left: {fileID: 295493517}
   right: {fileID: 540130646}
 --- !u!82 &662570205
@@ -4563,7 +4563,7 @@ MonoBehaviour:
   sound: {fileID: 8300000, guid: c1ffbea1b9ce12847b352e6c1a20e82f, type: 3}
   correctItem: gun
   convCtrl: {fileID: 662570204}
-  startingConvo: {fileID: 11400000, guid: af4d7e90144e94248a7ba02e26daa86c, type: 2}
+  conversation: {fileID: 0}
 --- !u!1 &1230816797
 GameObject:
   m_ObjectHideFlags: 0

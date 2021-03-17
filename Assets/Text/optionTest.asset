@@ -17,38 +17,38 @@ MonoBehaviour:
   - option: Soooo
     responses:
     - giooo
-    nextConvo: {fileID: 0}
     unlockedOption: {fileID: 0}
+    isExitOption: 1
   - option: nnnn
     responses:
     - giooo
-    nextConvo: {fileID: 0}
     unlockedOption: {fileID: 0}
+    isExitOption: 0
   - option: nnnn
     responses:
     - giooo
-    nextConvo: {fileID: 0}
     unlockedOption: {fileID: 0}
+    isExitOption: 0
   - option: nnnn
     responses:
     - giooo
-    nextConvo: {fileID: 0}
     unlockedOption: {fileID: 0}
+    isExitOption: 0
   - option: nnnn
     responses:
     - giooo
-    nextConvo: {fileID: 0}
     unlockedOption: {fileID: 0}
+    isExitOption: 0
   - option: nnnn
     responses:
     - giooo
-    nextConvo: {fileID: 0}
     unlockedOption: {fileID: 0}
+    isExitOption: 0
   - option: nnnn
     responses:
     - giooo
-    nextConvo: {fileID: 0}
     unlockedOption: {fileID: 0}
+    isExitOption: 0
   NarrativeDataSet: []
   left: {fileID: 0}
   right: {fileID: 0}
