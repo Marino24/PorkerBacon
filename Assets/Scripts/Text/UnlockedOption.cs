@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Option", menuName = "New Option", order = 1)]
 public class UnlockedOption : ScriptableObject
 {
-    public int requiredAmount;
+    public int requiredAmount = 1;
     public string id;
     public Conversation unlockedOptionLocation;
     public List<Conversation.OptionData> UnlockedOptionDataSet = new List<Conversation.OptionData>();

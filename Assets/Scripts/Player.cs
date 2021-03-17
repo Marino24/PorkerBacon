@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     private UIhandler uIhandler;
     public ConvController convController;
     public Conversation introConvo;
+    public List<string> reachOptions = new List<string>();
+
     void Start()
     {
         if (introConvo != null)
@@ -18,7 +20,7 @@ public class Player : MonoBehaviour
             uIhandler.StartConversation();
 
             convController.currentConv = introConvo;
-            convController.ConvoStarted(1);
+            convController.ConvoStarted();
         }
     }
     void Awake()

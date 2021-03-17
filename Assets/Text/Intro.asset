@@ -15,12 +15,34 @@ MonoBehaviour:
   firstLine: 
   OptionDataSet: []
   NarrativeDataSet:
-  - textSet: Im trapped
+  - textSet: I was a piglet born with hope and joy
     ZeroOrOne: 0
-  - textSet: Need to escape
+  - textSet: (A fitting occupation for a boy.)
     ZeroOrOne: 0
-  - textSet: Before its too late
+  - textSet: I thought not how our parents disappear
     ZeroOrOne: 0
-  left: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  - textSet: Nor why some wear a number in their ear.
+    ZeroOrOne: 0
+  - textSet: 'I used to oink with certainty and charm:'
+    ZeroOrOne: 0
+  - textSet: The finest female pigs come from the Farm.
+    ZeroOrOne: 0
+  - textSet: But that would not behoove me much right now
+    ZeroOrOne: 0
+  - textSet: It won't unmove the curtains for the Sow.
+    ZeroOrOne: 0
+  - textSet: 'And everything I grew to dread and fear:'
+    ZeroOrOne: 0
+  - textSet: 'I must confess: I found it all right here.'
+    ZeroOrOne: 0
+  - textSet: 'The mess. The stress. The lonely, daily chore:'
+    ZeroOrOne: 0
+  - textSet: I found it in the Jailing of a Boar.
+    ZeroOrOne: 0
+  - textSet: 'So now that I am old, my thought is New:'
+    ZeroOrOne: 0
+  - textSet: The unforetold shall be my point of view.
+    ZeroOrOne: 0
+  left: {fileID: 21300000, guid: c12a5d0436494b44eae45f75441d1347, type: 3}
   right: {fileID: 0}
-  nextConvo: {fileID: 0}
+  nextConvo: {fileID: 11400000, guid: af4d7e90144e94248a7ba02e26daa86c, type: 2}
