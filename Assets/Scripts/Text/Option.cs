@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Option", menuName = "New Option", order = 1)]
-public class UnlockedOption : ScriptableObject
+public class Option : ScriptableObject
 {
     public int requiredAmount = 1;
     public string id;
     public Conversation unlockedOptionLocation;
-    public List<Conversation.OptionData> UnlockedOptionDataSet = new List<Conversation.OptionData>();
+    public List<Conversation.OptionData> ThisOptionDataSet = new List<Conversation.OptionData>();
 }

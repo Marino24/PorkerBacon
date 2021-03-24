@@ -28,8 +28,9 @@ public class ConvController : MonoBehaviour
     public Image right;
 
 
-    //unlocked options tracker
+    //unlocked/removed options tracker
     private List<Conversation.OptionData> AlreadyUnlockedOptionDataSet = new List<Conversation.OptionData>();
+    private List<Conversation.OptionData> AlreadyRemovedOptionDataSet = new List<Conversation.OptionData>();
     //unlocked requirement tracker
     Dictionary<string, int> requiredOptionsDataSet = new Dictionary<string, int>();
 
@@ -135,35 +136,8 @@ public class ConvController : MonoBehaviour
             {
                 isOptionSelected = false;
 
-                var requiredOption = currentConv.optionDataSet[optionNumSelected].unlockedOption;
-                //check if options is to be unlocked
-                if (currentConv.optionDataSet[optionNumSelected].unlockedOption != null)
-                {
-                    //check if option has a requirement
-                    if (requiredOption.requiredAmount != 0)
-                    {
-                        //counter up or add if new
-                        if (requiredOptionsDataSet.ContainsKey(requiredOption.id))
-                        {
-                            requiredOptionsDataSet[requiredOption.id]++;
-                        }
-                        else
-                        {
-                            requiredOptionsDataSet.Add(requiredOption.id, 1);
-                        }
-
-                        //check if required amount is now good
-                        if (requiredOptionsDataSet[requiredOption.id] == requiredOption.requiredAmount)
-                        {
-                            AddOptions();
-                        }
-
-                    }
-                    else
-                    {
-                        AddOptions();
-                    }
-                }
+                CheckForAddingOptions();
+                CheckForRemovingOptions();
 
                 //is not exit button
                 if (!currentConv.optionDataSet[optionNumSelected].isExitOption)
@@ -189,25 +163,90 @@ public class ConvController : MonoBehaviour
             }
         }
     }
-    void AddOptions()
-    {
-        var unlockedOptionSet = currentConv.optionDataSet[optionNumSelected].unlockedOption;
 
-        for (int i = 0; i < unlockedOptionSet.UnlockedOptionDataSet.Count; i++)
+    void CheckForRemovingOptions()
+    {
+        var removedOption = currentConv.optionDataSet[optionNumSelected].removedOptions;
+
+        for (int i = 0; i < removedOption.Count; i++)
         {
-            //check if it wasnt unlocked yet
-            if (!AlreadyUnlockedOptionDataSet.Contains(unlockedOptionSet.UnlockedOptionDataSet[i]))
+
+            RemoveOptions(i);
+        }
+    }
+    void RemoveOptions(int optionIndex)
+    {
+        var removedOption = currentConv.optionDataSet[optionNumSelected].removedOptions[optionIndex];
+
+        for (int i = 0; i < removedOption.ThisOptionDataSet.Count; i++)
+        {
+            if (!AlreadyRemovedOptionDataSet.Contains(removedOption.ThisOptionDataSet[i]))
             {
-                //add to both lists + check destination to add to
-                if (unlockedOptionSet.unlockedOptionLocation == null)
+                AlreadyRemovedOptionDataSet.Add(removedOption.ThisOptionDataSet[i]);
+            }
+
+            if (currentConv.optionDataSet.Contains(removedOption.ThisOptionDataSet[i]))
+            {
+                currentConv.optionDataSet.Remove(removedOption.ThisOptionDataSet[i]);
+            }
+        }
+    }
+    void CheckForAddingOptions()
+    {
+        var requiredOption = currentConv.optionDataSet[optionNumSelected].unlockedOptions;
+
+        for (int i = 0; i < requiredOption.Count; i++)
+        {
+            //check if options is to be unlocked
+            if (requiredOption[i] != null)
+            {
+                //check if option has a requirement
+                if (requiredOption[i].requiredAmount != 0)
                 {
-                    currentConv.optionDataSet.Add(unlockedOptionSet.UnlockedOptionDataSet[i]);
+                    //counter up or add if new
+                    if (requiredOptionsDataSet.ContainsKey(requiredOption[i].id))
+                    {
+                        requiredOptionsDataSet[requiredOption[i].id]++;
+                    }
+                    else
+                    {
+                        requiredOptionsDataSet.Add(requiredOption[i].id, 1);
+                    }
+
+                    //check if required amount is now good
+                    if (requiredOptionsDataSet[requiredOption[i].id] == requiredOption[i].requiredAmount)
+                    {
+                        AddOptions(i);
+                    }
+
                 }
                 else
                 {
-                    unlockedOptionSet.unlockedOptionLocation.optionDataSet.Add(unlockedOptionSet.UnlockedOptionDataSet[i]);
+                    AddOptions(i);
                 }
-                AlreadyUnlockedOptionDataSet.Add(unlockedOptionSet.UnlockedOptionDataSet[i]);
+            }
+        }
+    }
+    void AddOptions(int optionIndex)
+    {
+        var unlockedOption = currentConv.optionDataSet[optionNumSelected].unlockedOptions[optionIndex];
+
+        for (int i = 0; i < unlockedOption.ThisOptionDataSet.Count; i++)
+        {
+            //check if it wasnt unlocked yet or removed
+            if (!AlreadyUnlockedOptionDataSet.Contains(unlockedOption.ThisOptionDataSet[i]) && !AlreadyRemovedOptionDataSet.Contains(unlockedOption.ThisOptionDataSet[i]))
+            {
+                //add to both lists + check destination to add to
+                if (unlockedOption.unlockedOptionLocation == null)
+                {
+                    currentConv.optionDataSet.Add(unlockedOption.ThisOptionDataSet[i]);
+                }
+                else
+                {
+                    unlockedOption.unlockedOptionLocation.optionDataSet.Add(unlockedOption.ThisOptionDataSet[i]);
+                }
+
+                AlreadyUnlockedOptionDataSet.Add(unlockedOption.ThisOptionDataSet[i]);
             }
         }
     }

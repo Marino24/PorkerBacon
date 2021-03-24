@@ -13,7 +13,8 @@ public class Conversation : ScriptableObject
         [TextArea]
         public List<string> responses = new List<string>();
         public Conversation nextConvo;
-        public UnlockedOption unlockedOption;
+        public List<Option> unlockedOptions = new List<Option>();
+        public List<Option> removedOptions = new List<Option>();
         public bool isExitOption = false;
 
     }
