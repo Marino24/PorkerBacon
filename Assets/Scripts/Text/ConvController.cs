@@ -136,8 +136,8 @@ public class ConvController : MonoBehaviour
             {
                 isOptionSelected = false;
 
-                CheckForAddingOptions();
                 CheckForRemovingOptions();
+                CheckForAddingOptions();
 
                 //is not exit button
                 if (!currentConv.optionDataSet[optionNumSelected].isExitOption)
@@ -167,10 +167,10 @@ public class ConvController : MonoBehaviour
     void CheckForRemovingOptions()
     {
         var removedOption = currentConv.optionDataSet[optionNumSelected].removedOptions;
+        if (removedOption.Count == 0) return;
 
         for (int i = 0; i < removedOption.Count; i++)
         {
-
             RemoveOptions(i);
         }
     }
@@ -178,22 +178,22 @@ public class ConvController : MonoBehaviour
     {
         var removedOption = currentConv.optionDataSet[optionNumSelected].removedOptions[optionIndex];
 
-        for (int i = 0; i < removedOption.ThisOptionDataSet.Count; i++)
-        {
-            if (!AlreadyRemovedOptionDataSet.Contains(removedOption.ThisOptionDataSet[i]))
-            {
-                AlreadyRemovedOptionDataSet.Add(removedOption.ThisOptionDataSet[i]);
-            }
 
-            if (currentConv.optionDataSet.Contains(removedOption.ThisOptionDataSet[i]))
-            {
-                currentConv.optionDataSet.Remove(removedOption.ThisOptionDataSet[i]);
-            }
+        if (!AlreadyRemovedOptionDataSet.Contains(removedOption.option))
+        {
+            AlreadyRemovedOptionDataSet.Add(removedOption.option);
         }
+
+        if (currentConv.optionDataSet.Contains(removedOption.option))
+        {
+            currentConv.optionDataSet.Remove(removedOption.option);
+        }
+
     }
     void CheckForAddingOptions()
     {
         var requiredOption = currentConv.optionDataSet[optionNumSelected].unlockedOptions;
+        if (requiredOption.Count == 0) return;
 
         for (int i = 0; i < requiredOption.Count; i++)
         {
@@ -231,25 +231,23 @@ public class ConvController : MonoBehaviour
     {
         var unlockedOption = currentConv.optionDataSet[optionNumSelected].unlockedOptions[optionIndex];
 
-        for (int i = 0; i < unlockedOption.ThisOptionDataSet.Count; i++)
+        //check if it wasnt unlocked yet or removed
+        if (!AlreadyUnlockedOptionDataSet.Contains(unlockedOption.option) && !AlreadyRemovedOptionDataSet.Contains(unlockedOption.option))
         {
-            //check if it wasnt unlocked yet or removed
-            if (!AlreadyUnlockedOptionDataSet.Contains(unlockedOption.ThisOptionDataSet[i]) && !AlreadyRemovedOptionDataSet.Contains(unlockedOption.ThisOptionDataSet[i]))
+            //add to both lists + check destination to add to
+            if (unlockedOption.unlockedOptionLocation == null)
             {
-                //add to both lists + check destination to add to
-                if (unlockedOption.unlockedOptionLocation == null)
-                {
-                    currentConv.optionDataSet.Add(unlockedOption.ThisOptionDataSet[i]);
-                }
-                else
-                {
-                    unlockedOption.unlockedOptionLocation.optionDataSet.Add(unlockedOption.ThisOptionDataSet[i]);
-                }
-
-                AlreadyUnlockedOptionDataSet.Add(unlockedOption.ThisOptionDataSet[i]);
+                currentConv.optionDataSet.Add(unlockedOption.option);
             }
+            else
+            {
+                unlockedOption.unlockedOptionLocation.optionDataSet.Add(unlockedOption.option);
+            }
+
+            AlreadyUnlockedOptionDataSet.Add(unlockedOption.option);
         }
     }
+
 
     void EndCurrentConvo()
     {

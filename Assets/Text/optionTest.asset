@@ -18,25 +18,29 @@ MonoBehaviour:
     responses:
     - sss
     nextConvo: {fileID: 0}
-    unlockedOption: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
     isExitOption: 0
   - option: fffff
     responses:
     - sss
-    nextConvo: {fileID: 11400000, guid: 7aa2291f354216544beda708f48bc515, type: 2}
-    unlockedOption: {fileID: 0}
+    nextConvo: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
     isExitOption: 0
   - option: ssssss
     responses:
     - sss
     nextConvo: {fileID: 0}
-    unlockedOption: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
     isExitOption: 0
   - option: byee
     responses:
     - byeeeeeee eeeeeeeeee
     nextConvo: {fileID: 0}
-    unlockedOption: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
     isExitOption: 1
   NarrativeDataSet: []
   left: {fileID: 0}

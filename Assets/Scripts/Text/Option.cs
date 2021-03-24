@@ -8,5 +8,5 @@ public class Option : ScriptableObject
     public int requiredAmount = 1;
     public string id;
     public Conversation unlockedOptionLocation;
-    public List<Conversation.OptionData> ThisOptionDataSet = new List<Conversation.OptionData>();
+    public Conversation.OptionData option;
 }
