@@ -239,16 +239,9 @@ public class ConvController : MonoBehaviour
         //check if it wasnt unlocked yet or removed
         if (!currentConv.alreadyUnlockedOptionDataSet.Contains(unlockedOption.option) && !currentConv.alreadyRemovedOptionDataSet.Contains(unlockedOption.option))
         {
-            //add to both lists + check destination to add to
-            if (unlockedOption.unlockedOptionLocation == null)
-            {
-                currentConv.optionDataSet.Add(unlockedOption.option);
-            }
-            else
-            {
-                unlockedOption.unlockedOptionLocation.optionDataSet.Add(unlockedOption.option);
-            }
-
+            //add to both lists +  (check destination?) to add to
+            currentConv.optionDataSet.Add(unlockedOption.option);
+         
             currentConv.alreadyUnlockedOptionDataSet.Add(unlockedOption.option);
         }
     }

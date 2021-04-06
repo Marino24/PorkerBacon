@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: a
   m_EditorClassIdentifier: 
   requiredAmount: 1
-  id: 
   unlockedOptionLocation: {fileID: 0}
-  UnlockedOptionDataSet: []
+  option:
+    option: 
+    responses: []
+    nextConvo: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
+    isExitOption: 0
