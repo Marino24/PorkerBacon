@@ -22,6 +22,7 @@ public class ConvController : MonoBehaviour
 
     [Header("References - UI")]
     public TMP_Text textRoom;
+    public TMP_Text textCharName;
     public RectTransform convoOptions; private GridLayoutGroup gridLayout;
     public Image left;
     public Image right;
