@@ -8,21 +8,21 @@ using UnityEngine.UI;
 
 public class ConvController : MonoBehaviour
 {
-    [Header("References")]
-
     private UIhandler uIhandler;
     private TextWritter textWritter;
+    [System.NonSerialized]
+    public NPC npc;
+
+    [Header("References")]
     public Conversation currentConv;
-    public RectTransform convoOptions; private GridLayoutGroup gridLayout;
+
     public GameObject[] buttons = new GameObject[10];
     public AudioSource audioSource;
 
 
     [Header("References - UI")]
     public TMP_Text textRoom;
-    public TMP_Text textCharName;
-
-    [Header("References/Data")]
+    public RectTransform convoOptions; private GridLayoutGroup gridLayout;
     public Image left;
     public Image right;
 
@@ -132,7 +132,7 @@ public class ConvController : MonoBehaviour
             //convo is ending...
             if (isNarrConvo)
             {
-                EndCurrentConvo(currentConv.nextConvo);
+                EndCurrentConvo();
             }
             else
             {
@@ -153,7 +153,7 @@ public class ConvController : MonoBehaviour
                     {
                         currentConv = temp;
                     }
-                    ConvoStarted(0);
+                    ConvoStarted();
                 }
                 else
                 {
@@ -252,18 +252,17 @@ public class ConvController : MonoBehaviour
         }
     }
 
-    void EndCurrentConvo(Conversation nextConvo)
+    void EndCurrentConvo()
     {
         textRoom.text = "";
-        convoIndex = 0;
 
         left.gameObject.SetActive(false);
         right.gameObject.SetActive(false);
 
 
-        if (nextConvo != null)
+        if (currentConv.nextConvo != null)
         {
-            currentConv = nextConvo;
+            currentConv = currentConv.nextConvo;
             ConvoStarted();
         }
         else ConvoEnded();
