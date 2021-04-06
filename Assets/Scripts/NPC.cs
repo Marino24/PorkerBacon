@@ -20,28 +20,23 @@ public class NPC : MonoBehaviour
     public string correctItem;
 
     public ConvController convCtrl;
-    public Conversation startingConvo; private Conversation loopingConvo;
-    private int counter;
+    public Conversation conversation;
+
+
 
     void OnMouseDown()
     {
         if (!EventSystem.current.IsPointerOverGameObject() && !useItem.isItemInHand)
         {
-            uIhandler.StartConversation();
+            convCtrl.npc = this;
 
-            if (counter == 0)
-            {
-                convCtrl.currentConv = startingConvo;
-                loopingConvo = startingConvo.nextConvo;
-                counter++;
-            }
-            else
-            {
-                convCtrl.currentConv = loopingConvo;
-            }
+            uIhandler.StartConversation();
+            convCtrl.currentConv = conversation;
             convCtrl.ConvoStarted();
+
             convCtrl.audioSource.clip = sound;
             convCtrl.audioSource.PlayDelayed(3f);
+
         }
 
         /*
