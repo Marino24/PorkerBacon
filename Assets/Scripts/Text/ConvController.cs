@@ -26,12 +26,6 @@ public class ConvController : MonoBehaviour
     public Image left;
     public Image right;
 
-
-    //unlocked options tracker
-    private List<Conversation.OptionData> AlreadyUnlockedOptionDataSet = new List<Conversation.OptionData>();
-    //unlocked requirement tracker
-    Dictionary<string, int> requiredOptionsDataSet = new Dictionary<string, int>();
-
     //convo var
     private bool isNarrConvo;
     private bool isConvoEnded;
@@ -149,20 +143,20 @@ public class ConvController : MonoBehaviour
                 if (currentConv.optionDataSet[optionNumSelected].unlockedOption != null)
                 {
                     //check if option has a requirement
-                    if (requiredOption.requiredAmount != 0)
+                    if (requiredOption.requiredAmount != 1)
                     {
                         //counter up or add if new
-                        if (requiredOptionsDataSet.ContainsKey(requiredOption.id))
+                        if (currentConv.requiredOptionsDataSet.ContainsKey(requiredOption.name))
                         {
-                            requiredOptionsDataSet[requiredOption.id]++;
+                            currentConv.requiredOptionsDataSet[requiredOption.name]++;
                         }
                         else
                         {
-                            requiredOptionsDataSet.Add(requiredOption.id, 1);
+                            currentConv.requiredOptionsDataSet.Add(requiredOption.name, 1);
                         }
 
                         //check if required amount is now good
-                        if (requiredOptionsDataSet[requiredOption.id] == requiredOption.requiredAmount)
+                        if (currentConv.requiredOptionsDataSet[requiredOption.name] == requiredOption.requiredAmount)
                         {
                             AddOptions();
                         }
@@ -187,7 +181,7 @@ public class ConvController : MonoBehaviour
         for (int i = 0; i < unlockedOptionSet.UnlockedOptionDataSet.Count; i++)
         {
             //check if it wasnt unlocked yet
-            if (!AlreadyUnlockedOptionDataSet.Contains(unlockedOptionSet.UnlockedOptionDataSet[i]))
+            if (!currentConv.alreadyUnlockedOptionDataSet.Contains(unlockedOptionSet.UnlockedOptionDataSet[i]))
             {
                 //add to both lists + check destination to add to
                 if (unlockedOptionSet.unlockedOptionLocation == null)
@@ -198,7 +192,7 @@ public class ConvController : MonoBehaviour
                 {
                     unlockedOptionSet.unlockedOptionLocation.optionDataSet.Add(unlockedOptionSet.UnlockedOptionDataSet[i]);
                 }
-                AlreadyUnlockedOptionDataSet.Add(unlockedOptionSet.UnlockedOptionDataSet[i]);
+                currentConv.alreadyUnlockedOptionDataSet.Add(unlockedOptionSet.UnlockedOptionDataSet[i]);
             }
         }
     }

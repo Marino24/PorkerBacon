@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,15 +21,23 @@ public class Conversation : ScriptableObject
     public string firstLine;
 
     [SerializeField]
-    private List<OptionData> OptionDataSet = new List<OptionData>();
+    private List<OptionData> OptionDataSet = new List<OptionData>(); //original one
     [System.NonSerialized]
     public List<OptionData> optionDataSet = new List<OptionData>();
 
+    private Dictionary<string, int> RequiredOptionsDataSet = new Dictionary<string, int>(); //original one
+    public Dictionary<string, int> requiredOptionsDataSet = new Dictionary<string, int>();
+
+    private List<OptionData> AlreadyUnlockedOptionDataSet = new List<OptionData>(); //original one
+    [System.NonSerialized]
+    public List<OptionData> alreadyUnlockedOptionDataSet = new List<OptionData>(); 
 
 
     private void OnEnable()
     {
         optionDataSet = new List<OptionData>(OptionDataSet);
+        requiredOptionsDataSet = new Dictionary<string, int>(RequiredOptionsDataSet);
+        alreadyUnlockedOptionDataSet = new List<OptionData>(AlreadyUnlockedOptionDataSet);
     }
 
 

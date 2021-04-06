@@ -6,7 +6,6 @@ using UnityEngine;
 public class UnlockedOption : ScriptableObject
 {
     public int requiredAmount = 1;
-    public string id;
     public Conversation unlockedOptionLocation;
     public List<Conversation.OptionData> UnlockedOptionDataSet = new List<Conversation.OptionData>();
 }

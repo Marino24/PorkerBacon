@@ -10,15 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00ed6504aa592c24da3c5ebce3035263, type: 3}
-  m_Name: c
+  m_Name: a
   m_EditorClassIdentifier: 
   requiredAmount: 1
-  id: aeaearrr
-  unlockedOptionLocation: {fileID: 11400000, guid: c94a22ff482375a45a11375c2a3585c6,
-    type: 2}
-  UnlockedOptionDataSet:
-  - option: "I don\u2019t mean to cast it in your face, Ham."
-    responses:
-    - "It\u2019s all right. I could use a stratagem from time to time."
-    nextConvo: {fileID: 0}
-    unlockedOption: {fileID: 0}
+  id: 
+  unlockedOptionLocation: {fileID: 0}
+  UnlockedOptionDataSet: []
