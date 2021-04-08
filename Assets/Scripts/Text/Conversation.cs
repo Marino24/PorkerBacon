@@ -14,17 +14,12 @@ public class Conversation : ScriptableObject
         [TextArea]
         public List<string> responses = new List<string>();
         public Conversation nextConvo;
-        public List<OptionData> unlockedOptions = new List<OptionData>();
-        public List<OptionData> removedOptions = new List<OptionData>();
+        public List<string> unlockedOptions = new List<string>();
+        public List<string> removedOptions = new List<string>();
 
         public bool isExitOption = false;
 
     }
-
-    public OptionData a;
-    public OptionData b;
-    public OptionData c;
-    public OptionData d;
 
     [Header("Options")]
     public string firstLine;
@@ -33,6 +28,8 @@ public class Conversation : ScriptableObject
     private List<OptionData> OptionDataSet = new List<OptionData>(); //original one
     [System.NonSerialized]
     public List<OptionData> optionDataSet = new List<OptionData>();
+
+    public List<OptionData> allOptions = new List<OptionData>();
 
     private Dictionary<OptionData, int> RequiredOptionsDataSet = new Dictionary<OptionData, int>(); //original one
     public Dictionary<OptionData, int> requiredOptionsDataSet = new Dictionary<OptionData, int>();
