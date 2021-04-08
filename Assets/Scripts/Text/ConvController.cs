@@ -198,7 +198,7 @@ public class ConvController : MonoBehaviour
     }
 
     Conversation.OptionData FindOptionFromName(string name){
-        for(int i=0; i< currentConv.allOptions.Count; i++){
+        for(int i=0; i< currentConv.allOptions.Length; i++){
             if(currentConv.allOptions[i].GetType().Name == name) return currentConv.allOptions[i];
         }
         return null;
