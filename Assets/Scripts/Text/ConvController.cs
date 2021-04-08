@@ -183,14 +183,14 @@ public class ConvController : MonoBehaviour
         var removedOption = currentConv.optionDataSet[optionNumSelected].removedOptions[optionIndex];
 
 
-        if (!currentConv.alreadyRemovedOptionDataSet.Contains(removedOption.option))
+        if (!currentConv.alreadyRemovedOptionDataSet.Contains(removedOption))
         {
-            currentConv.alreadyRemovedOptionDataSet.Add(removedOption.option);
+            currentConv.alreadyRemovedOptionDataSet.Add(removedOption);
         }
 
-        if (currentConv.optionDataSet.Contains(removedOption.option))
+        if (currentConv.optionDataSet.Contains(removedOption))
         {
-            currentConv.optionDataSet.Remove(removedOption.option);
+            currentConv.optionDataSet.Remove(removedOption);
         }
 
     }
@@ -209,17 +209,17 @@ public class ConvController : MonoBehaviour
                 if (requiredOption[i].requiredAmount != 0)
                 {
                     //counter up or add if new
-                    if (currentConv.requiredOptionsDataSet.ContainsKey(requiredOption[i].name))
+                    if (currentConv.requiredOptionsDataSet.ContainsKey(requiredOption[i]))
                     {
-                        currentConv.requiredOptionsDataSet[requiredOption[i].name]++;
+                        currentConv.requiredOptionsDataSet[requiredOption[i]]++;
                     }
                     else
                     {
-                        currentConv.requiredOptionsDataSet.Add(requiredOption[i].name, 1);
+                        currentConv.requiredOptionsDataSet.Add(requiredOption[i], 1);
                     }
 
                     //check if required amount is now good
-                    if (currentConv.requiredOptionsDataSet[requiredOption[i].name] == requiredOption[i].requiredAmount)
+                    if (currentConv.requiredOptionsDataSet[requiredOption[i]] == requiredOption[i].requiredAmount)
                     {
                         AddOptions(i);
                     }
@@ -237,12 +237,12 @@ public class ConvController : MonoBehaviour
         var unlockedOption = currentConv.optionDataSet[optionNumSelected].unlockedOptions[optionIndex];
 
         //check if it wasnt unlocked yet or removed
-        if (!currentConv.alreadyUnlockedOptionDataSet.Contains(unlockedOption.option) && !currentConv.alreadyRemovedOptionDataSet.Contains(unlockedOption.option))
+        if (!currentConv.alreadyUnlockedOptionDataSet.Contains(unlockedOption) && !currentConv.alreadyRemovedOptionDataSet.Contains(unlockedOption))
         {
             //add to both lists +  (check destination?) to add to
-            currentConv.optionDataSet.Add(unlockedOption.option);
+            currentConv.optionDataSet.Add(unlockedOption);
          
-            currentConv.alreadyUnlockedOptionDataSet.Add(unlockedOption.option);
+            currentConv.alreadyUnlockedOptionDataSet.Add(unlockedOption);
         }
     }
 

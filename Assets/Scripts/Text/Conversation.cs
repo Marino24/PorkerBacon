@@ -8,17 +8,23 @@ public class Conversation : ScriptableObject
     [System.Serializable]
     public class OptionData
     {
+        public int requiredAmount = 1;
         [TextArea]
         public string option;
         [TextArea]
         public List<string> responses = new List<string>();
         public Conversation nextConvo;
-        public List<Option> unlockedOptions = new List<Option>();
-        public List<Option> removedOptions = new List<Option>();
+        public List<OptionData> unlockedOptions = new List<OptionData>();
+        public List<OptionData> removedOptions = new List<OptionData>();
 
         public bool isExitOption = false;
 
     }
+
+    public OptionData a;
+    public OptionData b;
+    public OptionData c;
+    public OptionData d;
 
     [Header("Options")]
     public string firstLine;
@@ -28,14 +34,14 @@ public class Conversation : ScriptableObject
     [System.NonSerialized]
     public List<OptionData> optionDataSet = new List<OptionData>();
 
-    private Dictionary<string, int> RequiredOptionsDataSet = new Dictionary<string, int>(); //original one
-    public Dictionary<string, int> requiredOptionsDataSet = new Dictionary<string, int>();
+    private Dictionary<OptionData, int> RequiredOptionsDataSet = new Dictionary<OptionData, int>(); //original one
+    public Dictionary<OptionData, int> requiredOptionsDataSet = new Dictionary<OptionData, int>();
 
     private List<OptionData> AlreadyUnlockedOptionDataSet = new List<OptionData>(); //original one
     [System.NonSerialized]
     public List<OptionData> alreadyUnlockedOptionDataSet = new List<OptionData>(); 
 
-        private List<OptionData> AlreadyRemovedOptionDataSet = new List<OptionData>(); //original one
+    private List<OptionData> AlreadyRemovedOptionDataSet = new List<OptionData>(); //original one
     [System.NonSerialized]
     public List<OptionData> alreadyRemovedOptionDataSet = new List<OptionData>(); 
 
@@ -43,7 +49,7 @@ public class Conversation : ScriptableObject
     private void OnEnable()
     {
         optionDataSet = new List<OptionData>(OptionDataSet);
-        requiredOptionsDataSet = new Dictionary<string, int>(RequiredOptionsDataSet);
+        requiredOptionsDataSet = new Dictionary<OptionData, int>(RequiredOptionsDataSet);
         alreadyUnlockedOptionDataSet = new List<OptionData>(AlreadyUnlockedOptionDataSet);
         alreadyRemovedOptionDataSet = new List<OptionData>(AlreadyRemovedOptionDataSet);
     }

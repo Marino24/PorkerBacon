@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: a
   m_EditorClassIdentifier: 
   requiredAmount: 1
-  unlockedOptionLocation: {fileID: 0}
   option:
     option: 
     responses: []
