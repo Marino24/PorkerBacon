@@ -28,11 +28,11 @@ public class Object : MonoBehaviour
     [Tooltip("Is this an item")]
     public bool canPickUp;
     public string objDesc; private string reachDesc;
-    private float reach = 7f; private bool outOfReach;
+    private float reach = 12f; private bool outOfReach;
 
 
     [Tooltip("What item should be used on this")]
-    public string correctItem;
+    public Sprite correctItem;
 
     void OnMouseDown()
     {
@@ -49,6 +49,12 @@ public class Object : MonoBehaviour
         {
             cam.GetComponent<Inventory>().ItemStored(itemSprite);
             Destroy(gameObject);
+        }
+
+        if (useItem.itemInHand == correctItem && !outOfReach)
+        {
+            //do stuff
+            textWritter.Write("Thats all folks thanks", uIhandler.monologueText, false);
         }
 
 

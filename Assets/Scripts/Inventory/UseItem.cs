@@ -16,8 +16,8 @@ public class UseItem : MonoBehaviour
     public class ItemCombo
     {
         public Sprite result;
-        public string item1;
-        public string item2;
+        public Sprite item1;
+        public Sprite item2;
     }
 
     [HideInInspector]
@@ -51,8 +51,10 @@ public class UseItem : MonoBehaviour
                 return;
             }
 
-            string itemUsed1 = previousButton.sprite.name;
-            string itemUsed2 = previousButton.sprite.name;
+            Sprite itemUsed1 = currentButton.sprite;
+            Sprite itemUsed2 = previousButton.sprite;
+
+            Debug.Log(itemUsed1 + " . " + itemUsed2);
 
             //combine them
             for (int i = 0; i < combos.Count; i++)
@@ -67,6 +69,17 @@ public class UseItem : MonoBehaviour
                         StopUsing();
                         return;
                     }
+                    else
+                    {
+                        StopUsing();
+                        return;
+                    }
+
+                }
+                else
+                {
+                    StopUsing();
+                    return;
                 }
             }
 
@@ -104,6 +117,6 @@ public class UseItem : MonoBehaviour
         isItemInHand = false;
         itemInHand.transform.localPosition = new Vector3(0, -50, 0);
         itemInHand.sprite = null;
-        currentButton = null;
+        currentButton = null; previousButton = null;
     }
 }
