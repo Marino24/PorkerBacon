@@ -53,22 +53,24 @@ public class ConvController : MonoBehaviour
         if (right != null) right.sprite = currentConv.right;
 
 
-        isConvoEnded = false; convoIndex = 0;
+        isConvoEnded = false; convoIndex = 0; textCharName.text = " ";
 
-        if (currentConv.NarrativeDataSet.Count == 0)
+        if (currentConv.NarrativeDataSet.Count == 0) isNarrConvo = false; else isNarrConvo = true;
+
+        if (isNarrConvo)
         {
-            //option convo
-            isNarrConvo = false;
-            DisplayOptions();
-        }
-        else
-        {
-            //narrative convo
-            isNarrConvo = true;
             AdvanceConvo(currentConv.NarrativeDataSet.Count);
         }
 
+        if (!isNarrConvo)
+        {
+            left.gameObject.SetActive(true);
+            right.gameObject.SetActive(true);
+            DisplayOptions();
+        }
     }
+
+
 
 
     void DisplayOptions()
@@ -221,7 +223,11 @@ public class ConvController : MonoBehaviour
             if (requiredOption != null)
             {
                 //check if option has a requirement
-                if (requiredOption.requiredAmount != 0)
+                if (requiredOption.requiredAmount == 1)
+                {
+                    AddOptions(i);
+                }
+                else
                 {
                     //counter up or add if new
                     if (currentConv.requiredOptionsDataSet.ContainsKey(requiredOption))
@@ -238,11 +244,6 @@ public class ConvController : MonoBehaviour
                     {
                         AddOptions(i);
                     }
-
-                }
-                else
-                {
-                    AddOptions(i);
                 }
             }
         }

@@ -5715,7 +5715,10 @@ MonoBehaviour:
   speed: 10
   convController: {fileID: 662570204}
   introConvo: {fileID: 11400000, guid: ccf6c0146c0243645b4ad0bc7380f48b, type: 2}
-  reachOptions: []
+  reachOptions:
+  - too far
+  - oh nah
+  - cant get it
 --- !u!61 &1357008100
 BoxCollider2D:
   m_ObjectHideFlags: 0

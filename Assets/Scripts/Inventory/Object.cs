@@ -28,7 +28,7 @@ public class Object : MonoBehaviour
     [Tooltip("Is this an item")]
     public bool canPickUp;
     public string objDesc; private string reachDesc;
-    private  float reach = 7f; private bool outOfReach;
+    private float reach = 7f; private bool outOfReach;
 
 
     [Tooltip("What item should be used on this")]
@@ -52,9 +52,5 @@ public class Object : MonoBehaviour
         }
 
 
-
-
     }
-
-
 }
