@@ -105,22 +105,22 @@ public class ConvController : MonoBehaviour
 
         //go through each text block/response
         if (convoIndex < amount)
-        {          
+        {
 
             if (isNarrConvo)
             {
-                     //who is talking
-            if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0)
-            {
-                textCharName.text = left.sprite.name + ":";
-                left.gameObject.SetActive(true);
-            }
-            if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1)
-            {
-                textCharName.text = right.sprite.name + ":";
-                right.gameObject.SetActive(true);
-            }
-                
+                //who is talking
+                if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0)
+                {
+                    textCharName.text = left.sprite.name + ":";
+                    left.gameObject.SetActive(true);
+                }
+                if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1)
+                {
+                    textCharName.text = right.sprite.name + ":";
+                    right.gameObject.SetActive(true);
+                }
+
                 textWritter.Write(currentConv.NarrativeDataSet[convoIndex].textSet, textRoom, true);
             }
             else
@@ -183,7 +183,7 @@ public class ConvController : MonoBehaviour
     void RemoveOptions(int optionIndex)
     {
         var removedOptionName = currentConv.optionDataSet[optionNumSelected].removedOptions[optionIndex];
-        var removedOption = FindOptionFromName(removedOptionName);
+        Conversation.OptionData removedOption = FindOptionFromName(removedOptionName);
 
 
         if (!currentConv.alreadyRemovedOptionDataSet.Contains(removedOption))
@@ -198,22 +198,24 @@ public class ConvController : MonoBehaviour
 
     }
 
-    Conversation.OptionData FindOptionFromName(string name){
-        for(int i=0; i< currentConv.allOptions.Length; i++){
+    Conversation.OptionData FindOptionFromName(string name)
+    {
+        for (int i = 0; i < currentConv.allOptions.Length; i++)
+        {
 
-            if(currentConv.allOptions[i].optionName == name.ToUpper()) return currentConv.allOptions[i];
+            if (currentConv.allOptions[i].optionName == name.ToUpper()) return currentConv.allOptions[i];
         }
         return null;
     }
 
     void CheckForAddingOptions()
     {
-        var requiredOptionName= currentConv.optionDataSet[optionNumSelected].unlockedOptions;
+        var requiredOptionName = currentConv.optionDataSet[optionNumSelected].unlockedOptions;
         if (requiredOptionName.Count == 0) return;
 
         for (int i = 0; i < requiredOptionName.Count; i++)
         {
-            var requiredOption= FindOptionFromName(requiredOptionName[i]);
+            Conversation.OptionData requiredOption = FindOptionFromName(requiredOptionName[i]);
 
             //check if options is to be unlocked
             if (requiredOption != null)
@@ -256,7 +258,7 @@ public class ConvController : MonoBehaviour
         {
             //add to both lists +  (check destination?) to add to
             currentConv.optionDataSet.Add(unlockedOption);
-         
+
             currentConv.alreadyUnlockedOptionDataSet.Add(unlockedOption);
         }
     }
@@ -276,9 +278,10 @@ public class ConvController : MonoBehaviour
         }
         else ConvoEnded();
     }
-public void DebugEnd(){
-    EndCurrentConvo();
-}
+    public void DebugEnd()
+    {
+        EndCurrentConvo();
+    }
     void ConvoEnded()
     {
         uIhandler.EndConversation();
