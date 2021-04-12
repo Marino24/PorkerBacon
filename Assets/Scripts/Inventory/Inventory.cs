@@ -45,4 +45,17 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    public void ItemUsed(Sprite itemSprite)
+    {
+        //looks for an item and remove it 
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].sprite == itemSprite)
+            {
+                items[i].sprite = empty;
+                break;
+            }
+        }
+    }
 }

@@ -12,6 +12,8 @@ public class Object : MonoBehaviour
     private UseItem useItem;
     private Player player;
     private TextWritter textWritter;
+    private Inventory inventory;
+
 
     void Awake()
     {
@@ -21,6 +23,8 @@ public class Object : MonoBehaviour
         useItem = cam.GetComponent<UseItem>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         textWritter = cam.GetComponent<TextWritter>();
+        inventory = cam.GetComponent<Inventory>();
+
     }
 
     [Header("Data")]
@@ -28,7 +32,7 @@ public class Object : MonoBehaviour
     [Tooltip("Is this an item")]
     public bool canPickUp;
     public string objDesc; private string reachDesc;
-    private float reach = 12f; private bool outOfReach;
+    private float reach = 15f; private bool outOfReach;
 
 
     [Tooltip("What item should be used on this")]
@@ -51,10 +55,11 @@ public class Object : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (useItem.itemInHand == correctItem && !outOfReach)
+        if (useItem.itemInHand.sprite == correctItem && !outOfReach)
         {
             //do stuff
             textWritter.Write("Thats all folks thanks", uIhandler.monologueText, false);
+            inventory.ItemUsed(useItem.itemInHand.sprite);
         }
 
 

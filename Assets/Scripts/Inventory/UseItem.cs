@@ -54,8 +54,6 @@ public class UseItem : MonoBehaviour
             Sprite itemUsed1 = currentButton.sprite;
             Sprite itemUsed2 = previousButton.sprite;
 
-            Debug.Log(itemUsed1 + " . " + itemUsed2);
-
             //combine them
             for (int i = 0; i < combos.Count; i++)
             {
@@ -76,12 +74,9 @@ public class UseItem : MonoBehaviour
                     }
 
                 }
-                else
-                {
-                    StopUsing();
-                    return;
-                }
             }
+            StopUsing();
+            return;
 
         }
 
@@ -119,4 +114,5 @@ public class UseItem : MonoBehaviour
         itemInHand.sprite = null;
         currentButton = null; previousButton = null;
     }
+
 }
