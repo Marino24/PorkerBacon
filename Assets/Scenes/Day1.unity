@@ -2141,6 +2141,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2278,6 +2279,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f68c438ca16d3438c6a81ac37a07de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1954cd3aaa6ada64ab55d4e87e5ce27a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 662570204}
 --- !u!1 &540130644
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,7 +2889,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentConv: {fileID: 0}
-  convoOptions: {fileID: 426045812}
   buttons:
   - {fileID: 1012709053}
   - {fileID: 851427922}
@@ -2890,6 +2903,7 @@ MonoBehaviour:
   audioSource: {fileID: 662570205}
   textRoom: {fileID: 1334895147}
   textCharName: {fileID: 896181345}
+  convoOptions: {fileID: 426045812}
   left: {fileID: 295493517}
   right: {fileID: 540130646}
 --- !u!82 &662570205
@@ -5059,7 +5073,7 @@ MonoBehaviour:
   sound: {fileID: 8300000, guid: c1ffbea1b9ce12847b352e6c1a20e82f, type: 3}
   correctItem: gun
   convCtrl: {fileID: 662570204}
-  startingConvo: {fileID: 11400000, guid: af4d7e90144e94248a7ba02e26daa86c, type: 2}
+  conversation: {fileID: 11400000, guid: 351c2cdb2a84aaa498a55adf2d293ad3, type: 2}
 --- !u!1 &1230816797
 GameObject:
   m_ObjectHideFlags: 0

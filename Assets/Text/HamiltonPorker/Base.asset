@@ -13,7 +13,17 @@ MonoBehaviour:
   m_Name: Base
   m_EditorClassIdentifier: 
   firstLine: 
-  OptionDataSet: []
+  OptionDataSet:
+  - optionName: A
+    requiredAmount: 1
+    option: 'Hamilton, please: spare this mulish man.'
+    responses:
+    - Hey, man. Whose side are you on?
+    nextConvo: {fileID: 0}
+    unlockedOptions:
+    - b
+    removedOptions: []
+    isExitOption: 0
   allOptions:
   - optionName: A
     requiredAmount: 1

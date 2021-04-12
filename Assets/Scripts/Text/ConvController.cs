@@ -53,7 +53,7 @@ public class ConvController : MonoBehaviour
         if (right != null) right.sprite = currentConv.right;
 
 
-        isConvoEnded = false;
+        isConvoEnded = false; convoIndex = 0;
 
         if (currentConv.NarrativeDataSet.Count == 0)
         {
@@ -73,6 +73,7 @@ public class ConvController : MonoBehaviour
 
     void DisplayOptions()
     {
+
         textWritter.Write(currentConv.firstLine, textRoom, true);
         //set buttons
         for (int i = 0; i < currentConv.optionDataSet.Count; i++)
@@ -104,8 +105,11 @@ public class ConvController : MonoBehaviour
 
         //go through each text block/response
         if (convoIndex < amount)
-        {
-            //who is talking
+        {          
+
+            if (isNarrConvo)
+            {
+                     //who is talking
             if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0)
             {
                 textCharName.text = left.sprite.name + ":";
@@ -116,9 +120,7 @@ public class ConvController : MonoBehaviour
                 textCharName.text = right.sprite.name + ":";
                 right.gameObject.SetActive(true);
             }
-
-            if (isNarrConvo)
-            {
+                
                 textWritter.Write(currentConv.NarrativeDataSet[convoIndex].textSet, textRoom, true);
             }
             else
@@ -160,7 +162,6 @@ public class ConvController : MonoBehaviour
                 {
                     EndCurrentConvo();
                     npc.conversation = currentConv;
-                    
                 }
 
 
@@ -199,7 +200,8 @@ public class ConvController : MonoBehaviour
 
     Conversation.OptionData FindOptionFromName(string name){
         for(int i=0; i< currentConv.allOptions.Length; i++){
-            if(currentConv.allOptions[i].GetType().Name == name) return currentConv.allOptions[i];
+
+            if(currentConv.allOptions[i].optionName == name.ToUpper()) return currentConv.allOptions[i];
         }
         return null;
     }
@@ -245,6 +247,7 @@ public class ConvController : MonoBehaviour
     }
     void AddOptions(int optionIndex)
     {
+        Debug.Log("adding");
         var unlockedOptionName = currentConv.optionDataSet[optionNumSelected].unlockedOptions[optionIndex];
         var unlockedOption = FindOptionFromName(unlockedOptionName);
 
@@ -273,7 +276,9 @@ public class ConvController : MonoBehaviour
         }
         else ConvoEnded();
     }
-
+public void DebugEnd(){
+    EndCurrentConvo();
+}
     void ConvoEnded()
     {
         uIhandler.EndConversation();
