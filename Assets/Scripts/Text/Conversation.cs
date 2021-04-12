@@ -33,9 +33,6 @@ public class Conversation : ScriptableObject
 
     public OptionData[] allOptions;
 
-    private OptionData a,b,c,d,e,f,g;
-
-
     private Dictionary<OptionData, int> RequiredOptionsDataSet = new Dictionary<OptionData, int>(); //original one
     public Dictionary<OptionData, int> requiredOptionsDataSet = new Dictionary<OptionData, int>();
 
@@ -54,18 +51,6 @@ public class Conversation : ScriptableObject
         requiredOptionsDataSet = new Dictionary<OptionData, int>(RequiredOptionsDataSet);
         alreadyUnlockedOptionDataSet = new List<OptionData>(AlreadyUnlockedOptionDataSet);
         alreadyRemovedOptionDataSet = new List<OptionData>(AlreadyRemovedOptionDataSet);
-
-        a.optionName = "A";
-        b.optionName = "B";
-        c.optionName = "C";
-        d.optionName = "D";
-        e.optionName = "E";
-        f.optionName = "F";
-        g.optionName = "G";
-        
-        allOptions = new OptionData[7] {a,b,c,d,e,f,g};
-        
-
     }
 
 

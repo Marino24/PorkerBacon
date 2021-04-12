@@ -17,56 +17,163 @@ MonoBehaviour:
   allOptions:
   - optionName: A
     requiredAmount: 1
-    option: 
-    responses: []
+    option: 'Hamilton, please: spare this mulish man.'
+    responses:
+    - Hey, man. Whose side are you on?
     nextConvo: {fileID: 0}
-    unlockedOptions: []
+    unlockedOptions:
+    - b
     removedOptions: []
     isExitOption: 0
   - optionName: B
     requiredAmount: 1
-    option: 
-    responses: []
+    option: "That\u2019s the trouble with us pigs, you see: we see too much of either
+      side, and not enough of what\u2019s before us, right under our noses."
+    responses:
+    - That is spoken like a pearl.
     nextConvo: {fileID: 0}
-    unlockedOptions: []
+    unlockedOptions:
+    - c
+    - d
     removedOptions: []
     isExitOption: 0
   - optionName: C
     requiredAmount: 1
-    option: 
-    responses: []
+    option: "I don\u2019t mean to cast it in your face, Ham."
+    responses:
+    - "It\u2019s all right. I could use a stratagem from time to time."
     nextConvo: {fileID: 0}
-    unlockedOptions: []
+    unlockedOptions:
+    - e
     removedOptions: []
     isExitOption: 0
   - optionName: D
     requiredAmount: 1
-    option: 
-    responses: []
-    nextConvo: {fileID: 0}
-    unlockedOptions: []
-    removedOptions: []
+    option: How did you get across the Fence?
+    responses:
+    - I burrowed. That's just Common Sense.
+    nextConvo: {fileID: 11400000, guid: 577e7785b8b7814488f8062f1f64c464, type: 2}
+    unlockedOptions:
+    - e
+    removedOptions:
+    - c
     isExitOption: 0
   - optionName: E
     requiredAmount: 1
-    option: 
-    responses: []
+    option: I am due three days from now.
+    responses:
+    - You?? Holy Cow.
+    - It can't be True. Not you.
+    - Porker!! My Dude!! That bastard.
+    - Wish the Master could be Mastered.
+    - Maybe, if he keeps on getting plastered,
+    - He will die far faster. Damn.
+    - 'I swear: I will not let you come to harm'
+    - The two of us shall quit this Cursed Farm.
     nextConvo: {fileID: 0}
-    unlockedOptions: []
-    removedOptions: []
+    unlockedOptions:
+    - f
+    removedOptions:
+    - c
+    - d
     isExitOption: 0
   - optionName: F
     requiredAmount: 1
-    option: 
-    responses: []
+    option: Thanks, but no more. Just one retort will do.
+    responses:
+    - 
     nextConvo: {fileID: 0}
-    unlockedOptions: []
+    unlockedOptions:
+    - g
+    - h
+    - i
+    - j
     removedOptions: []
     isExitOption: 0
   - optionName: G
     requiredAmount: 1
-    option: 
-    responses: []
+    option: You ever wonder what The Holy One would say?
+    responses:
+    - Don't know her. I'd steer clear, though, anyway.
+    nextConvo: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
+    isExitOption: 0
+  - optionName: H
+    requiredAmount: 1
+    option: Maybe the Chicken Flock would like to talk.
+    responses:
+    - It cannot hurt. They love to squawk.
+    nextConvo: {fileID: 0}
+    unlockedOptions:
+    - k
+    - o
+    removedOptions: []
+    isExitOption: 1
+  - optionName: I
+    requiredAmount: 1
+    option: And what about the Sheep? Are they Good Friends?
+    responses:
+    - 'To one another: yes. But us? Depends.'
+    nextConvo: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
+    isExitOption: 0
+  - optionName: J
+    requiredAmount: 1
+    option: You think the Shepherd Dog cares for our woes?
+    responses:
+    - Not really. But keep Dreaming, I suppose.
+    nextConvo: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
+    isExitOption: 0
+  - optionName: K
+    requiredAmount: 1
+    option: How is a pig to reach the Chickens then?
+    responses:
+    - I'd start by picking Items from the Pen.
+    nextConvo: {fileID: 0}
+    unlockedOptions:
+    - l
+    removedOptions: []
+    isExitOption: 0
+  - optionName: L
+    requiredAmount: 1
+    option: I picked some Items. Now what do I do?
+    responses:
+    - Look in your Inventory for some Clue.
+    - If stars align, some Items can combine.
+    nextConvo: {fileID: 0}
+    unlockedOptions:
+    - m
+    removedOptions: []
+    isExitOption: 0
+  - optionName: M
+    requiredAmount: 1
+    option: I think this combo's good, possibly Great.
+    responses:
+    - Then test it there upon that wooden Gate.
+    - 'But do beware: our fate is in your hooves.'
+    nextConvo: {fileID: 0}
+    unlockedOptions:
+    - n
+    removedOptions: []
+    isExitOption: 0
+  - optionName: N
+    requiredAmount: 1
+    option: 'Don''t worry: I know how to make my moves.'
+    responses:
+    - You'll have to, long before morale improves.
+    nextConvo: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
+    isExitOption: 0
+  - optionName: O
+    requiredAmount: 1
+    option: Thank you for all your help, comrade in arms.
+    responses:
+    - Hog Speed you, Porker Bacon. Death to Farms.
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
