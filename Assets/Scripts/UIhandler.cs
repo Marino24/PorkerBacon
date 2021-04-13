@@ -61,7 +61,7 @@ public class UIhandler : MonoBehaviour
 
         inventory.SetActive(false);
         monologueText.text = "";
-        player.enabled = false;
+        player.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; player.enabled = false;
     }
 
     public void EndConversation()
