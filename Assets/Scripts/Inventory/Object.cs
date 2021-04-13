@@ -55,13 +55,15 @@ public class Object : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (useItem.itemInHand.sprite == correctItem && !outOfReach)
+        if (correctItem != null)
         {
-            //do stuff
-            textWritter.Write("Thats all folks thanks", uIhandler.monologueText, false);
-            inventory.ItemUsed(useItem.itemInHand.sprite);
+            if (useItem.itemInHand.sprite == correctItem && !outOfReach)
+            {
+                //do stuff
+                textWritter.Write("Thats all folks thanks", uIhandler.monologueText, false);
+                inventory.ItemUsed(useItem.itemInHand.sprite);
+            }
         }
-
 
     }
 }
