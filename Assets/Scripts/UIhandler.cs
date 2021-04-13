@@ -60,7 +60,7 @@ public class UIhandler : MonoBehaviour
         conversationStage.SetActive(true);
 
         inventory.SetActive(false);
-        monologueText.text = "";
+        monologueText.text = ""; monologue.SetActive(false);
         player.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; player.enabled = false;
     }
 
@@ -69,6 +69,7 @@ public class UIhandler : MonoBehaviour
         conversationStage.SetActive(false);
 
         inventory.SetActive(true);
+        monologue.SetActive(true);
         player.enabled = true;
 
     }
