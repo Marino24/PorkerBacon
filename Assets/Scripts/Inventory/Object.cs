@@ -13,6 +13,7 @@ public class Object : MonoBehaviour
     private Player player;
     private TextWritter textWritter;
     private Inventory inventory;
+    private AudioController audioController;
 
 
     void Awake()
@@ -24,6 +25,7 @@ public class Object : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         textWritter = cam.GetComponent<TextWritter>();
         inventory = cam.GetComponent<Inventory>();
+        audioController = cam.GetComponent<AudioController>();
 
     }
 
@@ -49,10 +51,15 @@ public class Object : MonoBehaviour
 
         textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false);
 
+
+        //pickup
         if (canPickUp && !outOfReach)
         {
             cam.GetComponent<Inventory>().ItemStored(itemSprite);
-            Destroy(gameObject);
+            
+            audioController.ChangeMusic(gameObject.GetComponent<AudioSource>());
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
 
         if (correctItem != null)
