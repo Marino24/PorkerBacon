@@ -52,7 +52,6 @@ public class ConvController : MonoBehaviour
         if (left != null) left.sprite = currentConv.left;
         if (right != null) right.sprite = currentConv.right;
 
-
         isConvoEnded = false; convoIndex = 0; textCharName.text = " ";
 
         if (currentConv.NarrativeDataSet.Count == 0) isNarrConvo = false; else isNarrConvo = true;
@@ -286,6 +285,7 @@ public class ConvController : MonoBehaviour
     void ConvoEnded()
     {
         uIhandler.EndConversation();
+        //stop music
         isConvoEnded = true;
     }
     void Update()
