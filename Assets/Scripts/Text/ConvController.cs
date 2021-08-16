@@ -4,20 +4,23 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 
 public class ConvController : MonoBehaviour
 {
 
     private Camera cam;
-    private UIhandler uIhandler;
     private TextWritter textWritter;
     [System.NonSerialized]
     public NPC npc;
 
+    public static Action<Conversation> startConvo;
+    public static Action endConvo;
+
+
     [Header("References")]
     public Conversation currentConv;
-
     public GameObject[] buttons = new GameObject[10];
     public GameObject MusicManager;
 
@@ -43,14 +46,17 @@ public class ConvController : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
-        uIhandler = cam.GetComponent<UIhandler>();
         gridLayout = convoOptions.gameObject.GetComponent<GridLayoutGroup>();
         textWritter = cam.GetComponent<TextWritter>();
+
+        startConvo += ConvoStarted;
     }
 
 
-    public void ConvoStarted()
+    public void ConvoStarted(Conversation convo)
     {
+
+        currentConv = convo;
 
         if (left != null) left.sprite = currentConv.left;
         if (right != null) right.sprite = currentConv.right;
@@ -179,7 +185,7 @@ public class ConvController : MonoBehaviour
                     {
                         currentConv = temp;
                     }
-                    ConvoStarted();
+                    ConvoStarted(currentConv);
                 }
                 else
                 {
@@ -302,7 +308,7 @@ public class ConvController : MonoBehaviour
         if (currentConv.nextConvo != null)
         {
             currentConv = currentConv.nextConvo;
-            ConvoStarted();
+            ConvoStarted(currentConv);
         }
         else ConvoEnded();
     }
@@ -312,7 +318,8 @@ public class ConvController : MonoBehaviour
     }
     void ConvoEnded()
     {
-        uIhandler.EndConversation();
+        endConvo?.Invoke();
+
         //stop music
         isConvoEnded = true;
     }

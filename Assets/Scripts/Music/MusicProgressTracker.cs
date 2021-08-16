@@ -7,14 +7,13 @@ public class MusicProgressTracker : MonoBehaviour
 
     void Awake()
     {
-        Object.pickedAnItem += FirstItemPickedUp;
-
+        Object.pickedAnItem += x => FirstItemPickedUp();
     }
 
-    private void FirstItemPickedUp(Sprite parameter)
+    private void FirstItemPickedUp()
     {
         AudioController.musicPlay("First item");
-        Object.pickedAnItem -= FirstItemPickedUp;
+        Object.pickedAnItem -= x => FirstItemPickedUp();
     }
 
 }

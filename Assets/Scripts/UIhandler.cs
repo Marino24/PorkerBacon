@@ -41,6 +41,10 @@ public class UIhandler : MonoBehaviour
     void Awake()
     {
         menu.SetActive(false);
+        Debug.Log("adding stage");
+        ConvController.startConvo += x => StartConversation();
+        Debug.Log("DONE adding stage");
+        ConvController.endConvo += EndConversation;
     }
 
     void Update()

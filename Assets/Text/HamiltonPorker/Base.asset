@@ -17,6 +17,7 @@ MonoBehaviour:
   - optionName: A
     requiredAmount: 1
     option: 'Hamilton, please: spare this mulish man.'
+    abbOption: 
     responses:
     - Hey, man. Whose side are you on?
     nextConvo: {fileID: 0}
@@ -28,6 +29,7 @@ MonoBehaviour:
   - optionName: A
     requiredAmount: 1
     option: 'Hamilton, please: spare this mulish man.'
+    abbOption: 
     responses:
     - Hey, man. Whose side are you on?
     nextConvo: {fileID: 0}
@@ -39,6 +41,7 @@ MonoBehaviour:
     requiredAmount: 1
     option: "That\u2019s the trouble with us pigs, you see: we see too much of either
       side, and not enough of what\u2019s before us, right under our noses."
+    abbOption: "That\u2019s the trouble with us pigs, you see..."
     responses:
     - That is spoken like a pearl.
     nextConvo: {fileID: 0}
@@ -50,6 +53,7 @@ MonoBehaviour:
   - optionName: C
     requiredAmount: 1
     option: "I don\u2019t mean to cast it in your face, Ham."
+    abbOption: 
     responses:
     - "It\u2019s all right. I could use a stratagem from time to time."
     nextConvo: {fileID: 0}
@@ -60,6 +64,7 @@ MonoBehaviour:
   - optionName: D
     requiredAmount: 1
     option: How did you get across the Fence?
+    abbOption: 
     responses:
     - I burrowed. That's just Common Sense.
     nextConvo: {fileID: 11400000, guid: 577e7785b8b7814488f8062f1f64c464, type: 2}
@@ -71,6 +76,7 @@ MonoBehaviour:
   - optionName: E
     requiredAmount: 1
     option: I am due three days from now.
+    abbOption: 
     responses:
     - You?? Holy Cow.
     - It can't be True. Not you.
@@ -90,6 +96,7 @@ MonoBehaviour:
   - optionName: F
     requiredAmount: 1
     option: Thanks, but no more. Just one retort will do.
+    abbOption: 
     responses:
     - 
     nextConvo: {fileID: 0}
@@ -103,6 +110,7 @@ MonoBehaviour:
   - optionName: G
     requiredAmount: 1
     option: You ever wonder what The Holy One would say?
+    abbOption: 
     responses:
     - Don't know her. I'd steer clear, though, anyway.
     nextConvo: {fileID: 0}
@@ -112,6 +120,7 @@ MonoBehaviour:
   - optionName: H
     requiredAmount: 1
     option: Maybe the Chicken Flock would like to talk.
+    abbOption: 
     responses:
     - It cannot hurt. They love to squawk.
     nextConvo: {fileID: 0}
@@ -123,6 +132,7 @@ MonoBehaviour:
   - optionName: I
     requiredAmount: 1
     option: And what about the Sheep? Are they Good Friends?
+    abbOption: 
     responses:
     - 'To one another: yes. But us? Depends.'
     nextConvo: {fileID: 0}
@@ -132,6 +142,7 @@ MonoBehaviour:
   - optionName: J
     requiredAmount: 1
     option: You think the Shepherd Dog cares for our woes?
+    abbOption: 
     responses:
     - Not really. But keep Dreaming, I suppose.
     nextConvo: {fileID: 0}
@@ -141,6 +152,7 @@ MonoBehaviour:
   - optionName: K
     requiredAmount: 1
     option: How is a pig to reach the Chickens then?
+    abbOption: 
     responses:
     - I'd start by picking Items from the Pen.
     nextConvo: {fileID: 0}
@@ -151,6 +163,7 @@ MonoBehaviour:
   - optionName: L
     requiredAmount: 1
     option: I picked some Items. Now what do I do?
+    abbOption: 
     responses:
     - Look in your Inventory for some Clue.
     - If stars align, some Items can combine.
@@ -162,6 +175,7 @@ MonoBehaviour:
   - optionName: M
     requiredAmount: 1
     option: I think this combo's good, possibly Great.
+    abbOption: 
     responses:
     - Then test it there upon that wooden Gate.
     - 'But do beware: our fate is in your hooves.'
@@ -173,6 +187,7 @@ MonoBehaviour:
   - optionName: N
     requiredAmount: 1
     option: 'Don''t worry: I know how to make my moves.'
+    abbOption: 
     responses:
     - You'll have to, long before morale improves.
     nextConvo: {fileID: 0}
@@ -182,6 +197,7 @@ MonoBehaviour:
   - optionName: O
     requiredAmount: 1
     option: Thank you for all your help, comrade in arms.
+    abbOption: 
     responses:
     - Hog Speed you, Porker Bacon. Death to Farms.
     nextConvo: {fileID: 0}

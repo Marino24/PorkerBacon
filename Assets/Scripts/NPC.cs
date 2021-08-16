@@ -6,12 +6,10 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
-    private UIhandler uIhandler;
     private UseItem useItem;
 
     void Awake()
     {
-        uIhandler = Camera.main.GetComponent<UIhandler>();
         useItem = Camera.main.GetComponent<UseItem>();
     }
 
@@ -28,11 +26,7 @@ public class NPC : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject() && !useItem.isItemInHand)
         {
             convCtrl.npc = this;
-
-            uIhandler.StartConversation();
-            convCtrl.currentConv = conversation;
-            convCtrl.ConvoStarted();
-
+            ConvController.startConvo?.Invoke(conversation);
         }
 
         /*
