@@ -14,7 +14,11 @@ public class Inventory : MonoBehaviour
     {
         items = itemsDisplay.GetComponentsInChildren<Image>();
         empty = items[0].sprite;
+
+        Object.pickedAnItem += ItemStored;
+        Object.usedAnItem += ItemUsed;
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))

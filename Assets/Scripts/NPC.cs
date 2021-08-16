@@ -16,7 +16,6 @@ public class NPC : MonoBehaviour
     }
 
     [Header("Data")]
-    public AudioClip music;
     public string correctItem;
 
     public ConvController convCtrl;
@@ -34,11 +33,6 @@ public class NPC : MonoBehaviour
             convCtrl.currentConv = conversation;
             convCtrl.ConvoStarted();
 
-            if(music != null){
-
-                convCtrl.audioSource.clip = music;
-                convCtrl.audioSource.PlayDelayed(1.5f);
-            }
         }
 
         /*

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 public class Object : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class Object : MonoBehaviour
 
     }
 
+    public static Action<Sprite> pickedAnItem;
+    public static Action<Sprite> usedAnItem;
+
     [Header("Data")]
 
     [Tooltip("Is this an item")]
@@ -47,7 +51,7 @@ public class Object : MonoBehaviour
         //range check
         if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
-        if (canPickUp && outOfReach) reachDesc = player.reachOptions[Random.Range(0, player.reachOptions.Count)];
+        if (canPickUp && outOfReach) reachDesc = player.reachOptions[UnityEngine.Random.Range(0, player.reachOptions.Count)];
 
         textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false);
 
@@ -55,9 +59,9 @@ public class Object : MonoBehaviour
         //pickup
         if (canPickUp && !outOfReach)
         {
-            cam.GetComponent<Inventory>().ItemStored(itemSprite);
-            
-            audioController.ChangeMusic(gameObject.GetComponent<AudioSource>());
+
+            pickedAnItem?.Invoke(itemSprite);
+
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
@@ -68,7 +72,7 @@ public class Object : MonoBehaviour
             {
                 //do stuff
                 textWritter.Write("Thats all folks thanks", uIhandler.monologueText, false);
-                inventory.ItemUsed(useItem.itemInHand.sprite);
+                usedAnItem?.Invoke(useItem.itemInHand.sprite);
             }
         }
 

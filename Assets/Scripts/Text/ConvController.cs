@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class ConvController : MonoBehaviour
 {
+
+    private Camera cam;
     private UIhandler uIhandler;
     private TextWritter textWritter;
     [System.NonSerialized]
@@ -17,15 +19,15 @@ public class ConvController : MonoBehaviour
     public Conversation currentConv;
 
     public GameObject[] buttons = new GameObject[10];
-    public AudioSource audioSource;
+    public GameObject MusicManager;
 
 
     [Header("References - UI")]
     public TMP_Text textRoom;
     public TMP_Text textCharName;
     public RectTransform convoOptions; private GridLayoutGroup gridLayout;
-    public Image left;
-    public Image right;
+    public Image left; private bool leftSpoke;
+    public Image right; private bool rightSpoke;
 
     //convo var
     private bool isNarrConvo;
@@ -40,9 +42,10 @@ public class ConvController : MonoBehaviour
 
     void Awake()
     {
-        uIhandler = Camera.main.GetComponent<UIhandler>();
+        cam = Camera.main;
+        uIhandler = cam.GetComponent<UIhandler>();
         gridLayout = convoOptions.gameObject.GetComponent<GridLayoutGroup>();
-        textWritter = Camera.main.GetComponent<TextWritter>();
+        textWritter = cam.GetComponent<TextWritter>();
     }
 
 
@@ -65,6 +68,8 @@ public class ConvController : MonoBehaviour
         {
             left.gameObject.SetActive(true);
             right.gameObject.SetActive(true);
+            AudioController.musicPlay?.Invoke(currentConv.left.name);
+            AudioController.musicPlay?.Invoke(currentConv.right.name);
             DisplayOptions();
         }
     }
@@ -100,9 +105,11 @@ public class ConvController : MonoBehaviour
         AdvanceConvo(currentConv.optionDataSet[optionNumSelected].responses.Count);
 
     }
+
     void AdvanceConvo(int amount)
     {
         timer = 10f; //skipping text speed
+
 
         //go through each text block/response
         if (convoIndex < amount)
@@ -114,12 +121,24 @@ public class ConvController : MonoBehaviour
                 if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0)
                 {
                     textCharName.text = left.sprite.name + ":";
-                    left.gameObject.SetActive(true);
+
+                    if (!leftSpoke)
+                    {
+                        left.gameObject.SetActive(true);
+                        AudioController.musicPlay?.Invoke(currentConv.left.name);
+                        leftSpoke = true;
+                    }
                 }
                 if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1)
                 {
                     textCharName.text = right.sprite.name + ":";
-                    right.gameObject.SetActive(true);
+
+                    if (!rightSpoke)
+                    {
+                        right.gameObject.SetActive(true);
+                        AudioController.musicPlay?.Invoke(currentConv.right.name);
+                        rightSpoke = true;
+                    }
                 }
 
                 textWritter.Write(currentConv.NarrativeDataSet[convoIndex].textSet, textRoom, true);
@@ -267,8 +286,14 @@ public class ConvController : MonoBehaviour
     {
         textRoom.text = "";
 
-        left.gameObject.SetActive(false);
-        right.gameObject.SetActive(false);
+        left.gameObject.SetActive(false); leftSpoke = false;
+        AudioController.musicStop?.Invoke(currentConv.left.name);
+
+        if (currentConv.right != null)
+        {
+            right.gameObject.SetActive(false); rightSpoke = false;
+            AudioController.musicStop?.Invoke(currentConv.right.name);
+        }
 
 
         if (currentConv.nextConvo != null)
