@@ -8,11 +8,12 @@ public class Conversation : ScriptableObject
     [System.Serializable]
     public class OptionData
     {
-        public string optionName = " ";        
-        
+        public string optionName = " ";
+
         public int requiredAmount = 1;
         [TextArea]
         public string option;
+        public string abbOption;
         [TextArea]
         public List<string> responses = new List<string>();
         public Conversation nextConvo;
@@ -38,11 +39,11 @@ public class Conversation : ScriptableObject
 
     private List<OptionData> AlreadyUnlockedOptionDataSet = new List<OptionData>(); //original one
     [System.NonSerialized]
-    public List<OptionData> alreadyUnlockedOptionDataSet = new List<OptionData>(); 
+    public List<OptionData> alreadyUnlockedOptionDataSet = new List<OptionData>();
 
     private List<OptionData> AlreadyRemovedOptionDataSet = new List<OptionData>(); //original one
     [System.NonSerialized]
-    public List<OptionData> alreadyRemovedOptionDataSet = new List<OptionData>(); 
+    public List<OptionData> alreadyRemovedOptionDataSet = new List<OptionData>();
 
 
     private void OnEnable()

@@ -85,7 +85,8 @@ public class ConvController : MonoBehaviour
         for (int i = 0; i < currentConv.optionDataSet.Count; i++)
         {
             buttons[i].SetActive(true);
-            buttons[i].GetComponentInChildren<Text>().text = currentConv.optionDataSet[i].option;
+            if (currentConv.optionDataSet[i].abbOption != "") buttons[i].GetComponentInChildren<Text>().text = currentConv.optionDataSet[i].abbOption;
+            if (currentConv.optionDataSet[i].abbOption == "") buttons[i].GetComponentInChildren<Text>().text = currentConv.optionDataSet[i].option;
         }
         int elementSize = Mathf.RoundToInt(gridLayout.cellSize.y + gridLayout.spacing.y);
         maxScroll = elementSize * (currentConv.optionDataSet.Count - Mathf.RoundToInt(convoOptions.rect.height / elementSize));
@@ -102,7 +103,9 @@ public class ConvController : MonoBehaviour
             buttons[i].SetActive(false);
         }
 
-        AdvanceConvo(currentConv.optionDataSet[optionNumSelected].responses.Count);
+
+        //write out your option
+        textWritter.Write(currentConv.optionDataSet[optionNumSelected].option, textRoom, true);
 
     }
 
