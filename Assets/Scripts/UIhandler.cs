@@ -38,12 +38,15 @@ public class UIhandler : MonoBehaviour
         GameisPaused = true;
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     void Awake()
     {
         menu.SetActive(false);
-        Debug.Log("adding stage");
         ConvController.startConvo += x => StartConversation();
-        Debug.Log("DONE adding stage");
         ConvController.endConvo += EndConversation;
     }
 

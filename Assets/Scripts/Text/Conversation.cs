@@ -27,6 +27,7 @@ public class Conversation : ScriptableObject
     [Header("Options")]
     public string firstLine;
 
+
     [SerializeField]
     private List<OptionData> OptionDataSet = new List<OptionData>(); //original one
     [System.NonSerialized]
@@ -66,7 +67,7 @@ public class Conversation : ScriptableObject
     public List<NarrativeData> NarrativeDataSet = new List<NarrativeData>();
 
     [Header("Basic")]
-    public Sprite left;
-    public Sprite right;
+    public Sprite leftChar;
+    public Sprite rightChar;
     public Conversation nextConvo;
 }

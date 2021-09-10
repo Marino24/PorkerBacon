@@ -55,15 +55,15 @@ public class UseItem : MonoBehaviour
             Sprite itemUsed2 = previousButton.sprite;
 
             //combine them IMPORTANT: you cant have 2 of the same items in inventory...
-            for (int i = 0; i < combos.Count; i++)
+            foreach (ItemCombo v in combos)
             {
-                if (itemUsed1 == combos[i].item1 || itemUsed1 == combos[i].item2)
+                if (itemUsed1 == v.item1 || itemUsed1 == v.item2)
                 {
-                    if (itemUsed2 == combos[i].item1 || itemUsed2 == combos[i].item2)
+                    if (itemUsed2 == v.item1 || itemUsed2 == v.item2)
                     {
                         currentButton.sprite = inventory.empty;
                         previousButton.sprite = inventory.empty;
-                        inventory.ItemStored(combos[i].result);
+                        inventory.ItemStored(v.result);
                         StopUsing();
                         return;
                     }

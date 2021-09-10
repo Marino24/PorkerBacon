@@ -15,14 +15,19 @@ public class AudioController : MonoBehaviour
         musicPlay += UnMuteMusic;
         musicStop += MuteMusic;
     }
-    private void FadeIn()
+
+    public static IEnumerator Fade(AudioSource audioSource, float duration, float targetVolume)
     {
+        float currentTime = 0;
+        float start = audioSource.volume;
 
-    }
-
-    private void FadeOut()
-    {
-
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
     }
 
     public void UnMuteMusic(string musicName)
@@ -31,8 +36,7 @@ public class AudioController : MonoBehaviour
         {
             if (audioSources[i].gameObject.name == musicName)
             {
-                audioSources[i].mute = false;
-                Debug.Log("playing new");
+                StartCoroutine(Fade(audioSources[i], 8f, 1));
                 break;
             }
         }
@@ -44,9 +48,7 @@ public class AudioController : MonoBehaviour
         {
             if (audioSources[i].gameObject.name == musicName)
             {
-                audioSources[i].mute = true;
-                Debug.Log("stop playing");
-
+                StartCoroutine(Fade(audioSources[i], 4f, 0));
                 break;
             }
         }

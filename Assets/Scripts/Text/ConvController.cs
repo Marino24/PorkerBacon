@@ -21,7 +21,7 @@ public class ConvController : MonoBehaviour
 
     [Header("References")]
     public Conversation currentConv;
-    public GameObject[] buttons = new GameObject[10];
+    private GameObject[] buttons = new GameObject[10]; /*how many are max is here*/  public GameObject OptionButton;
     public GameObject MusicManager;
 
 
@@ -29,14 +29,14 @@ public class ConvController : MonoBehaviour
     public TMP_Text textRoom;
     public TMP_Text textCharName;
     public RectTransform convoOptions; private GridLayoutGroup gridLayout;
-    public Image left; private bool leftSpoke;
-    public Image right; private bool rightSpoke;
+    public Image leftChar; public Image leftCharBg; private bool leftSpoke;
+    public Image rightChar; public Image rightCharBg; private bool rightSpoke;
 
     //convo var
     private bool isNarrConvo;
     private bool isConvoEnded;
 
-    private bool isOptionSelected; private int optionNumSelected; private float timer; //skipping text speed
+    private bool isOptionSelected; private int optionNumSelected;
     private int convoIndex;
 
     //scroll var
@@ -45,6 +45,7 @@ public class ConvController : MonoBehaviour
 
     void Awake()
     {
+        SetUpOptionButtons();
         cam = Camera.main;
         gridLayout = convoOptions.gameObject.GetComponent<GridLayoutGroup>();
         textWritter = cam.GetComponent<TextWritter>();
@@ -58,8 +59,8 @@ public class ConvController : MonoBehaviour
 
         currentConv = convo;
 
-        if (left != null) left.sprite = currentConv.left;
-        if (right != null) right.sprite = currentConv.right;
+        if (leftChar != null) leftChar.sprite = currentConv.leftChar;
+        if (rightChar != null) rightChar.sprite = currentConv.rightChar;
 
         isConvoEnded = false; convoIndex = 0; textCharName.text = " ";
 
@@ -72,17 +73,25 @@ public class ConvController : MonoBehaviour
 
         if (!isNarrConvo)
         {
-            left.gameObject.SetActive(true);
-            right.gameObject.SetActive(true);
-            AudioController.musicPlay?.Invoke(currentConv.left.name);
-            AudioController.musicPlay?.Invoke(currentConv.right.name);
+            leftCharBg.gameObject.SetActive(true);
+            rightCharBg.gameObject.SetActive(true);
+            AudioController.musicPlay?.Invoke(currentConv.leftChar.name);
+            AudioController.musicPlay?.Invoke(currentConv.rightChar.name);
             DisplayOptions();
         }
     }
 
+    void SetUpOptionButtons()
+    {
 
-
-
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            GameObject buttonObj = Instantiate(OptionButton, convoOptions.transform.position, Quaternion.identity, convoOptions);
+            buttonObj.GetComponent<Button>().onClick.AddListener(OptionClicked);
+            buttonObj.SetActive(false);
+            buttons[i] = buttonObj;
+        }
+    }
     void DisplayOptions()
     {
 
@@ -91,34 +100,30 @@ public class ConvController : MonoBehaviour
         for (int i = 0; i < currentConv.optionDataSet.Count; i++)
         {
             buttons[i].SetActive(true);
-            if (currentConv.optionDataSet[i].abbOption != "") buttons[i].GetComponentInChildren<Text>().text = currentConv.optionDataSet[i].abbOption;
-            if (currentConv.optionDataSet[i].abbOption == "") buttons[i].GetComponentInChildren<Text>().text = currentConv.optionDataSet[i].option;
+            if (currentConv.optionDataSet[i].abbOption != "") buttons[i].GetComponentInChildren<TMP_Text>().text = currentConv.optionDataSet[i].abbOption;
+            if (currentConv.optionDataSet[i].abbOption == "") buttons[i].GetComponentInChildren<TMP_Text>().text = currentConv.optionDataSet[i].option;
         }
         int elementSize = Mathf.RoundToInt(gridLayout.cellSize.y + gridLayout.spacing.y);
         maxScroll = elementSize * (currentConv.optionDataSet.Count - Mathf.RoundToInt(convoOptions.rect.height / elementSize));
     }
-    public void OptionClicked()
+    void OptionClicked()
     {
         isOptionSelected = true;
-        //get button num from its name 
-        optionNumSelected = int.Parse(EventSystem.current.currentSelectedGameObject.name) - 1;
 
-        //reset buttons
+        //reset buttons & get button num 
         for (int i = 0; i < buttons.Length; i++)
         {
+            if (buttons[i] == EventSystem.current.currentSelectedGameObject) optionNumSelected = i;
+
             buttons[i].SetActive(false);
         }
 
-
         //write out your option
         textWritter.Write(currentConv.optionDataSet[optionNumSelected].option, textRoom, true);
-
     }
 
     void AdvanceConvo(int amount)
     {
-        timer = 10f; //skipping text speed
-
 
         //go through each text block/response
         if (convoIndex < amount)
@@ -129,23 +134,23 @@ public class ConvController : MonoBehaviour
                 //who is talking
                 if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0)
                 {
-                    textCharName.text = left.sprite.name + ":";
+                    textCharName.text = leftChar.sprite.name.Replace("portrait", "");
 
                     if (!leftSpoke)
                     {
-                        left.gameObject.SetActive(true);
-                        AudioController.musicPlay?.Invoke(currentConv.left.name);
+                        leftCharBg.gameObject.SetActive(true);
+                        AudioController.musicPlay?.Invoke(currentConv.leftChar.name);
                         leftSpoke = true;
                     }
                 }
                 if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1)
                 {
-                    textCharName.text = right.sprite.name + ":";
+                    textCharName.text = rightChar.sprite.name.Replace("portrait", "");
 
                     if (!rightSpoke)
                     {
-                        right.gameObject.SetActive(true);
-                        AudioController.musicPlay?.Invoke(currentConv.right.name);
+                        rightCharBg.gameObject.SetActive(true);
+                        AudioController.musicPlay?.Invoke(currentConv.rightChar.name);
                         rightSpoke = true;
                     }
                 }
@@ -277,7 +282,6 @@ public class ConvController : MonoBehaviour
     }
     void AddOptions(int optionIndex)
     {
-        Debug.Log("adding");
         var unlockedOptionName = currentConv.optionDataSet[optionNumSelected].unlockedOptions[optionIndex];
         var unlockedOption = FindOptionFromName(unlockedOptionName);
 
@@ -295,13 +299,13 @@ public class ConvController : MonoBehaviour
     {
         textRoom.text = "";
 
-        left.gameObject.SetActive(false); leftSpoke = false;
-        AudioController.musicStop?.Invoke(currentConv.left.name);
+        leftCharBg.gameObject.SetActive(false); leftSpoke = false;
+        AudioController.musicStop?.Invoke(currentConv.leftChar.name);
 
-        if (currentConv.right != null)
+        if (currentConv.rightChar != null)
         {
-            right.gameObject.SetActive(false); rightSpoke = false;
-            AudioController.musicStop?.Invoke(currentConv.right.name);
+            rightCharBg.gameObject.SetActive(false); rightSpoke = false;
+            AudioController.musicStop?.Invoke(currentConv.rightChar.name);
         }
 
 
@@ -320,15 +324,12 @@ public class ConvController : MonoBehaviour
     {
         endConvo?.Invoke();
 
-        //stop music
         isConvoEnded = true;
     }
     void Update()
     {
-        if (timer >= 0) timer -= 0.1f;
-
         //advance convo 
-        if (!isConvoEnded && EventSystem.current.IsPointerOverGameObject() && timer < 0)
+        if (!isConvoEnded && EventSystem.current.IsPointerOverGameObject())
         {
             if (isNarrConvo)
             {

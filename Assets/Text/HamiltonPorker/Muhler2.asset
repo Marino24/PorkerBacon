@@ -18,6 +18,6 @@ MonoBehaviour:
   NarrativeDataSet:
   - textSet: Or bring more Harm to those who quarter you.
     ZeroOrOne: 1
-  left: {fileID: 21300000, guid: c12a5d0436494b44eae45f75441d1347, type: 3}
-  right: {fileID: 21300000, guid: 6aaf8d0bd21ff8b40ae7d2066b254f2e, type: 3}
+  leftChar: {fileID: 21300000, guid: 009e68829190986498b073ef096f3286, type: 3}
+  rightChar: {fileID: 21300000, guid: 40fb50b1480cee946bceb75035e13ae0, type: 3}
   nextConvo: {fileID: 11400000, guid: 351c2cdb2a84aaa498a55adf2d293ad3, type: 2}
