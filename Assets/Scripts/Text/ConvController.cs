@@ -21,7 +21,7 @@ public class ConvController : MonoBehaviour
 
     [Header("References")]
     public Conversation currentConv;
-    private GameObject[] buttons = new GameObject[10]; /*how many are max is here*/  public GameObject OptionButton;
+    private GameObject[] buttons = new GameObject[10]; /*how many are max*/  public GameObject OptionButton;
     public GameObject MusicManager;
 
 
