@@ -6,17 +6,14 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
-    private UIhandler uIhandler;
     private UseItem useItem;
 
     void Awake()
     {
-        uIhandler = Camera.main.GetComponent<UIhandler>();
         useItem = Camera.main.GetComponent<UseItem>();
     }
 
     [Header("Data")]
-    public AudioClip sound;
     public string correctItem;
 
     public ConvController convCtrl;
@@ -29,14 +26,7 @@ public class NPC : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject() && !useItem.isItemInHand)
         {
             convCtrl.npc = this;
-
-            uIhandler.StartConversation();
-            convCtrl.currentConv = conversation;
-            convCtrl.ConvoStarted(1);
-
-            convCtrl.audioSource.clip = sound;
-            convCtrl.audioSource.PlayDelayed(3f);
-
+            ConvController.startConvo?.Invoke(conversation);
         }
 
         /*

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +8,18 @@ public class Conversation : ScriptableObject
     [System.Serializable]
     public class OptionData
     {
+        public string optionName = " ";
+
+        public int requiredAmount = 1;
         [TextArea]
         public string option;
+        public string abbOption;
         [TextArea]
         public List<string> responses = new List<string>();
         public Conversation nextConvo;
-        public List<Option> unlockedOptions = new List<Option>();
-        public List<Option> removedOptions = new List<Option>();
+        public List<string> unlockedOptions = new List<string>();
+        public List<string> removedOptions = new List<string>();
+
         public bool isExitOption = false;
 
     }
@@ -22,16 +27,32 @@ public class Conversation : ScriptableObject
     [Header("Options")]
     public string firstLine;
 
+
     [SerializeField]
-    private List<OptionData> OptionDataSet = new List<OptionData>();
+    private List<OptionData> OptionDataSet = new List<OptionData>(); //original one
     [System.NonSerialized]
     public List<OptionData> optionDataSet = new List<OptionData>();
 
+    public OptionData[] allOptions;
+
+    private Dictionary<OptionData, int> ToBeUnlockedOptionsDataSet = new Dictionary<OptionData, int>(); //original one
+    public Dictionary<OptionData, int> toBeUnlockedOptionsDataSet = new Dictionary<OptionData, int>();
+
+    private List<OptionData> AlreadyUnlockedOptionDataSet = new List<OptionData>(); //original one
+    [System.NonSerialized]
+    public List<OptionData> alreadyUnlockedOptionDataSet = new List<OptionData>();
+
+    private List<OptionData> AlreadyRemovedOptionDataSet = new List<OptionData>(); //original one
+    [System.NonSerialized]
+    public List<OptionData> alreadyRemovedOptionDataSet = new List<OptionData>();
 
 
     private void OnEnable()
     {
         optionDataSet = new List<OptionData>(OptionDataSet);
+        toBeUnlockedOptionsDataSet = new Dictionary<OptionData, int>(ToBeUnlockedOptionsDataSet);
+        alreadyUnlockedOptionDataSet = new List<OptionData>(AlreadyUnlockedOptionDataSet);
+        alreadyRemovedOptionDataSet = new List<OptionData>(AlreadyRemovedOptionDataSet);
     }
 
 
@@ -46,7 +67,7 @@ public class Conversation : ScriptableObject
     public List<NarrativeData> NarrativeDataSet = new List<NarrativeData>();
 
     [Header("Basic")]
-    public Sprite left;
-    public Sprite right;
+    public Sprite leftChar;
+    public Sprite rightChar;
     public Conversation nextConvo;
 }

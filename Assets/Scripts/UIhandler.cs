@@ -38,9 +38,16 @@ public class UIhandler : MonoBehaviour
         GameisPaused = true;
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     void Awake()
     {
         menu.SetActive(false);
+        ConvController.startConvo += x => StartConversation();
+        ConvController.endConvo += EndConversation;
     }
 
     void Update()
@@ -60,8 +67,8 @@ public class UIhandler : MonoBehaviour
         conversationStage.SetActive(true);
 
         inventory.SetActive(false);
-        monologueText.text = "";
-        player.enabled = false;
+        monologueText.text = ""; monologue.SetActive(false);
+        player.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; player.enabled = false;
     }
 
     public void EndConversation()
@@ -69,6 +76,7 @@ public class UIhandler : MonoBehaviour
         conversationStage.SetActive(false);
 
         inventory.SetActive(true);
+        monologue.SetActive(true);
         player.enabled = true;
 
     }

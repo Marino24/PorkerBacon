@@ -4,40 +4,39 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 
 public class ConvController : MonoBehaviour
 {
 
-    private UIhandler uIhandler;
+    private Camera cam;
     private TextWritter textWritter;
     [System.NonSerialized]
     public NPC npc;
 
+    public static Action<Conversation> startConvo;
+    public static Action endConvo;
+
+
     [Header("References")]
     public Conversation currentConv;
-
-    public GameObject[] buttons = new GameObject[10];
-    public AudioSource audioSource;
+    private GameObject[] buttons = new GameObject[10]; /*how many are max*/  public GameObject OptionButton;
+    public GameObject MusicManager;
 
 
     [Header("References - UI")]
     public TMP_Text textRoom;
+    public TMP_Text textCharName;
     public RectTransform convoOptions; private GridLayoutGroup gridLayout;
-    public Image left;
-    public Image right;
-
-
-    //unlocked/removed options tracker
-    private List<Conversation.OptionData> AlreadyUnlockedOptionDataSet = new List<Conversation.OptionData>();
-    private List<Conversation.OptionData> AlreadyRemovedOptionDataSet = new List<Conversation.OptionData>();
-    //unlocked requirement tracker
-    Dictionary<string, int> requiredOptionsDataSet = new Dictionary<string, int>();
+    public Image leftChar; public Image leftCharBg; private bool leftSpoke;
+    public Image rightChar; public Image rightCharBg; private bool rightSpoke;
 
     //convo var
     private bool isNarrConvo;
     private bool isConvoEnded;
-    private bool isOptionSelected; private int optionNumSelected; private float timer;
+
+    private bool isOptionSelected; private int optionNumSelected;
     private int convoIndex;
 
     //scroll var
@@ -46,75 +45,115 @@ public class ConvController : MonoBehaviour
 
     void Awake()
     {
-        uIhandler = Camera.main.GetComponent<UIhandler>();
+        SetUpOptionButtons();
+        cam = Camera.main;
         gridLayout = convoOptions.gameObject.GetComponent<GridLayoutGroup>();
-        textWritter = Camera.main.GetComponent<TextWritter>();
+        textWritter = cam.GetComponent<TextWritter>();
+
+        startConvo += ConvoStarted;
     }
 
 
-    public void ConvoStarted(int cooldown)
+    public void ConvoStarted(Conversation convo)
     {
 
-        if (left != null) left.sprite = currentConv.left;
-        if (right != null) right.sprite = currentConv.right;
+        currentConv = convo;
 
+        if (leftChar != null) leftChar.sprite = currentConv.leftChar;
+        if (rightChar != null) rightChar.sprite = currentConv.rightChar;
 
-        isConvoEnded = false; convoIndex = 0; timer = cooldown;
+        isConvoEnded = false; convoIndex = 0; textCharName.text = " ";
 
-        if (currentConv.NarrativeDataSet.Count == 0)
+        if (currentConv.NarrativeDataSet.Count == 0) isNarrConvo = false; else isNarrConvo = true;
+
+        if (isNarrConvo)
         {
-            //option convo
-            isNarrConvo = false;
-            DisplayOptions();
-        }
-        else
-        {
-            //narrative convo
-            isNarrConvo = true;
             AdvanceConvo(currentConv.NarrativeDataSet.Count);
         }
 
+        if (!isNarrConvo)
+        {
+            leftCharBg.gameObject.SetActive(true);
+            rightCharBg.gameObject.SetActive(true);
+            AudioController.musicPlay?.Invoke(currentConv.leftChar.name);
+            AudioController.musicPlay?.Invoke(currentConv.rightChar.name);
+            DisplayOptions();
+        }
     }
 
+    void SetUpOptionButtons()
+    {
 
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            GameObject buttonObj = Instantiate(OptionButton, convoOptions.transform.position, Quaternion.identity, convoOptions);
+            buttonObj.GetComponent<Button>().onClick.AddListener(OptionClicked);
+            buttonObj.SetActive(false);
+            buttons[i] = buttonObj;
+        }
+    }
     void DisplayOptions()
     {
+
         textWritter.Write(currentConv.firstLine, textRoom, true);
         //set buttons
         for (int i = 0; i < currentConv.optionDataSet.Count; i++)
         {
             buttons[i].SetActive(true);
-            buttons[i].GetComponentInChildren<Text>().text = currentConv.optionDataSet[i].option;
+            if (currentConv.optionDataSet[i].abbOption != "") buttons[i].GetComponentInChildren<TMP_Text>().text = currentConv.optionDataSet[i].abbOption;
+            if (currentConv.optionDataSet[i].abbOption == "") buttons[i].GetComponentInChildren<TMP_Text>().text = currentConv.optionDataSet[i].option;
         }
         int elementSize = Mathf.RoundToInt(gridLayout.cellSize.y + gridLayout.spacing.y);
         maxScroll = elementSize * (currentConv.optionDataSet.Count - Mathf.RoundToInt(convoOptions.rect.height / elementSize));
     }
-    public void OptionClicked()
+    void OptionClicked()
     {
         isOptionSelected = true;
-        //get button num from its name 
-        optionNumSelected = int.Parse(EventSystem.current.currentSelectedGameObject.name) - 1;
 
-        //reset buttons
+        //reset buttons & get button num 
         for (int i = 0; i < buttons.Length; i++)
         {
+            if (buttons[i] == EventSystem.current.currentSelectedGameObject) optionNumSelected = i;
+
             buttons[i].SetActive(false);
         }
 
-        AdvanceConvo(currentConv.optionDataSet[optionNumSelected].responses.Count);
-
+        //write out your option
+        textWritter.Write(currentConv.optionDataSet[optionNumSelected].option, textRoom, true);
     }
+
     void AdvanceConvo(int amount)
     {
+
         //go through each text block/response
         if (convoIndex < amount)
         {
-            //who is talking
 
             if (isNarrConvo)
             {
-                if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0) left.gameObject.SetActive(true);
-                if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1) right.gameObject.SetActive(true);
+                //who is talking
+                if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0)
+                {
+                    textCharName.text = leftChar.sprite.name.Replace("portrait", "");
+
+                    if (!leftSpoke)
+                    {
+                        leftCharBg.gameObject.SetActive(true);
+                        AudioController.musicPlay?.Invoke(currentConv.leftChar.name);
+                        leftSpoke = true;
+                    }
+                }
+                if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1)
+                {
+                    textCharName.text = rightChar.sprite.name.Replace("portrait", "");
+
+                    if (!rightSpoke)
+                    {
+                        rightCharBg.gameObject.SetActive(true);
+                        AudioController.musicPlay?.Invoke(currentConv.rightChar.name);
+                        rightSpoke = true;
+                    }
+                }
 
                 textWritter.Write(currentConv.NarrativeDataSet[convoIndex].textSet, textRoom, true);
             }
@@ -150,8 +189,9 @@ public class ConvController : MonoBehaviour
                     if (temp != null)
                     {
                         currentConv = temp;
+
                     }
-                    ConvoStarted(0);
+                    ConvoStarted(currentConv);
                 }
                 else
                 {
@@ -161,121 +201,141 @@ public class ConvController : MonoBehaviour
 
 
             }
+
         }
     }
 
     void CheckForRemovingOptions()
     {
-        var removedOption = currentConv.optionDataSet[optionNumSelected].removedOptions;
-        if (removedOption.Count == 0) return;
+        var removedOptions = currentConv.optionDataSet[optionNumSelected].removedOptions;
 
-        for (int i = 0; i < removedOption.Count; i++)
+        if (removedOptions.Count == 0) return;
+
+        for (int i = 0; i < removedOptions.Count; i++)
         {
             RemoveOptions(i);
         }
     }
     void RemoveOptions(int optionIndex)
     {
-        var removedOption = currentConv.optionDataSet[optionNumSelected].removedOptions[optionIndex];
+        var removedOptionName = currentConv.optionDataSet[optionNumSelected].removedOptions[optionIndex];
+        Conversation.OptionData removedOption = FindOptionFromName(removedOptionName);
 
 
-        if (!AlreadyRemovedOptionDataSet.Contains(removedOption.option))
+        if (!currentConv.alreadyRemovedOptionDataSet.Contains(removedOption))
         {
-            AlreadyRemovedOptionDataSet.Add(removedOption.option);
+            currentConv.alreadyRemovedOptionDataSet.Add(removedOption);
         }
 
-        if (currentConv.optionDataSet.Contains(removedOption.option))
+        if (currentConv.optionDataSet.Contains(removedOption))
         {
-            currentConv.optionDataSet.Remove(removedOption.option);
+            currentConv.optionDataSet.Remove(removedOption);
         }
 
     }
+
+    Conversation.OptionData FindOptionFromName(string name)
+    {
+        for (int i = 0; i < currentConv.allOptions.Length; i++)
+        {
+
+            if (currentConv.allOptions[i].optionName == name.ToUpper()) return currentConv.allOptions[i];
+        }
+        return null;
+    }
+
     void CheckForAddingOptions()
     {
-        var requiredOption = currentConv.optionDataSet[optionNumSelected].unlockedOptions;
-        if (requiredOption.Count == 0) return;
 
-        for (int i = 0; i < requiredOption.Count; i++)
+        var unlockedOptions = currentConv.optionDataSet[optionNumSelected].unlockedOptions;
+
+        if (unlockedOptions.Count == 0) { return; }
+
+        for (int i = 0; i < unlockedOptions.Count; i++)
         {
+            Conversation.OptionData toBeUnlockedOption = FindOptionFromName(unlockedOptions[i]);
+
+
             //check if options is to be unlocked
-            if (requiredOption[i] != null)
+            if (toBeUnlockedOption != null)
             {
+
                 //check if option has a requirement
-                if (requiredOption[i].requiredAmount != 0)
+                if (toBeUnlockedOption.requiredAmount == 1)
                 {
-                    //counter up or add if new
-                    if (requiredOptionsDataSet.ContainsKey(requiredOption[i].id))
-                    {
-                        requiredOptionsDataSet[requiredOption[i].id]++;
-                    }
-                    else
-                    {
-                        requiredOptionsDataSet.Add(requiredOption[i].id, 1);
-                    }
-
-                    //check if required amount is now good
-                    if (requiredOptionsDataSet[requiredOption[i].id] == requiredOption[i].requiredAmount)
-                    {
-                        AddOptions(i);
-                    }
-
+                    AddOptions(i);
                 }
                 else
                 {
-                    AddOptions(i);
+                    //counter up or add if new
+                    if (currentConv.toBeUnlockedOptionsDataSet.ContainsKey(toBeUnlockedOption))
+                    {
+                        currentConv.toBeUnlockedOptionsDataSet[toBeUnlockedOption]++;
+                    }
+                    else
+                    {
+                        currentConv.toBeUnlockedOptionsDataSet.Add(toBeUnlockedOption, 1);
+                    }
+
+                    //check if required amount is now good
+                    if (currentConv.toBeUnlockedOptionsDataSet[toBeUnlockedOption] == toBeUnlockedOption.requiredAmount)
+                    {
+                        AddOptions(i);
+                    }
                 }
             }
         }
     }
     void AddOptions(int optionIndex)
     {
-        var unlockedOption = currentConv.optionDataSet[optionNumSelected].unlockedOptions[optionIndex];
+        var unlockedOptionName = currentConv.optionDataSet[optionNumSelected].unlockedOptions[optionIndex];
+        var unlockedOption = FindOptionFromName(unlockedOptionName);
 
         //check if it wasnt unlocked yet or removed
-        if (!AlreadyUnlockedOptionDataSet.Contains(unlockedOption.option) && !AlreadyRemovedOptionDataSet.Contains(unlockedOption.option))
+        if (!currentConv.alreadyUnlockedOptionDataSet.Contains(unlockedOption) && !currentConv.alreadyRemovedOptionDataSet.Contains(unlockedOption))
         {
-            //add to both lists + check destination to add to
-            if (unlockedOption.unlockedOptionLocation == null)
-            {
-                currentConv.optionDataSet.Add(unlockedOption.option);
-            }
-            else
-            {
-                unlockedOption.unlockedOptionLocation.optionDataSet.Add(unlockedOption.option);
-            }
+            //add to both lists +  (check destination?) to add to
+            currentConv.optionDataSet.Add(unlockedOption);
 
-            AlreadyUnlockedOptionDataSet.Add(unlockedOption.option);
+            currentConv.alreadyUnlockedOptionDataSet.Add(unlockedOption);
         }
     }
-
 
     void EndCurrentConvo()
     {
         textRoom.text = "";
 
-        left.gameObject.SetActive(false);
-        right.gameObject.SetActive(false);
+        leftCharBg.gameObject.SetActive(false); leftSpoke = false;
+        AudioController.musicStop?.Invoke(currentConv.leftChar.name);
+
+        if (currentConv.rightChar != null)
+        {
+            rightCharBg.gameObject.SetActive(false); rightSpoke = false;
+            AudioController.musicStop?.Invoke(currentConv.rightChar.name);
+        }
 
 
         if (currentConv.nextConvo != null)
         {
             currentConv = currentConv.nextConvo;
-            ConvoStarted(0);
+            ConvoStarted(currentConv);
         }
         else ConvoEnded();
     }
-
+    public void DebugEnd()
+    {
+        EndCurrentConvo();
+    }
     void ConvoEnded()
     {
-        uIhandler.EndConversation();
+        endConvo?.Invoke();
+
         isConvoEnded = true;
     }
     void Update()
     {
-        if (timer >= 0) timer -= 0.1f;
-
         //advance convo 
-        if (!isConvoEnded && EventSystem.current.IsPointerOverGameObject() && timer < 0)
+        if (!isConvoEnded && EventSystem.current.IsPointerOverGameObject())
         {
             if (isNarrConvo)
             {

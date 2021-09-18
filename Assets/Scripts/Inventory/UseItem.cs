@@ -16,8 +16,8 @@ public class UseItem : MonoBehaviour
     public class ItemCombo
     {
         public Sprite result;
-        public string item1;
-        public string item2;
+        public Sprite item1;
+        public Sprite item2;
     }
 
     [HideInInspector]
@@ -51,24 +51,26 @@ public class UseItem : MonoBehaviour
                 return;
             }
 
-            string itemUsed1 = previousButton.sprite.name;
-            string itemUsed2 = previousButton.sprite.name;
+            Sprite itemUsed1 = currentButton.sprite;
+            Sprite itemUsed2 = previousButton.sprite;
 
-            //combine them
-            for (int i = 0; i < combos.Count; i++)
+            //combine them IMPORTANT: you cant have 2 of the same items in inventory...
+            foreach (ItemCombo v in combos)
             {
-                if (itemUsed1 == combos[i].item1 || itemUsed1 == combos[i].item2)
+                if (itemUsed1 == v.item1 || itemUsed1 == v.item2)
                 {
-                    if (itemUsed2 == combos[i].item1 || itemUsed2 == combos[i].item2)
+                    if (itemUsed2 == v.item1 || itemUsed2 == v.item2)
                     {
                         currentButton.sprite = inventory.empty;
                         previousButton.sprite = inventory.empty;
-                        inventory.ItemStored(combos[i].result);
+                        inventory.ItemStored(v.result);
                         StopUsing();
                         return;
                     }
                 }
             }
+            StopUsing();
+            return;
 
         }
 
@@ -104,6 +106,7 @@ public class UseItem : MonoBehaviour
         isItemInHand = false;
         itemInHand.transform.localPosition = new Vector3(0, -50, 0);
         itemInHand.sprite = null;
-        currentButton = null;
+        currentButton = null; previousButton = null;
     }
+
 }

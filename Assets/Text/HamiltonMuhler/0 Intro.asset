@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6128031103636b1419b08310897ecd58, type: 3}
-  m_Name: Intro
+  m_Name: 0 Intro
   m_EditorClassIdentifier: 
   firstLine: 
   OptionDataSet: []
+  allOptions: []
   NarrativeDataSet:
   - textSet: I was a piglet born with hope and joy
     ZeroOrOne: 0
@@ -43,6 +44,6 @@ MonoBehaviour:
     ZeroOrOne: 0
   - textSet: The unforetold shall be my point of view.
     ZeroOrOne: 0
-  left: {fileID: 21300000, guid: c12a5d0436494b44eae45f75441d1347, type: 3}
-  right: {fileID: 0}
+  leftChar: {fileID: 21300000, guid: 40fb50b1480cee946bceb75035e13ae0, type: 3}
+  rightChar: {fileID: 0}
   nextConvo: {fileID: 11400000, guid: af4d7e90144e94248a7ba02e26daa86c, type: 2}
