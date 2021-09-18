@@ -37,6 +37,17 @@ MonoBehaviour:
     - b
     removedOptions: []
     isExitOption: 0
+  - optionName: C
+    requiredAmount: 1
+    option: "I don\u2019t mean to cast it in your face, Ham."
+    abbOption: 
+    responses:
+    - "It\u2019s all right. I could use a stratagem from time to time."
+    nextConvo: {fileID: 0}
+    unlockedOptions:
+    - e
+    removedOptions: []
+    isExitOption: 0
   - optionName: B
     requiredAmount: 1
     option: "That\u2019s the trouble with us pigs, you see: we see too much of either
@@ -48,17 +59,6 @@ MonoBehaviour:
     unlockedOptions:
     - c
     - d
-    removedOptions: []
-    isExitOption: 0
-  - optionName: C
-    requiredAmount: 1
-    option: "I don\u2019t mean to cast it in your face, Ham."
-    abbOption: 
-    responses:
-    - "It\u2019s all right. I could use a stratagem from time to time."
-    nextConvo: {fileID: 0}
-    unlockedOptions:
-    - e
     removedOptions: []
     isExitOption: 0
   - optionName: D

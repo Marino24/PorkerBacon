@@ -35,8 +35,8 @@ public class Conversation : ScriptableObject
 
     public OptionData[] allOptions;
 
-    private Dictionary<OptionData, int> ToBeUnlockedOptionsDataSet = new Dictionary<OptionData, int>(); //original one
-    public Dictionary<OptionData, int> toBeUnlockedOptionsDataSet = new Dictionary<OptionData, int>();
+    private Dictionary<OptionData, int> RequiredOptionsDataSet = new Dictionary<OptionData, int>(); //original one
+    public Dictionary<OptionData, int> requiredOptionsDataSet = new Dictionary<OptionData, int>();
 
     private List<OptionData> AlreadyUnlockedOptionDataSet = new List<OptionData>(); //original one
     [System.NonSerialized]
@@ -50,7 +50,7 @@ public class Conversation : ScriptableObject
     private void OnEnable()
     {
         optionDataSet = new List<OptionData>(OptionDataSet);
-        toBeUnlockedOptionsDataSet = new Dictionary<OptionData, int>(ToBeUnlockedOptionsDataSet);
+        requiredOptionsDataSet = new Dictionary<OptionData, int>(RequiredOptionsDataSet);
         alreadyUnlockedOptionDataSet = new List<OptionData>(AlreadyUnlockedOptionDataSet);
         alreadyRemovedOptionDataSet = new List<OptionData>(AlreadyRemovedOptionDataSet);
     }
