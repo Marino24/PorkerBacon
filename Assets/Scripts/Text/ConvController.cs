@@ -206,18 +206,16 @@ public class ConvController : MonoBehaviour
 
     void CheckForRemovingOptions()
     {
-        var removedOption = selectedOption.removedOptions;
-        if (removedOption.Count == 0) return;
+        if (selectedOption.removedOptions.Count == 0) return;
 
-        for (int i = 0; i < removedOption.Count; i++)
+        for (int i = 0; i < selectedOption.removedOptions.Count; i++)
         {
             RemoveOptions(i);
         }
     }
     void RemoveOptions(int optionIndex)
     {
-        var removedOptionName = selectedOption.removedOptions[optionIndex];
-        Conversation.OptionData removedOption = FindOptionFromName(removedOptionName);
+        Conversation.OptionData removedOption = FindOptionFromName(selectedOption.removedOptions[optionIndex]);
 
 
         if (!currentConv.alreadyRemovedOptionDataSet.Contains(removedOption))
@@ -244,35 +242,35 @@ public class ConvController : MonoBehaviour
 
     void CheckForAddingOptions()
     {
-        var requiredOptionName = selectedOption.unlockedOptions;
-        if (requiredOptionName.Count == 0) return;
 
-        for (int i = 0; i < requiredOptionName.Count; i++)
+        if (selectedOption.unlockedOptions.Count == 0) return;
+
+        for (int i = 0; i < selectedOption.unlockedOptions.Count; i++)
         {
-            Conversation.OptionData requiredOption = FindOptionFromName(requiredOptionName[i]);
+            Conversation.OptionData unlockedOption = FindOptionFromName(selectedOption.unlockedOptions[i]);
 
             //check if options is to be unlocked
-            if (requiredOption != null)
+            if (unlockedOption != null)
             {
                 //check if option has a requirement
-                if (requiredOption.requiredAmount == 1)
+                if (unlockedOption.requiredAmount == 1)
                 {
                     AddOptions(i);
                 }
                 else
                 {
                     //counter up or add if new
-                    if (currentConv.requiredOptionsDataSet.ContainsKey(requiredOption))
+                    if (currentConv.unlockableOptionsDataSet.ContainsKey(unlockedOption))
                     {
-                        currentConv.requiredOptionsDataSet[requiredOption]++;
+                        currentConv.unlockableOptionsDataSet[unlockedOption]++;
                     }
                     else
                     {
-                        currentConv.requiredOptionsDataSet.Add(requiredOption, 1);
+                        currentConv.unlockableOptionsDataSet.Add(unlockedOption, 1);
                     }
 
                     //check if required amount is now good
-                    if (currentConv.requiredOptionsDataSet[requiredOption] == requiredOption.requiredAmount)
+                    if (currentConv.unlockableOptionsDataSet[unlockedOption] == unlockedOption.requiredAmount)
                     {
                         AddOptions(i);
                     }
@@ -282,8 +280,7 @@ public class ConvController : MonoBehaviour
     }
     void AddOptions(int optionIndex)
     {
-        var unlockedOptionName = selectedOption.unlockedOptions[optionIndex];
-        var unlockedOption = FindOptionFromName(unlockedOptionName);
+        Conversation.OptionData unlockedOption = FindOptionFromName(selectedOption.unlockedOptions[optionIndex]);
 
         //check if it wasnt unlocked yet or removed
         if (!currentConv.alreadyUnlockedOptionDataSet.Contains(unlockedOption) && !currentConv.alreadyRemovedOptionDataSet.Contains(unlockedOption))
