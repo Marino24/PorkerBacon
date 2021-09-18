@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -36,7 +36,7 @@ public class ConvController : MonoBehaviour
     private bool isNarrConvo;
     private bool isConvoEnded;
 
-    private bool isOptionSelected; private int optionNumSelected;
+    private bool isOptionSelected; private Conversation.OptionData selectedOption;
     private int convoIndex;
 
     //scroll var
@@ -113,13 +113,13 @@ public class ConvController : MonoBehaviour
         //reset buttons & get button num 
         for (int i = 0; i < buttons.Length; i++)
         {
-            if (buttons[i] == EventSystem.current.currentSelectedGameObject) optionNumSelected = i;
+            if (buttons[i] == EventSystem.current.currentSelectedGameObject) selectedOption = currentConv.optionDataSet[i];
 
             buttons[i].SetActive(false);
         }
 
         //write out your option
-        textWritter.Write(currentConv.optionDataSet[optionNumSelected].option, textRoom, true);
+        textWritter.Write(selectedOption.option, textRoom, true);
     }
 
     void AdvanceConvo(int amount)
@@ -159,7 +159,7 @@ public class ConvController : MonoBehaviour
             }
             else
             {
-                textWritter.Write(currentConv.optionDataSet[optionNumSelected].responses[convoIndex], textRoom, true);
+                textWritter.Write(selectedOption.responses[convoIndex], textRoom, true);
             }
 
             convoIndex++;
@@ -179,12 +179,12 @@ public class ConvController : MonoBehaviour
                 CheckForAddingOptions();
 
                 //is not exit button
-                if (!currentConv.optionDataSet[optionNumSelected].isExitOption)
+                if (!selectedOption.isExitOption)
                 {
 
-                    Conversation temp = currentConv.optionDataSet[optionNumSelected].nextConvo;
+                    Conversation temp = selectedOption.nextConvo;
 
-                    currentConv.optionDataSet.RemoveAt(optionNumSelected);
+                    currentConv.optionDataSet.Remove(selectedOption);
 
                     if (temp != null)
                     {
@@ -206,7 +206,7 @@ public class ConvController : MonoBehaviour
 
     void CheckForRemovingOptions()
     {
-        var removedOption = currentConv.optionDataSet[optionNumSelected].removedOptions;
+        var removedOption = selectedOption.removedOptions;
         if (removedOption.Count == 0) return;
 
         for (int i = 0; i < removedOption.Count; i++)
@@ -216,7 +216,7 @@ public class ConvController : MonoBehaviour
     }
     void RemoveOptions(int optionIndex)
     {
-        var removedOptionName = currentConv.optionDataSet[optionNumSelected].removedOptions[optionIndex];
+        var removedOptionName = selectedOption.removedOptions[optionIndex];
         Conversation.OptionData removedOption = FindOptionFromName(removedOptionName);
 
 
@@ -244,7 +244,7 @@ public class ConvController : MonoBehaviour
 
     void CheckForAddingOptions()
     {
-        var requiredOptionName = currentConv.optionDataSet[optionNumSelected].unlockedOptions;
+        var requiredOptionName = selectedOption.unlockedOptions;
         if (requiredOptionName.Count == 0) return;
 
         for (int i = 0; i < requiredOptionName.Count; i++)
@@ -282,7 +282,7 @@ public class ConvController : MonoBehaviour
     }
     void AddOptions(int optionIndex)
     {
-        var unlockedOptionName = currentConv.optionDataSet[optionNumSelected].unlockedOptions[optionIndex];
+        var unlockedOptionName = selectedOption.unlockedOptions[optionIndex];
         var unlockedOption = FindOptionFromName(unlockedOptionName);
 
         //check if it wasnt unlocked yet or removed
@@ -346,7 +346,7 @@ public class ConvController : MonoBehaviour
                 if (isOptionSelected && Input.GetKeyDown(KeyCode.Space))
                 {
                     //advance the responses...
-                    if (TextWritter.textEnded) AdvanceConvo(currentConv.optionDataSet[optionNumSelected].responses.Count);
+                    if (TextWritter.textEnded) AdvanceConvo(selectedOption.responses.Count);
                     else
                         TextWritter.textEnded = true;
 
