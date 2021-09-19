@@ -37,7 +37,7 @@ public class ConvController : MonoBehaviour
     private bool isConvoEnded;
 
     private bool isOptionSelected; private Conversation.OptionData selectedOption;
-    private int convoIndex;
+    private int convoResponseIndex;
 
     //scroll var
     private float maxScroll;
@@ -53,34 +53,7 @@ public class ConvController : MonoBehaviour
         startConvo += ConvoStarted;
     }
 
-
-    public void ConvoStarted(Conversation convo)
-    {
-
-        currentConv = convo;
-
-        if (leftChar != null) leftChar.sprite = currentConv.leftChar;
-        if (rightChar != null) rightChar.sprite = currentConv.rightChar;
-
-        isConvoEnded = false; convoIndex = 0; textCharName.text = " ";
-
-        if (currentConv.NarrativeDataSet.Count == 0) isNarrConvo = false; else isNarrConvo = true;
-
-        if (isNarrConvo)
-        {
-            AdvanceConvo(currentConv.NarrativeDataSet.Count);
-        }
-
-        if (!isNarrConvo)
-        {
-            leftCharBg.gameObject.SetActive(true);
-            rightCharBg.gameObject.SetActive(true);
-            AudioController.musicPlay?.Invoke(currentConv.leftChar.name);
-            AudioController.musicPlay?.Invoke(currentConv.rightChar.name);
-            DisplayOptions();
-        }
-    }
-
+    #region Button Options setup
     void SetUpOptionButtons()
     {
 
@@ -110,7 +83,7 @@ public class ConvController : MonoBehaviour
     {
         isOptionSelected = true;
 
-        //reset buttons & get button num 
+        //reset buttons & get selected option
         for (int i = 0; i < buttons.Length; i++)
         {
             if (buttons[i] == EventSystem.current.currentSelectedGameObject) selectedOption = currentConv.optionDataSet[i];
@@ -121,89 +94,18 @@ public class ConvController : MonoBehaviour
         //write out your option
         textWritter.Write(selectedOption.option, textRoom, true);
     }
+    #endregion
 
-    void AdvanceConvo(int amount)
+    #region Adding&Removing options
+    Conversation.OptionData FindOptionFromName(string name)
     {
-
-        //go through each text block/response
-        if (convoIndex < amount)
+        for (int i = 0; i < currentConv.allOptions.Length; i++)
         {
 
-            if (isNarrConvo)
-            {
-                //who is talking
-                if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 0)
-                {
-                    textCharName.text = leftChar.sprite.name.Replace("portrait", "");
-
-                    if (!leftSpoke)
-                    {
-                        leftCharBg.gameObject.SetActive(true);
-                        AudioController.musicPlay?.Invoke(currentConv.leftChar.name);
-                        leftSpoke = true;
-                    }
-                }
-                if (currentConv.NarrativeDataSet[convoIndex].ZeroOrOne == 1)
-                {
-                    textCharName.text = rightChar.sprite.name.Replace("portrait", "");
-
-                    if (!rightSpoke)
-                    {
-                        rightCharBg.gameObject.SetActive(true);
-                        AudioController.musicPlay?.Invoke(currentConv.rightChar.name);
-                        rightSpoke = true;
-                    }
-                }
-
-                textWritter.Write(currentConv.NarrativeDataSet[convoIndex].textSet, textRoom, true);
-            }
-            else
-            {
-                textWritter.Write(selectedOption.responses[convoIndex], textRoom, true);
-            }
-
-            convoIndex++;
+            if (currentConv.allOptions[i].optionName == name.ToUpper()) return currentConv.allOptions[i];
         }
-        else
-        {
-            //convo is ending...
-            if (isNarrConvo)
-            {
-                EndCurrentConvo();
-            }
-            else
-            {
-                isOptionSelected = false;
-
-                CheckForRemovingOptions();
-                CheckForAddingOptions();
-
-                //is not exit button
-                if (!selectedOption.isExitOption)
-                {
-
-                    Conversation temp = selectedOption.nextConvo;
-
-                    currentConv.optionDataSet.Remove(selectedOption);
-
-                    if (temp != null)
-                    {
-                        currentConv = temp;
-                    }
-                    ConvoStarted(currentConv);
-                }
-                else
-                {
-                    EndCurrentConvo();
-                    npc.conversation = currentConv;
-                }
-
-
-            }
-
-        }
+        return null;
     }
-
     void CheckForRemovingOptions()
     {
         if (selectedOption.removedOptions.Count == 0) return;
@@ -217,7 +119,6 @@ public class ConvController : MonoBehaviour
     {
         Conversation.OptionData removedOption = FindOptionFromName(selectedOption.removedOptions[optionIndex]);
 
-
         if (!currentConv.alreadyRemovedOptionDataSet.Contains(removedOption))
         {
             currentConv.alreadyRemovedOptionDataSet.Add(removedOption);
@@ -229,17 +130,6 @@ public class ConvController : MonoBehaviour
         }
 
     }
-
-    Conversation.OptionData FindOptionFromName(string name)
-    {
-        for (int i = 0; i < currentConv.allOptions.Length; i++)
-        {
-
-            if (currentConv.allOptions[i].optionName == name.ToUpper()) return currentConv.allOptions[i];
-        }
-        return null;
-    }
-
     void CheckForAddingOptions()
     {
 
@@ -291,7 +181,117 @@ public class ConvController : MonoBehaviour
             currentConv.alreadyUnlockedOptionDataSet.Add(unlockedOption);
         }
     }
+    #endregion
 
+    public void ConvoStarted(Conversation convo)
+    {
+
+        currentConv = convo;
+
+        //set both sprites to characters talking
+        if (leftChar != null) leftChar.sprite = currentConv.leftChar;
+        if (rightChar != null) rightChar.sprite = currentConv.rightChar;
+
+        isConvoEnded = false; convoResponseIndex = 0; textCharName.text = " ";
+
+        if (currentConv.NarrativeDataSet.Count == 0) isNarrConvo = false; else isNarrConvo = true;
+
+        if (isNarrConvo)
+        {
+            AdvanceConvo(currentConv.NarrativeDataSet.Count);
+        }
+
+        if (!isNarrConvo)
+        {
+            leftCharBg.gameObject.SetActive(true);
+            rightCharBg.gameObject.SetActive(true);
+            AudioController.musicPlay?.Invoke(currentConv.leftChar.name);
+            AudioController.musicPlay?.Invoke(currentConv.rightChar.name);
+            DisplayOptions();
+        }
+    }
+    void AdvanceConvo(int numOfResponses)
+    {
+
+        //go through each text block/response
+        if (convoResponseIndex < numOfResponses)
+        {
+
+            if (isNarrConvo)
+            {
+                //who is talking
+                if (currentConv.NarrativeDataSet[convoResponseIndex].ZeroOrOne == 0)
+                {
+                    //show the name of character (getting it from actual sprite name)
+                    textCharName.text = leftChar.sprite.name.Replace("portrait", "");
+
+                    if (!leftSpoke)
+                    {
+                        leftCharBg.gameObject.SetActive(true);
+                        AudioController.musicPlay?.Invoke(currentConv.leftChar.name);
+                        leftSpoke = true;
+                    }
+                }
+                if (currentConv.NarrativeDataSet[convoResponseIndex].ZeroOrOne == 1)
+                {
+                    textCharName.text = rightChar.sprite.name.Replace("portrait", "");
+
+                    if (!rightSpoke)
+                    {
+                        rightCharBg.gameObject.SetActive(true);
+                        AudioController.musicPlay?.Invoke(currentConv.rightChar.name);
+                        rightSpoke = true;
+                    }
+                }
+
+                textWritter.Write(currentConv.NarrativeDataSet[convoResponseIndex].textSet, textRoom, true);
+            }
+            else
+            {
+                textWritter.Write(selectedOption.responses[convoResponseIndex], textRoom, true);
+            }
+
+            convoResponseIndex++;
+        }
+        else
+        {
+            //convo is ending...
+            if (isNarrConvo)
+            {
+                EndCurrentConvo();
+            }
+            else
+            {
+                isOptionSelected = false;
+
+                CheckForRemovingOptions();
+                CheckForAddingOptions();
+
+                //is not exit button
+                if (!selectedOption.isExitOption)
+                {
+
+                    Conversation temp = selectedOption.nextConvo;
+
+                    currentConv.optionDataSet.Remove(selectedOption);
+
+                    if (temp != null)
+                    {
+                        currentConv = temp;
+                    }
+                    ConvoStarted(currentConv);
+                }
+                else
+                {
+                    EndCurrentConvo();
+                    npc.conversation = currentConv;
+                }
+
+
+            }
+
+        }
+    }
     void EndCurrentConvo()
     {
         textRoom.text = "";
