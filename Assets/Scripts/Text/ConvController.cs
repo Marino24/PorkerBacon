@@ -37,7 +37,7 @@ public class ConvController : MonoBehaviour
     private bool isConvoEnded;
 
     private bool isOptionSelected; private Conversation.OptionData selectedOption;
-    private int convoResponseIndex;
+    private int responseIndex;
 
     //scroll var
     private float maxScroll;
@@ -92,7 +92,7 @@ public class ConvController : MonoBehaviour
         }
 
         //write out your option
-        textWritter.Write(selectedOption.option, textRoom, true);
+        ShowWhoIsSpeaking("Porker", selectedOption.option);
     }
     #endregion
 
@@ -192,7 +192,7 @@ public class ConvController : MonoBehaviour
         if (leftChar != null) leftChar.sprite = currentConv.leftChar;
         if (rightChar != null) rightChar.sprite = currentConv.rightChar;
 
-        isConvoEnded = false; convoResponseIndex = 0; textCharName.text = " ";
+        isConvoEnded = false; responseIndex = 0; textCharName.text = " ";
 
         if (currentConv.NarrativeDataSet.Count == 0) isNarrConvo = false; else isNarrConvo = true;
 
@@ -210,48 +210,59 @@ public class ConvController : MonoBehaviour
             DisplayOptions();
         }
     }
+
+    void FirstWords(string charName, Image charBg, ref bool lefRight)
+    {
+        textCharName.text = charName;
+
+        charBg.gameObject.SetActive(true);
+        AudioController.musicPlay?.Invoke(charName);
+        lefRight = true;
+    }
+
+    void ShowWhoIsSpeaking(string charName, string spokenText)
+    {
+        textCharName.text = charName;
+        textWritter.Write(spokenText, textRoom, true);
+        //add code for enlargment/animation here
+
+    }
     void AdvanceConvo(int numOfResponses)
     {
 
         //go through each text block/response
-        if (convoResponseIndex < numOfResponses)
+        if (responseIndex < numOfResponses)
         {
+            string whoIsSpeaking; string spokenText;
 
             if (isNarrConvo)
             {
-                //who is talking
-                if (currentConv.NarrativeDataSet[convoResponseIndex].ZeroOrOne == 0)
+                //who is talking       0 - left      1 - right
+                if (currentConv.NarrativeDataSet[responseIndex].ZeroOrOne == 0) whoIsSpeaking = "left"; else whoIsSpeaking = "right";
+                spokenText = currentConv.NarrativeDataSet[responseIndex].textSet;
+
+                if (whoIsSpeaking == "left")
                 {
-                    //show the name of character (getting it from actual sprite name)
-                    textCharName.text = leftChar.sprite.name.Replace("portrait", "");
+                    if (!leftSpoke) FirstWords(leftChar.sprite.name, leftCharBg, ref leftSpoke);
 
-                    if (!leftSpoke)
-                    {
-                        leftCharBg.gameObject.SetActive(true);
-                        AudioController.musicPlay?.Invoke(currentConv.leftChar.name);
-                        leftSpoke = true;
-                    }
+                    ShowWhoIsSpeaking(leftChar.sprite.name, spokenText);
                 }
-                if (currentConv.NarrativeDataSet[convoResponseIndex].ZeroOrOne == 1)
+                if (whoIsSpeaking == "right")
                 {
-                    textCharName.text = rightChar.sprite.name.Replace("portrait", "");
+                    if (!rightSpoke) FirstWords(rightChar.sprite.name, rightCharBg, ref rightSpoke);
 
-                    if (!rightSpoke)
-                    {
-                        rightCharBg.gameObject.SetActive(true);
-                        AudioController.musicPlay?.Invoke(currentConv.rightChar.name);
-                        rightSpoke = true;
-                    }
+                    ShowWhoIsSpeaking(rightChar.sprite.name, spokenText);
                 }
-
-                textWritter.Write(currentConv.NarrativeDataSet[convoResponseIndex].textSet, textRoom, true);
             }
             else
             {
-                textWritter.Write(selectedOption.responses[convoResponseIndex], textRoom, true);
+                spokenText = selectedOption.responses[responseIndex];
+
+                //hardcoded which side is the other character
+                ShowWhoIsSpeaking(currentConv.leftChar.name, spokenText);
             }
 
-            convoResponseIndex++;
+            responseIndex++;
         }
         else
         {
@@ -286,10 +297,7 @@ public class ConvController : MonoBehaviour
                     EndCurrentConvo();
                     npc.conversation = currentConv;
                 }
-
-
             }
-
         }
     }
     void EndCurrentConvo()
