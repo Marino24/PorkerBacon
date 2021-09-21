@@ -84,7 +84,7 @@ MonoBehaviour:
     - Wish the Master could be Mastered.
     - Maybe, if he keeps on getting plastered,
     - He will die far faster. Damn.
-    - 'I swear: I will not let you come to harm'
+    - 'I swear: I will not let you come to harm;'
     - The two of us shall quit this Cursed Farm.
     nextConvo: {fileID: 0}
     unlockedOptions:

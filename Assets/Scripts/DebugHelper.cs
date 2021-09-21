@@ -9,8 +9,22 @@ public class DebugHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z)){
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
             controller.DebugEnd();
         }
+    }
+
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.ForceSoftware;
+    public Vector2 hotSpot = Vector2.zero;
+    private void Start()
+    {
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+    }
+
+    void OnMouseExit()
+    {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 }
