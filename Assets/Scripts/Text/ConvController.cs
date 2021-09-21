@@ -223,6 +223,8 @@ public class ConvController : MonoBehaviour
     void ShowWhoIsSpeaking(string charName, string spokenText)
     {
         textCharName.text = charName;
+        textWritter.ColorText(charName, textRoom);
+        textWritter.ColorText(charName, textCharName);
         textWritter.Write(spokenText, textRoom, true);
         //add code for enlargment/animation here
 
@@ -258,8 +260,10 @@ public class ConvController : MonoBehaviour
             {
                 spokenText = selectedOption.responses[responseIndex];
 
-                //hardcoded which side is the other character
-                ShowWhoIsSpeaking(currentConv.leftChar.name, spokenText);
+                if (currentConv.leftChar.name != "Porker")
+                    ShowWhoIsSpeaking(currentConv.leftChar.name, spokenText);
+                else
+                    ShowWhoIsSpeaking(currentConv.rightChar.name, spokenText);
             }
 
             responseIndex++;

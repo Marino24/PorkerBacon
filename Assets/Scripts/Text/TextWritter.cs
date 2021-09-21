@@ -57,6 +57,27 @@ public class TextWritter : MonoBehaviour
 
     }
 
+    public void ColorText(string charName, TMP_Text UiText)
+    {
+        var color = charName switch
+        {
+            "Porker" => new Color32(255, 51, 204, 255),
+            "Hamilton" => new Color32(0, 51, 204, 255),
+            "Muhler" => new Color32(0, 102, 0, 255),
+            "Hannah" => new Color32(255, 0, 0, 255),
+            "Stan" => new Color32(128, 0, 0, 255),
+            "Rusty" => new Color32(255, 204, 0, 255),
+            "Lambdon" => new Color32(179, 134, 0, 255),
+            "Holy" => new Color32(153, 0, 153, 255),
+            "Shepherd" => new Color32(0, 0, 0, 255),
+            _ => new Color32(1, 1, 1, 1),
+        };
+        UiText.color = color;
+    }
+
+
+
+
 
 
 }

@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
 
     public Image[] items;
     public GameObject itemsDisplay; private RectTransform inventory; public Sprite empty;
+    public Image itemStored;
     public bool invOpen;
 
     void Awake()
@@ -17,6 +18,7 @@ public class Inventory : MonoBehaviour
         empty = items[0].sprite;
 
         Object.pickedAnItem += ItemStored;
+        Object.pickedAnItem += ShowItemStored;
         Object.usedAnItem += ItemUsed;
     }
 
@@ -36,6 +38,26 @@ public class Inventory : MonoBehaviour
         }
         else
             inventory.anchoredPosition = new Vector3(0, -70, 0);
+    }
+
+    void ShowItemStored(Sprite itemSprite)
+    {
+        itemStored.sprite = itemSprite;
+        itemStored.color += new Color(0, 0, 0, 1);
+        StartCoroutine(FadeOut(itemStored));
+    }
+
+    private IEnumerator FadeOut(Image obj)
+    {
+        float x = 0.1f;
+        while (obj.color.a > 0.01f)
+        {
+            obj.color -= new Color(0, 0, 0, 0.01f);
+            if (x > 0.03) x -= 0.01f;
+            yield return new WaitForSeconds(x);
+        }
+
+
     }
 
     public void ItemStored(Sprite itemSprite)
