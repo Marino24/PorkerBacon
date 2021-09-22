@@ -17,6 +17,7 @@ public class ConvController : MonoBehaviour
 
     public static Action<Conversation> startConvo;
     public static Action endConvo;
+    public static Action<Conversation> introOver; //for tutorial
 
 
     [Header("References")]
@@ -332,6 +333,7 @@ public class ConvController : MonoBehaviour
     void ConvoEnded()
     {
         endConvo?.Invoke();
+        introOver?.Invoke(currentConv);
 
         isConvoEnded = true;
     }

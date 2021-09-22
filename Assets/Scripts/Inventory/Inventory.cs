@@ -56,8 +56,6 @@ public class Inventory : MonoBehaviour
             if (x > 0.03) x -= 0.01f;
             yield return new WaitForSeconds(x);
         }
-
-
     }
 
     public void ItemStored(Sprite itemSprite)

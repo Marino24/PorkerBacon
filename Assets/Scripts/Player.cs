@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
     {
         uIhandler.monologue.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 3f, 0));
 
-
     }
 
     void FixedUpdate()
