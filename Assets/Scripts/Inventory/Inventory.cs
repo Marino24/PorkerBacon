@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviour
     public Image itemStored;
     public bool invOpen;
 
+    public Animation inventoryAnim;
+
     void Awake()
     {
         items = itemsDisplay.GetComponentsInChildren<Image>();
@@ -34,10 +36,14 @@ public class Inventory : MonoBehaviour
         invOpen = !invOpen;
         if (invOpen)
         {
-            inventory.anchoredPosition = new Vector3(0, 5, 0);
+            inventoryAnim.Play("OpenInventory");
+            //inventory.anchoredPosition = new Vector3(0, 5, 0);
         }
         else
-            inventory.anchoredPosition = new Vector3(0, -70, 0);
+        {
+            inventoryAnim.Play("CloseInventory");
+            //inventory.anchoredPosition = new Vector3(0, -70, 0);
+        }
     }
 
     void ShowItemStored(Sprite itemSprite)

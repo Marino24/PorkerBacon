@@ -38,6 +38,7 @@ public class Object : MonoBehaviour
     [Tooltip("Is this an item")]
     public bool canPickUp;
     public string objDesc; private string reachDesc;
+    public string objName;
     private float reach = 15f; private bool outOfReach;
 
 
@@ -59,11 +60,16 @@ public class Object : MonoBehaviour
         //pickup
         if (canPickUp && !outOfReach)
         {
+            if(objName == "MudInteractable")
+            {
+                Player.instance.DigIt();
+            }
 
             pickedAnItem?.Invoke(itemSprite);
 
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
         }
 
         if (correctItem != null)
