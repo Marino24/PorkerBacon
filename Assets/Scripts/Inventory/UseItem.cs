@@ -104,7 +104,7 @@ public class UseItem : MonoBehaviour
     {
         //reset everything
         isItemInHand = false;
-        itemInHand.transform.localPosition = new Vector3(0, -50, 0);
+        itemInHand.transform.localPosition = new Vector3(0, -250, 0);
         itemInHand.sprite = null;
         currentButton = null; previousButton = null;
     }
