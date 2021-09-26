@@ -53,7 +53,7 @@ public class Object : MonoBehaviour
         if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
         if (canPickUp && outOfReach) reachDesc = player.reachOptions[UnityEngine.Random.Range(0, player.reachOptions.Count)];
-
+        
         textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false);
 
 
