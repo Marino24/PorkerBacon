@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
 
     public Image[] items;
-    public GameObject itemsDisplay; private RectTransform inventory; public Sprite empty;
+    public GameObject itemsDisplay; public Sprite empty;
     public Image itemStored;
     public bool invOpen;
 
@@ -16,7 +16,6 @@ public class Inventory : MonoBehaviour
     void Awake()
     {
         items = itemsDisplay.GetComponentsInChildren<Image>();
-        inventory = itemsDisplay.transform.parent.GetComponent<RectTransform>();
         empty = items[0].sprite;
 
         Object.pickedAnItem += ItemStored;
@@ -37,12 +36,10 @@ public class Inventory : MonoBehaviour
         if (invOpen)
         {
             inventoryAnim.Play("OpenInventory");
-            //inventory.anchoredPosition = new Vector3(0, 5, 0);
         }
         else
         {
             inventoryAnim.Play("CloseInventory");
-            //inventory.anchoredPosition = new Vector3(0, -70, 0);
         }
     }
 

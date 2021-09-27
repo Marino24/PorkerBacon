@@ -8,7 +8,7 @@ using System;
 public class Object : MonoBehaviour
 {
     private Camera cam;
-    private Sprite itemSprite;
+    public Sprite itemSpriteUI;
     private UIhandler uIhandler;
     private UseItem useItem;
     private Player player;
@@ -20,7 +20,6 @@ public class Object : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
-        itemSprite = GetComponent<SpriteRenderer>().sprite;
         uIhandler = cam.GetComponent<UIhandler>();
         useItem = cam.GetComponent<UseItem>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -53,19 +52,19 @@ public class Object : MonoBehaviour
         if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
         if (canPickUp && outOfReach) reachDesc = player.reachOptions[UnityEngine.Random.Range(0, player.reachOptions.Count)];
-        
+
         textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false);
 
 
         //pickup
         if (canPickUp && !outOfReach)
         {
-            if(objName == "MudInteractable")
+            if (objName == "MudInteractable")
             {
                 Player.instance.DigIt();
             }
 
-            pickedAnItem?.Invoke(itemSprite);
+            pickedAnItem?.Invoke(itemSpriteUI);
 
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;

@@ -2183,9 +2183,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInHand: {fileID: 2063182690}
   combos:
-  - result: {fileID: 21300000, guid: 873315492f4029d449c7b7126141f1a1, type: 3}
-    item1: {fileID: 21300000, guid: ab479c62c8e8fda4c9855f5441a9ca43, type: 3}
-    item2: {fileID: 21300000, guid: 781656af1162cfd45841d94524ec667c, type: 3}
+  - result: {fileID: 21300000, guid: 7d54017963b644c4e8497f11d16e1215, type: 3}
+    item1: {fileID: 21300000, guid: 99e44a4c9a0c9de40a6a95b6896a00ec, type: 3}
+    item2: {fileID: 21300000, guid: 1a2f7b28887c5744e99184e3533d6aff, type: 3}
   isItemInHand: 0
 --- !u!114 &519420034
 MonoBehaviour:
@@ -2766,6 +2766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a306c4a00f517643831f734fde28411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSpriteUI: {fileID: 21300000, guid: d5c2c3ea350e78c4c873441bb30d3152, type: 3}
   canPickUp: 1
   objDesc: I dig it
   objName: MudInteractable
@@ -4426,6 +4427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a306c4a00f517643831f734fde28411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSpriteUI: {fileID: 21300000, guid: 1a2f7b28887c5744e99184e3533d6aff, type: 3}
   canPickUp: 1
   objDesc: It might be usefull
   objName: 
@@ -4603,6 +4605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a306c4a00f517643831f734fde28411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSpriteUI: {fileID: 0}
   canPickUp: 0
   objDesc: How would i remove it
   objName: 
@@ -5736,6 +5739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a306c4a00f517643831f734fde28411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSpriteUI: {fileID: 0}
   canPickUp: 0
   objDesc: I can see way back there oh the wonders
   objName: 
@@ -5811,6 +5815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a306c4a00f517643831f734fde28411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSpriteUI: {fileID: 21300000, guid: 99e44a4c9a0c9de40a6a95b6896a00ec, type: 3}
   canPickUp: 1
   objDesc: My string
   objName: 
@@ -5936,7 +5941,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c26a5d8128864594c8dcc53d85ecf730, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -6918,6 +6923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a306c4a00f517643831f734fde28411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSpriteUI: {fileID: 21300000, guid: 1047cfa14ee43544cbf0998d80ddd5ae, type: 3}
   canPickUp: 1
   objDesc: 'Oh look an egg '
   objName: 
@@ -7796,6 +7802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a306c4a00f517643831f734fde28411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSpriteUI: {fileID: 0}
   canPickUp: 0
   objDesc: How do i get it open
   objName: 
