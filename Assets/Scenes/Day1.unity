@@ -2736,7 +2736,7 @@ GameObject:
   - component: {fileID: 629683691}
   - component: {fileID: 629683694}
   m_Layer: 0
-  m_Name: loose-mud
+  m_Name: MudInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5787,6 +5787,7 @@ GameObject:
   - component: {fileID: 1467089727}
   - component: {fileID: 1467089726}
   - component: {fileID: 1467089725}
+  - component: {fileID: 1467089728}
   m_Layer: 0
   m_Name: string
   m_TagString: Untagged
@@ -5902,6 +5903,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1467089728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467089723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9aa8177a984f824f834b3b8b1b84fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bowlAnimator: {fileID: 1486320480}
 --- !u!1 &1486320478
 GameObject:
   m_ObjectHideFlags: 0
@@ -5943,10 +5957,10 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486320478}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c26a5d8128864594c8dcc53d85ecf730, type: 2}
-  m_CullingMode: 2
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -7871,11 +7885,11 @@ RectTransform:
   m_Father: {fileID: 1946433560}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -166.3, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -166.30002, y: -108.899994}
   m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2063182690
 MonoBehaviour:
   m_ObjectHideFlags: 0

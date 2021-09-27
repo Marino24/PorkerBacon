@@ -21,6 +21,9 @@ public class Tutorial : MonoBehaviour
     {
         Object.pickedAnItem += x => ShowInvetoryTip();
         ConvController.introOver += ShowMovementTip;
+
+        //cause object gets destroyed and this works for every object this logic of firsttiming like this doesnt work
+        //have to reverse the logic so its here (same for music when first item picked up)
     }
 
     public void ShowMovementTip(Conversation convo)
