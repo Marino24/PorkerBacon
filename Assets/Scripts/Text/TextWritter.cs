@@ -10,8 +10,12 @@ public class TextWritter : MonoBehaviour
     private int index = 0;
     private float textRevealSpeed; private float textStayTime;
     public static bool textEnded;
-    public void Write(string text, TMP_Text UiText, bool convo)
+    public void Write(string text, TMP_Text UiText, bool convo, bool forMonologue = false)
     {
+        if(forMonologue)
+        {
+            UIhandler.instance.monologueBG.SetActive(true);
+        }
         if (convo)
         {
             textRevealSpeed = 0.01f;
@@ -25,11 +29,11 @@ public class TextWritter : MonoBehaviour
         index = 0;
         textEnded = false;
         StopAllCoroutines();
-        StartCoroutine(WriteC(text, UiText, convo));
+        StartCoroutine(WriteC(text, UiText, convo, forMonologue));
     }
 
 
-    private IEnumerator WriteC(string text, TMP_Text UiText, bool convo)
+    private IEnumerator WriteC(string text, TMP_Text UiText, bool convo, bool forMonologue = false)
     {
         while (index < text.Length && !textEnded)
         {
@@ -49,6 +53,11 @@ public class TextWritter : MonoBehaviour
         yield return new WaitForSeconds(textStayTime); //cant brute force through the text
 
         textEnded = true;
+
+        if(forMonologue)
+        {
+            UIhandler.instance.monologueBG.SetActive(false);
+        }
 
         if (!convo)
         {

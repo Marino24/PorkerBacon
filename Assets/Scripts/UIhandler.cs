@@ -12,7 +12,9 @@ public class UIhandler : MonoBehaviour
     public GameObject menu;
     public GameObject monologue;
     public TMP_Text monologueText;
+    public GameObject monologueBG;
     public Player player;
+    public static UIhandler instance;
 
 
     [Header("Conversation")]
@@ -51,6 +53,7 @@ public class UIhandler : MonoBehaviour
 
     void Awake()
     {
+        instance = this;
         menu.SetActive(false);
         ConvController.startConvo += x => StartConversation();
         ConvController.endConvo += EndConversation;
