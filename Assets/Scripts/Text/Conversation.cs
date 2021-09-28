@@ -13,9 +13,11 @@ public class Conversation : ScriptableObject
         public int requiredAmount = 1;
         [TextArea]
         public string option;
+        public AudioClip optionAudio;
         public string abbOption;
         [TextArea]
         public List<string> responses = new List<string>();
+        public List<AudioClip> responsesAudio = new List<AudioClip>();
         public Conversation nextConvo;
         public List<string> unlockedOptions = new List<string>();
         public List<string> removedOptions = new List<string>();
@@ -61,6 +63,7 @@ public class Conversation : ScriptableObject
     {
         [TextArea(2, 5)]
         public string textSet;
+        public AudioClip textSetAudio;
         public int ZeroOrOne;
     }
     [Header("Narrative")]

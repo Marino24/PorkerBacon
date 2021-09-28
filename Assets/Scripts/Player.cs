@@ -39,29 +39,31 @@ public class Player : MonoBehaviour
     void Update()
     {
         uIhandler.monologue.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 3f, 0));
-        if(isWalking)
+        if (isWalking)
         {
-            anim.SetBool("isWalking",true);
-        }else{
-            anim.SetBool("isWalking",false);
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
         }
 
 
         //Check if found a npc available (Hamilton)
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 Debug.Log("Sending a ray!");
                 RaycastHit2D hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                hit = Physics2D.Raycast(ray.origin,ray.direction);
+                hit = Physics2D.Raycast(ray.origin, ray.direction);
 
-                if(hit.collider != null)
+                if (hit.collider != null)
                 {
                     Debug.Log(hit.collider.name);
                     NPC npc = hit.collider.GetComponent<NPC>();
-                    if(npc != null && !npc.useItem.isItemInHand && Vector2.Distance(transform.position,npc.transform.position) < npcReach)
+                    if (npc != null && !npc.useItem.isItemInHand && Vector2.Distance(transform.position, npc.transform.position) < npcReach)
                     {
                         npc.StartConvoWithMe();
                     }
@@ -76,10 +78,12 @@ public class Player : MonoBehaviour
         float xPos = Input.GetAxis("Horizontal");
         float yPos = Input.GetAxis("Vertical");
 
-        if(xPos != 0 || yPos != 0)
+        if (xPos != 0 || yPos != 0)
         {
             isWalking = true;
-        }else{
+        }
+        else
+        {
             isWalking = false;
         }
 
@@ -94,12 +98,12 @@ public class Player : MonoBehaviour
 
     public void DigIt()
     {
-        anim.SetBool("isDiggingMud",true);
+        anim.SetBool("isDiggingMud", true);
     }
 
     public void StopDig()
     {
-        anim.SetBool("isDiggingMud",false);
+        anim.SetBool("isDiggingMud", false);
     }
 
 }

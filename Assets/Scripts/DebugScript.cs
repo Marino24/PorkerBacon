@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebugHelper : MonoBehaviour
+public class DebugScript : MonoBehaviour
 {
-    public ConvController controller;
+    public ConvController controller; float deltaTime = 0.0f;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
@@ -17,24 +16,7 @@ public class DebugHelper : MonoBehaviour
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
     }
 
-    #region  Mouse
-    public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.ForceSoftware;
-    public Vector2 hotSpot = Vector2.zero;
-    private void Start()
-    {
-        hotSpot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-    }
-
-    void OnMouseExit()
-    {
-        Cursor.SetCursor(null, Vector2.zero, cursorMode);
-    }
-    #endregion
-
     #region FPS
-    float deltaTime = 0.0f;
     void OnGUI()
     {
         int w = Screen.width, h = Screen.height;

@@ -29,7 +29,7 @@ public class ConvController : MonoBehaviour
     [Header("References - UI")]
     public TMP_Text textRoom;
     public TMP_Text textCharName;
-    public RectTransform convoOptions; private GridLayoutGroup gridLayout;
+    public RectTransform convoOptions;
     public Image leftChar; public Image leftCharBg; private bool leftSpoke;
     public Image rightChar; public Image rightCharBg; private bool rightSpoke;
 
@@ -40,15 +40,10 @@ public class ConvController : MonoBehaviour
     private bool isOptionSelected; private Conversation.OptionData selectedOption;
     private int responseIndex;
 
-    //scroll var
-    private float maxScroll;
-    private float scroll = -5;
-
     void Awake()
     {
         SetUpOptionButtons();
         cam = Camera.main;
-        gridLayout = convoOptions.gameObject.GetComponent<GridLayoutGroup>();
         textWritter = cam.GetComponent<TextWritter>();
 
         startConvo += ConvoStarted;
@@ -77,8 +72,6 @@ public class ConvController : MonoBehaviour
             if (currentConv.optionDataSet[i].abbOption != "") buttons[i].GetComponentInChildren<TMP_Text>().text = currentConv.optionDataSet[i].abbOption;
             if (currentConv.optionDataSet[i].abbOption == "") buttons[i].GetComponentInChildren<TMP_Text>().text = currentConv.optionDataSet[i].option;
         }
-        int elementSize = Mathf.RoundToInt(gridLayout.cellSize.y + gridLayout.spacing.y);
-        maxScroll = elementSize * (currentConv.optionDataSet.Count - Mathf.RoundToInt(convoOptions.rect.height / elementSize));
     }
     void OptionClicked()
     {
@@ -365,28 +358,6 @@ public class ConvController : MonoBehaviour
 
             }
         }
-
-        //Scroll();
     }
 
-    private void Scroll()
-    {
-        if (Input.GetKey(KeyCode.S))
-        {
-            if (scroll < maxScroll)
-            {
-                scroll += 1f;
-                convoOptions.transform.localPosition = new Vector3(0, scroll + 90, 0);
-            }
-        }
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            if (scroll > -5)
-            {
-                scroll -= 1f;
-                convoOptions.transform.localPosition = new Vector3(0, scroll + 90, 0);
-            }
-        }
-    }
 }

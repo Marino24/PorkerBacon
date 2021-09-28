@@ -18,6 +18,7 @@ public class ActivateWater : MonoBehaviour
         {
             bowlAnimator.enabled = true;
             bowlAnimator.Play("Filling");
+            //some warnings happen idk what they mean
         }
     }
 }
