@@ -366,7 +366,7 @@ public class ConvController : MonoBehaviour
             }
         }
 
-        Scroll();
+        //Scroll();
     }
 
     private void Scroll()
