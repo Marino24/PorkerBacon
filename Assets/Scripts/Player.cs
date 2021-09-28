@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class Player : MonoBehaviour
     public Conversation introConvo;
     public List<string> reachOptions = new List<string>();
     private bool isWalking;
-
     public static Player instance;
+    public float npcReach = 15f;
 
     void Start()
     {
@@ -43,6 +44,29 @@ public class Player : MonoBehaviour
             anim.SetBool("isWalking",true);
         }else{
             anim.SetBool("isWalking",false);
+        }
+
+
+        //Check if found a npc available (Hamilton)
+        if(Input.GetMouseButtonDown(0))
+        {
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Sending a ray!");
+                RaycastHit2D hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                hit = Physics2D.Raycast(ray.origin,ray.direction);
+
+                if(hit.collider != null)
+                {
+                    Debug.Log(hit.collider.name);
+                    NPC npc = hit.collider.GetComponent<NPC>();
+                    if(npc != null && !npc.useItem.isItemInHand && Vector2.Distance(transform.position,npc.transform.position) < npcReach)
+                    {
+                        npc.StartConvoWithMe();
+                    }
+                }
+            }
         }
 
     }
@@ -77,4 +101,5 @@ public class Player : MonoBehaviour
     {
         anim.SetBool("isDiggingMud",false);
     }
+
 }

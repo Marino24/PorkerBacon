@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
-    private UseItem useItem;
+    public UseItem useItem;
 
     void Awake()
     {
@@ -23,12 +22,6 @@ public class NPC : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!EventSystem.current.IsPointerOverGameObject() && !useItem.isItemInHand)
-        {
-            convCtrl.npc = this;
-            ConvController.startConvo?.Invoke(conversation);
-        }
-
         /*
         if (useItem.itemUsed == "")
         {
@@ -48,5 +41,11 @@ public class NPC : MonoBehaviour
         }
 
         */
+    }
+
+    public void StartConvoWithMe()
+    {
+        convCtrl.npc = this;
+        ConvController.startConvo?.Invoke(conversation);
     }
 }

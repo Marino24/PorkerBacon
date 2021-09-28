@@ -38,7 +38,7 @@ public class Object : MonoBehaviour
     public bool canPickUp;
     public string objDesc; private string reachDesc;
     public string objName;
-    private float reach = 15f; private bool outOfReach;
+    public float reach = 15f; private bool outOfReach;
 
 
     [Tooltip("What item should be used on this")]
