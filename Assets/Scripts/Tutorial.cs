@@ -7,10 +7,10 @@ using System;
 
 public class Tutorial : MonoBehaviour
 {
-    public Image toolTip;
-    public Image toolTip2;
+    public Transform toolTip;
+    public Transform toolTip2;
 
-    public Sprite mouse, keyboard, inventory;
+    public GameObject mouse, keyboard, inventory;
     public Conversation introConvo;
 
 
@@ -30,22 +30,28 @@ public class Tutorial : MonoBehaviour
     {
         if (convo != introConvo) return;
 
-        toolTip.sprite = keyboard;
-        toolTip2.sprite = mouse;
-        toolTip.color += new Color(0, 0, 0, 1);
-        toolTip2.color += new Color(0, 0, 0, 1);
-        StartCoroutine(FadeOut(toolTip));
-        StartCoroutine(FadeOut(toolTip2));
+        //toolTip.sprite = keyboard;
+        //toolTip2.sprite = mouse;
+        Image obj1 = Instantiate(keyboard,toolTip.position,Quaternion.identity,toolTip).GetComponent<Image>();
+        Image obj2 = Instantiate(mouse,toolTip2.position,Quaternion.identity,toolTip2).GetComponent<Image>();
+        obj1.rectTransform.anchoredPosition = Vector3.zero;
+        obj2.rectTransform.anchoredPosition = Vector3.zero;
+        obj1.color += new Color(0, 0, 0, 1);
+        obj2.color += new Color(0, 0, 0, 1);
+        StartCoroutine(FadeOut(obj1));
+        StartCoroutine(FadeOut(obj2));
 
         ConvController.introOver -= ShowMovementTip;
     }
 
     public void ShowInvetoryTip()
     {
-        toolTip.sprite = inventory;
-        toolTip.color += new Color(0, 0, 0, 1);
-        toolTip2.color -= new Color(0, 0, 0, 1);
-        StartCoroutine(FadeOut(toolTip));
+        //toolTip.sprite = inventory;
+        Image obj1 = Instantiate(inventory,toolTip.position,Quaternion.identity,toolTip).GetComponent<Image>();
+        obj1.rectTransform.anchoredPosition = Vector3.zero;
+        obj1.color += new Color(0, 0, 0, 1);
+        //toolTip2.color -= new Color(0, 0, 0, 1);
+        StartCoroutine(FadeOut(obj1));
 
         Object.pickedAnItem -= x => ShowInvetoryTip();
     }
@@ -65,6 +71,7 @@ public class Tutorial : MonoBehaviour
             if (x > 0.03) x -= 0.01f;
             yield return new WaitForSeconds(x);
         }
+        Destroy(obj.gameObject);
     }
 
 }

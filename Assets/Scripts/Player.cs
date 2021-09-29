@@ -98,6 +98,7 @@ public class Player : MonoBehaviour
 
     public void DigIt()
     {
+        anim.SetBool("isWalking",false);
         anim.SetBool("isDiggingMud", true);
     }
 
