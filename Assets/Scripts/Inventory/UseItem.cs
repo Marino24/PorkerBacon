@@ -16,6 +16,7 @@ public class UseItem : MonoBehaviour
     public class ItemCombo
     {
         public Sprite result;
+        public string resultName;
         public Sprite item1;
         public Sprite item2;
     }
@@ -63,7 +64,7 @@ public class UseItem : MonoBehaviour
                     {
                         currentButton.sprite = inventory.empty;
                         previousButton.sprite = inventory.empty;
-                        inventory.ItemStored(v.result);
+                        inventory.ItemStored(v.result, v.resultName);
                         StopUsing();
                         return;
                     }

@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
 
-    public Image[] items;
+    private Image[] items; private TextMeshProUGUI[] itemNames;
     public GameObject itemsDisplay; public Sprite empty;
     public Image itemStored;
     public bool invOpen;
@@ -17,6 +18,8 @@ public class Inventory : MonoBehaviour
     {
         items = itemsDisplay.GetComponentsInChildren<Image>();
         empty = items[0].sprite;
+
+        itemNames = itemsDisplay.GetComponentsInChildren<TextMeshProUGUI>();
 
         Object.pickedAnItem += ItemStored;
         Object.pickedAnItem += ShowItemStored;
@@ -43,8 +46,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void ShowItemStored(Sprite itemSprite)
+    void ShowItemStored(Sprite itemSprite, string itemName)
     {
+        //show name aswell?
         itemStored.sprite = itemSprite;
         itemStored.color += new Color(0, 0, 0, 1);
         StartCoroutine(FadeOut(itemStored));
@@ -61,7 +65,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void ItemStored(Sprite itemSprite)
+    public void ItemStored(Sprite itemSprite, string itemName)
     {
         //looks for an empty spot and set the item there
         for (int i = 0; i < items.Length; i++)
@@ -69,6 +73,7 @@ public class Inventory : MonoBehaviour
             if (items[i].sprite == empty)
             {
                 items[i].sprite = itemSprite;
+                itemNames[i].text = itemName;
                 break;
             }
         }

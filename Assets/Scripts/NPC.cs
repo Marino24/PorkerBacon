@@ -18,7 +18,15 @@ public class NPC : MonoBehaviour
     public ConvController convCtrl;
     public Conversation conversation;
 
+    void OnMouseOver()
+    {
+        MouseUi.hooveringItem?.Invoke("npc");
+    }
 
+    void OnMouseExit()
+    {
+        MouseUi.hooveringItem?.Invoke("idle");
+    }
 
     void OnMouseDown()
     {

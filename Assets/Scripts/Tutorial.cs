@@ -19,7 +19,7 @@ public class Tutorial : MonoBehaviour
 
     void Awake()
     {
-        Object.pickedAnItem += x => ShowInvetoryTip();
+        Object.pickedAnItem += ShowInvetoryTip;
         ConvController.introOver += ShowMovementTip;
 
         //cause object gets destroyed and this works for every object this logic of firsttiming like this doesnt work
@@ -32,8 +32,8 @@ public class Tutorial : MonoBehaviour
 
         //toolTip.sprite = keyboard;
         //toolTip2.sprite = mouse;
-        Image obj1 = Instantiate(keyboard,toolTip.position,Quaternion.identity,toolTip).GetComponent<Image>();
-        Image obj2 = Instantiate(mouse,toolTip2.position,Quaternion.identity,toolTip2).GetComponent<Image>();
+        Image obj1 = Instantiate(keyboard, toolTip.position, Quaternion.identity, toolTip).GetComponent<Image>();
+        Image obj2 = Instantiate(mouse, toolTip2.position, Quaternion.identity, toolTip2).GetComponent<Image>();
         obj1.rectTransform.anchoredPosition = Vector3.zero;
         obj2.rectTransform.anchoredPosition = Vector3.zero;
         obj1.color += new Color(0, 0, 0, 1);
@@ -44,16 +44,16 @@ public class Tutorial : MonoBehaviour
         ConvController.introOver -= ShowMovementTip;
     }
 
-    public void ShowInvetoryTip()
+    public void ShowInvetoryTip(Sprite x, string y)
     {
         //toolTip.sprite = inventory;
-        Image obj1 = Instantiate(inventory,toolTip.position,Quaternion.identity,toolTip).GetComponent<Image>();
+        Image obj1 = Instantiate(inventory, toolTip.position, Quaternion.identity, toolTip).GetComponent<Image>();
         obj1.rectTransform.anchoredPosition = Vector3.zero;
         obj1.color += new Color(0, 0, 0, 1);
         //toolTip2.color -= new Color(0, 0, 0, 1);
         StartCoroutine(FadeOut(obj1));
 
-        Object.pickedAnItem -= x => ShowInvetoryTip();
+        Object.pickedAnItem -= ShowInvetoryTip;
     }
 
     //same as in Inventory script

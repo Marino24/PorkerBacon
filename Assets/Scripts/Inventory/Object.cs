@@ -8,7 +8,6 @@ using System;
 public class Object : MonoBehaviour
 {
     private Camera cam;
-    public Sprite itemSpriteUI;
     private UIhandler uIhandler;
     private UseItem useItem;
     private Player player;
@@ -26,10 +25,9 @@ public class Object : MonoBehaviour
         textWritter = cam.GetComponent<TextWritter>();
         inventory = cam.GetComponent<Inventory>();
         audioController = cam.GetComponent<AudioController>();
-
     }
 
-    public static Action<Sprite> pickedAnItem;
+    public static Action<Sprite, string> pickedAnItem;
     public static Action<Sprite> usedAnItem;
 
     [Header("Data")]
@@ -37,34 +35,47 @@ public class Object : MonoBehaviour
     [Tooltip("Is this an item")]
     public bool canPickUp;
     public string objDesc; private string reachDesc;
+    public Sprite itemSpriteUI;
     public string objName;
     public float reach = 15f; private bool outOfReach;
 
 
     [Tooltip("What item should be used on this")]
     public Sprite correctItem;
+    void OnMouseOver()
+    {
+        if (canPickUp)
+            MouseUi.hooveringItem?.Invoke("item");
+        else
+            MouseUi.hooveringItem?.Invoke("obj");
+    }
 
+    void OnMouseExit()
+    {
+        MouseUi.hooveringItem?.Invoke("idle");
+    }
     void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject()) return;
+
 
         //range check
         if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
         if (canPickUp && outOfReach) reachDesc = player.reachOptions[UnityEngine.Random.Range(0, player.reachOptions.Count)];
-        
+
         textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false, true);
 
 
         //pickup
         if (canPickUp && !outOfReach)
         {
-            if (objName == "MudInteractable")
+            if (objName == "Mud")
             {
                 Player.instance.DigIt();
             }
 
-            pickedAnItem?.Invoke(itemSpriteUI);
+            pickedAnItem?.Invoke(itemSpriteUI, objName);
 
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;

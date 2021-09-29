@@ -12,9 +12,9 @@ public class ActivateWater : MonoBehaviour
         item = gameObject.GetComponent<Object>();
         Object.pickedAnItem += Activate;
     }
-    private void Activate(Sprite x)
+    private void Activate(Sprite correctItem, string x)
     {
-        if (x == item.itemSpriteUI)
+        if (correctItem == item.itemSpriteUI)
         {
             bowlAnimator.enabled = true;
             bowlAnimator.Play("Filling");
