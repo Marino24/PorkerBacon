@@ -44,10 +44,17 @@ public class Object : MonoBehaviour
     public Sprite correctItem;
     void OnMouseOver()
     {
+        if (useItem.isItemInHand)
+        {
+            MouseUi.hooveringItem?.Invoke("combo");
+            return;
+        }
+
         if (canPickUp)
+        {
             MouseUi.hooveringItem?.Invoke("item");
-        else
-            MouseUi.hooveringItem?.Invoke("obj");
+        }
+
     }
 
     void OnMouseExit()
@@ -68,7 +75,7 @@ public class Object : MonoBehaviour
 
 
         //pickup
-        if (canPickUp && !outOfReach)
+        if (canPickUp && !outOfReach && !useItem.isItemInHand)
         {
             if (objName == "Mud")
             {

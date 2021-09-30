@@ -87,6 +87,7 @@ public class Inventory : MonoBehaviour
             if (items[i].sprite == itemSprite)
             {
                 items[i].sprite = empty;
+                itemNames[i].text = "";
                 break;
             }
         }

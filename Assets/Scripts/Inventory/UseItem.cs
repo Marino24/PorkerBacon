@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UseItem : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class UseItem : MonoBehaviour
             if (currentButton.sprite == inventory.empty)
             {
                 currentButton.sprite = itemInHand.sprite;
+                currentButton.GetComponentInChildren<TextMeshProUGUI>().text = previousButton.GetComponentInChildren<TextMeshProUGUI>().text;
+                previousButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
                 previousButton.sprite = inventory.empty;
                 StopUsing();
                 return;
@@ -64,6 +67,8 @@ public class UseItem : MonoBehaviour
                     {
                         currentButton.sprite = inventory.empty;
                         previousButton.sprite = inventory.empty;
+                        previousButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                        currentButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
                         inventory.ItemStored(v.result, v.resultName);
                         StopUsing();
                         return;

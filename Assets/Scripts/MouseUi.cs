@@ -57,8 +57,8 @@ public class MouseUi : MonoBehaviour
             return;
         }
 
-        if (thing == "obj") currentCursor = cursors[0];
-        if (thing == "item") currentCursor = cursors[1];
+        if (thing == "item") currentCursor = cursors[0];
+        if (thing == "combo") currentCursor = cursors[1];
         if (thing == "npc") currentCursor = cursors[2];
         animate = true;
     }
