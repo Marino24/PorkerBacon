@@ -49,6 +49,11 @@ public class ConvController : MonoBehaviour
         startConvo += ConvoStarted;
     }
 
+    private void OnDisable()
+    {
+        startConvo -= ConvoStarted;
+    }
+
     #region Button Options setup
     void SetUpOptionButtons()
     {
@@ -179,7 +184,6 @@ public class ConvController : MonoBehaviour
 
     public void ConvoStarted(Conversation convo)
     {
-
         currentConv = convo;
 
         //set both sprites to characters talking

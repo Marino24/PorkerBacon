@@ -22,9 +22,10 @@ public class Player : MonoBehaviour
     {
         if (introConvo != null)
         {
+            Debug.Log("Setting it up");
             uIhandler.conversationStage.SetActive(true); //for initial 
             ConvController.startConvo?.Invoke(introConvo);
-
+            Debug.Log("Setup done");
         }
     }
     void Awake()
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
 
     public void DigIt()
     {
-        anim.SetBool("isWalking",false);
+        anim.SetBool("isWalking", false);
         anim.SetBool("isDiggingMud", true);
     }
 

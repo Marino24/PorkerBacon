@@ -53,7 +53,11 @@ public class UIhandler : MonoBehaviour
     {
         Application.Quit();
     }
-
+    private void OnDisable()
+    {
+        ConvController.startConvo -= x => StartConversation();
+        ConvController.endConvo -= EndConversation;
+    }
     void Awake()
     {
         instance = this;
@@ -63,12 +67,12 @@ public class UIhandler : MonoBehaviour
 
         foreach (Transform sound in allSounds)
         {
-            sound.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SoundVal",50);
+            sound.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SoundVal", 50);
         }
 
         foreach (Transform music in allMusics)
         {
-            music.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVal",50);
+            music.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVal", 50);
         }
     }
 
@@ -86,11 +90,14 @@ public class UIhandler : MonoBehaviour
 
     public void StartConversation()
     {
+        Debug.Log("Here the problem happens");
+        Debug.Log(conversationStage);
         conversationStage.SetActive(true);
 
         inventory.SetActive(false);
         monologueText.text = ""; monologue.SetActive(false);
         player.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; player.enabled = false;
+
     }
 
     public void EndConversation()
