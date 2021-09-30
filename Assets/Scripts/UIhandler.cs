@@ -16,6 +16,9 @@ public class UIhandler : MonoBehaviour
     public Player player;
     public static UIhandler instance;
 
+    public Transform allSounds;
+    public Transform allMusics;
+
 
     [Header("Conversation")]
     public GameObject conversationStage;
@@ -57,6 +60,16 @@ public class UIhandler : MonoBehaviour
         menu.SetActive(false);
         ConvController.startConvo += x => StartConversation();
         ConvController.endConvo += EndConversation;
+
+        foreach (Transform sound in allSounds)
+        {
+            sound.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SoundVal",50);
+        }
+
+        foreach (Transform music in allMusics)
+        {
+            music.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVal",50);
+        }
     }
 
     void Update()
