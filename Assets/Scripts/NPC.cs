@@ -54,6 +54,7 @@ public class NPC : MonoBehaviour
     public void StartConvoWithMe()
     {
         convCtrl.npc = this;
+        Debug.Log(conversation);
         ConvController.startConvo?.Invoke(conversation);
     }
 }

@@ -24,13 +24,6 @@ public class MouseUi : MonoBehaviour
         ConvController.endConvo += OutConversation;
     }
 
-    private void OnDisable()
-    {
-        hooveringItem -= ChangeCursor;
-
-        ConvController.startConvo -= x => InConversation();
-        ConvController.endConvo -= OutConversation;
-    }
     private void Update()
     {
         if (animate && !inConvo)

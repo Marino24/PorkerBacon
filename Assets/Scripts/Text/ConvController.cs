@@ -49,10 +49,6 @@ public class ConvController : MonoBehaviour
         startConvo += ConvoStarted;
     }
 
-    private void OnDisable()
-    {
-        startConvo -= ConvoStarted;
-    }
 
     #region Button Options setup
     void SetUpOptionButtons()

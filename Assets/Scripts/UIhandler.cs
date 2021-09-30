@@ -53,11 +53,7 @@ public class UIhandler : MonoBehaviour
     {
         Application.Quit();
     }
-    private void OnDisable()
-    {
-        ConvController.startConvo -= x => StartConversation();
-        ConvController.endConvo -= EndConversation;
-    }
+
     void Awake()
     {
         instance = this;
