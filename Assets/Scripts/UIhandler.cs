@@ -56,6 +56,7 @@ public class UIhandler : MonoBehaviour
 
     void Awake()
     {
+        Resume();  //THIS IS IMPORTANT
         instance = this;
         menu.SetActive(false);
         ConvController.startConvo += x => StartConversation();

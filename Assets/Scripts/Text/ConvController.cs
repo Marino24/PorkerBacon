@@ -49,6 +49,12 @@ public class ConvController : MonoBehaviour
         startConvo += ConvoStarted;
     }
 
+    void OnDisable()
+    {
+        startConvo = null;
+        endConvo = null;
+    }
+
 
     #region Button Options setup
     void SetUpOptionButtons()
@@ -337,7 +343,7 @@ public class ConvController : MonoBehaviour
         {
             if (isNarrConvo)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0) && !UIhandler.GameisPaused)
                 {
                     //advance the narrative...
                     if (TextWritter.textEnded) AdvanceConvo(currentConv.NarrativeDataSet.Count);

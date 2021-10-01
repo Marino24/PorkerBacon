@@ -10,10 +10,16 @@ public class AudioController : MonoBehaviour
     public static Action<string> musicPlay;
     public static Action<string> musicStop;
 
-    void Awake()
+    void OnEnable()
     {
         musicPlay += UnMuteMusic;
         musicStop += MuteMusic;
+    }
+
+    void OnDisable()
+    {
+        musicPlay -= UnMuteMusic;
+        musicStop -= MuteMusic;
     }
 
     public static IEnumerator Fade(AudioSource audioSource, float duration, float targetVolume)

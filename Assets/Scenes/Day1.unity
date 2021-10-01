@@ -1408,7 +1408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &300700299
 Transform:
   m_ObjectHideFlags: 0
@@ -1436,7 +1436,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 72cc48d378ef78149b558ba98bf49352, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2783,7 +2783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8220093, b: 0.16470587, a: 1}
+  m_Color: {r: 1, g: 0.16470587, b: 0.17968193, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7217,7 +7217,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Menu
+  m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1799b2da8531f7a40851ad7daa3458cc, type: 2}
   m_sharedMaterial: {fileID: -1838154324949620949, guid: 1799b2da8531f7a40851ad7daa3458cc,

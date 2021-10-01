@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) || Input.GetMouseButtonDown(1))
         {
             OpenCloseInv();
         }

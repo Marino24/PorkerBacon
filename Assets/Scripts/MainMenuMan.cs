@@ -16,6 +16,7 @@ public class MainMenuMan : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1f;
         if(PlayerPrefs.GetInt("firstTimePlay",1) == 0)
         {
             continueButton.SetActive(true);
