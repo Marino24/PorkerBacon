@@ -24,6 +24,7 @@ public class AudioController : MonoBehaviour
 
     public static IEnumerator Fade(AudioSource audioSource, float duration, float targetVolume)
     {
+        audioSource.mute = !audioSource.mute;
         float currentTime = 0;
         float start = audioSource.volume;
 

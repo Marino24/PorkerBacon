@@ -87,10 +87,8 @@ public class UIhandler : MonoBehaviour
 
     public void StartConversation()
     {
-        Debug.Log("Here the problem happens");
-        Debug.Log(conversationStage);
-        conversationStage.SetActive(true);
 
+        conversationStage.SetActive(true);
         inventory.SetActive(false);
         monologueText.text = ""; monologue.SetActive(false);
         player.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; player.enabled = false;
