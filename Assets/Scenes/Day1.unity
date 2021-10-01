@@ -932,7 +932,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 40fb50b1480cee946bceb75035e13ae0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1374,7 +1374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 009e68829190986498b073ef096f3286, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2068,6 +2068,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2210,6 +2211,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f68c438ca16d3438c6a81ac37a07de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94520fb142b9c5e41bdcfb7d056c82e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentConv: {fileID: 0}
+  OptionButton: {fileID: 305334903858373336, guid: e6b77bf7adeddd547bb97387442f4418,
+    type: 3}
+  MusicManager: {fileID: 1795631207}
+  textRoom: {fileID: 1334895147}
+  textCharName: {fileID: 896181345}
+  convoOptions: {fileID: 1818339743}
+  leftChar: {fileID: 234945725}
+  leftCharBg: {fileID: 965214337}
+  rightChar: {fileID: 295493517}
+  rightCharBg: {fileID: 102188521}
+  charSprites:
+  - {fileID: 21300000, guid: 40fb50b1480cee946bceb75035e13ae0, type: 3}
+  - {fileID: 21300000, guid: 009e68829190986498b073ef096f3286, type: 3}
+  - {fileID: 21300000, guid: 33ae85f018f237a49b3928ea0cfe4872, type: 3}
+  empty: {fileID: 21300000, guid: 4d84942ab98ae4748af1967df8a91321, type: 3}
 --- !u!1 &533620469
 GameObject:
   m_ObjectHideFlags: 0
@@ -3173,8 +3202,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 662570203}
-  - component: {fileID: 662570204}
-  - component: {fileID: 662570205}
   m_Layer: 5
   m_Name: ConversationStage
   m_TagString: Untagged
@@ -3207,126 +3234,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &662570204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662570202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94520fb142b9c5e41bdcfb7d056c82e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentConv: {fileID: 0}
-  OptionButton: {fileID: 305334903858373336, guid: e6b77bf7adeddd547bb97387442f4418,
-    type: 3}
-  MusicManager: {fileID: 1795631207}
-  textRoom: {fileID: 1334895147}
-  textCharName: {fileID: 896181345}
-  convoOptions: {fileID: 1818339743}
-  leftChar: {fileID: 234945725}
-  leftCharBg: {fileID: 965214337}
-  rightChar: {fileID: 295493517}
-  rightCharBg: {fileID: 102188521}
---- !u!82 &662570205
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662570202}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 5d386f60fc825b0448db99964c4aceb7,
-    type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &713148359
 GameObject:
   m_ObjectHideFlags: 0
@@ -4481,7 +4388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5813dd0d6094454d88ae02a43faad2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 662570204}
 --- !u!4 &995423604
 Transform:
   m_ObjectHideFlags: 0
@@ -5324,7 +5230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useItem: {fileID: 0}
   correctItem: gun
-  convCtrl: {fileID: 662570204}
   conversation: {fileID: 11400000, guid: 351c2cdb2a84aaa498a55adf2d293ad3, type: 2}
 --- !u!1 &1237726112
 GameObject:
@@ -6148,7 +6053,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  convController: {fileID: 662570204}
   introConvo: {fileID: 11400000, guid: ccf6c0146c0243645b4ad0bc7380f48b, type: 2}
   reachOptions:
   - too far

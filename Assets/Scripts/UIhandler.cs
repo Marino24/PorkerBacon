@@ -59,8 +59,8 @@ public class UIhandler : MonoBehaviour
         Resume();  //THIS IS IMPORTANT
         instance = this;
         menu.SetActive(false);
-        ConvController.startConvo += x => StartConversation();
-        ConvController.endConvo += EndConversation;
+        //ConvController.startConvo += x => StartConversation();
+        //ConvController.endConvo += EndConversation;
 
         foreach (Transform sound in allSounds)
         {
@@ -71,6 +71,12 @@ public class UIhandler : MonoBehaviour
         {
             music.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVal", 50);
         }
+    }
+
+    private void OnEnable()
+    {
+        ConvController.startConvo += x => StartConversation();
+        ConvController.endConvo += EndConversation;
     }
 
     void Update()

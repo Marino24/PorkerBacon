@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class DebugScript : MonoBehaviour
 {
-    public ConvController controller; float deltaTime = 0.0f;
+    private ConvController convController; float deltaTime = 0.0f;
 
+    private void Awake()
+    {
+        convController = Camera.main.GetComponent<ConvController>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            controller.DebugEnd();
+            convController.DebugEnd();
         }
 
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;

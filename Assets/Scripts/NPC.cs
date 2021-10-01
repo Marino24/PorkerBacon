@@ -6,16 +6,18 @@ using UnityEngine.UI;
 public class NPC : MonoBehaviour
 {
     public UseItem useItem;
+    private ConvController convCtrl;
 
     void Awake()
     {
         useItem = Camera.main.GetComponent<UseItem>();
+        convCtrl = Camera.main.GetComponent<ConvController>();
     }
 
     [Header("Data")]
     public string correctItem;
 
-    public ConvController convCtrl;
+
     public Conversation conversation;
 
     void OnMouseOver()

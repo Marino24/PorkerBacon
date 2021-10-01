@@ -17,33 +17,47 @@ MonoBehaviour:
   allOptions: []
   NarrativeDataSet:
   - textSet: I was a piglet born with hope and joy
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: (A fitting occupation for a boy.)
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: I thought not how our parents disappear
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: Nor why some wear a number in their ear.
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: 'I used to oink with certainty and charm:'
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: The finest female pigs come from the Farm.
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: But that would not behoove me much right now
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: It won't unmove the curtains for the Sow.
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: 'And everything I grew to dread and fear:'
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: 'I must confess: I found it all right here.'
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: 'The mess. The stress. The lonely, daily chore:'
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: I found it in the Jailing of a Boar.
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: 'So now that I am old, my thought is New:'
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: The unforetold shall be my point of view.
-    ZeroOrOne: 0
-  leftChar: {fileID: 21300000, guid: 40fb50b1480cee946bceb75035e13ae0, type: 3}
-  rightChar: {fileID: 0}
+    textSetAudio: {fileID: 0}
+    talking: 0
+  leftChar: 1
+  rightChar: 0
   nextConvo: {fileID: 11400000, guid: af4d7e90144e94248a7ba02e26daa86c, type: 2}

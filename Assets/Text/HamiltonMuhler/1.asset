@@ -17,46 +17,66 @@ MonoBehaviour:
   allOptions: []
   NarrativeDataSet:
   - textSet: Muhler, you are such an ass.
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: "I\u2019m only half. The rest is mare."
-    ZeroOrOne: 1
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: So you half-ass all which you pass for wisdom.
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: "Of that I\u2019m aware."
-    ZeroOrOne: 1
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: "I\u2019m telling you, I made it!! I got out."
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: "Of that I am persuaded and don\u2019t doubt."
-    ZeroOrOne: 1
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: Then why are you so jaded?
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: 'I bade you: what was it ABOUT?'
-    ZeroOrOne: 1
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: I found a Home where I was welcomed warmly and respected. Normally,
       I would have been rejected.
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: "Formally, you\u2019ve yet to be corrected:"
-    ZeroOrOne: 1
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: That was not the Place where you Belong.
-    ZeroOrOne: 1
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: And yet that loving face, that soft and open space...
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: It felt so RIGHT. How was it wrong?
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: It matters not much how we feel.
-    ZeroOrOne: 1
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: "We are the Master\u2019s Property; that was the Deal."
-    ZeroOrOne: 1
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: It was no Deal I properly recall my having made.
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: It was not yours to make, for boars have seldom farmers swayed.
-    ZeroOrOne: 1
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: "You call me \u201Cboar\u201D, but you are boring."
-    ZeroOrOne: 0
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: "I\u2019m not digging what you plan."
-    ZeroOrOne: 1
+    textSetAudio: {fileID: 0}
+    talking: 0
   - textSet: I cannot hear you; I am snoring.
-    ZeroOrOne: 0
-  leftChar: {fileID: 21300000, guid: 009e68829190986498b073ef096f3286, type: 3}
-  rightChar: {fileID: 21300000, guid: 6aaf8d0bd21ff8b40ae7d2066b254f2e, type: 3}
-  nextConvo: {fileID: 11400000, guid: 4922e3a9a150b1648a8b12d2480baa29, type: 2}
+    textSetAudio: {fileID: 0}
+    talking: 0
+  leftChar: 3
+  rightChar: 2
+  nextConvo: {fileID: 0}

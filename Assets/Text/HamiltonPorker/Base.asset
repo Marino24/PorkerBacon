@@ -17,9 +17,11 @@ MonoBehaviour:
   - optionName: A
     requiredAmount: 1
     option: 'Hamilton, please: spare this mulish man.'
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - Hey, man. Whose side are you on?
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions:
     - b
@@ -29,9 +31,11 @@ MonoBehaviour:
   - optionName: A
     requiredAmount: 1
     option: 'Hamilton, please: spare this mulish man.'
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - Hey, man. Whose side are you on?
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions:
     - b
@@ -40,9 +44,11 @@ MonoBehaviour:
   - optionName: C
     requiredAmount: 1
     option: "I don\u2019t mean to cast it in your face, Ham."
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - "It\u2019s all right. I could use a stratagem from time to time."
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions:
     - e
@@ -52,9 +58,11 @@ MonoBehaviour:
     requiredAmount: 1
     option: "That\u2019s the trouble with us pigs, you see: we see too much of either
       side, and not enough of what\u2019s before us, right under our noses."
+    optionAudio: {fileID: 0}
     abbOption: "That\u2019s the trouble with us pigs, you see..."
     responses:
     - That is spoken like a pearl.
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions:
     - c
@@ -64,9 +72,11 @@ MonoBehaviour:
   - optionName: D
     requiredAmount: 1
     option: How did you get across the Fence?
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - I burrowed. That's just Common Sense.
+    responsesAudio: []
     nextConvo: {fileID: 11400000, guid: 577e7785b8b7814488f8062f1f64c464, type: 2}
     unlockedOptions:
     - e
@@ -76,6 +86,7 @@ MonoBehaviour:
   - optionName: E
     requiredAmount: 1
     option: I am due three days from now.
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - You?? Holy Cow.
@@ -86,6 +97,7 @@ MonoBehaviour:
     - He will die far faster. Damn.
     - 'I swear: I will not let you come to harm;'
     - The two of us shall quit this Cursed Farm.
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions:
     - f
@@ -96,8 +108,10 @@ MonoBehaviour:
   - optionName: F
     requiredAmount: 1
     option: Thanks, but no more. Just one retort will do.
+    optionAudio: {fileID: 0}
     abbOption: 
     responses: []
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions:
     - g
@@ -109,9 +123,11 @@ MonoBehaviour:
   - optionName: G
     requiredAmount: 1
     option: You ever wonder what The Holy One would say?
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - Don't know her. I'd steer clear, though, anyway.
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
@@ -119,9 +135,11 @@ MonoBehaviour:
   - optionName: H
     requiredAmount: 1
     option: Maybe the Chicken Flock would like to talk.
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - It cannot hurt. They love to squawk.
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions:
     - k
@@ -131,9 +149,11 @@ MonoBehaviour:
   - optionName: I
     requiredAmount: 1
     option: And what about the Sheep? Are they Good Friends?
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - 'To one another: yes. But us? Depends.'
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
@@ -141,9 +161,11 @@ MonoBehaviour:
   - optionName: J
     requiredAmount: 1
     option: You think the Shepherd Dog cares for our woes?
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - Not really. But keep Dreaming, I suppose.
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
@@ -151,9 +173,11 @@ MonoBehaviour:
   - optionName: K
     requiredAmount: 1
     option: How is a pig to reach the Chickens then?
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - I'd start by picking Items from the Pen.
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions:
     - l
@@ -162,10 +186,12 @@ MonoBehaviour:
   - optionName: L
     requiredAmount: 1
     option: I picked some Items. Now what do I do?
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - Look in your Inventory for some Clue.
     - If stars align, some Items can combine.
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions:
     - m
@@ -174,10 +200,12 @@ MonoBehaviour:
   - optionName: M
     requiredAmount: 1
     option: I think this combo's good, possibly Great.
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - Then test it there upon that wooden Gate.
     - 'But do beware: our fate is in your hooves.'
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions:
     - n
@@ -186,9 +214,11 @@ MonoBehaviour:
   - optionName: N
     requiredAmount: 1
     option: 'Don''t worry: I know how to make my moves.'
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - You'll have to, long before morale improves.
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
@@ -196,14 +226,16 @@ MonoBehaviour:
   - optionName: O
     requiredAmount: 1
     option: Thank you for all your help, comrade in arms.
+    optionAudio: {fileID: 0}
     abbOption: 
     responses:
     - Hog Speed you, Porker Bacon. Death to Farms.
+    responsesAudio: []
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
     isExitOption: 1
   NarrativeDataSet: []
-  leftChar: {fileID: 21300000, guid: 009e68829190986498b073ef096f3286, type: 3}
-  rightChar: {fileID: 21300000, guid: 40fb50b1480cee946bceb75035e13ae0, type: 3}
+  leftChar: 2
+  rightChar: 1
   nextConvo: {fileID: 0}

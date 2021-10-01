@@ -37,7 +37,7 @@ public class ConvController : MonoBehaviour
     private bool isNarrConvo;
     private bool isConvoEnded;
 
-    private bool isOptionSelected; private Conversation.OptionData selectedOption;
+    private bool isOptionSelected; private Conversation.OptionData selectedOption; private bool firstTimeSpeaking;
     private int responseIndex;
 
     void Awake()
@@ -46,6 +46,10 @@ public class ConvController : MonoBehaviour
         cam = Camera.main;
         textWritter = cam.GetComponent<TextWritter>();
 
+        //startConvo += ConvoStarted;
+    }
+    private void OnEnable()
+    {
         startConvo += ConvoStarted;
     }
 
@@ -54,6 +58,7 @@ public class ConvController : MonoBehaviour
         startConvo = null;
         endConvo = null;
     }
+
 
 
     #region Button Options setup
@@ -184,13 +189,32 @@ public class ConvController : MonoBehaviour
     }
     #endregion
 
+    //this whole thing does not need to be here, but it is for now
+    public Sprite[] charSprites = new Sprite[8]; public Sprite empty;
+    Sprite GetSpriteOfCharacter(Conversation.Character x)
+    {
+
+        return x switch
+        {
+            Conversation.Character.Noone => empty,
+            Conversation.Character.Porker => charSprites[0],
+            Conversation.Character.Hamilton => charSprites[1],
+            Conversation.Character.Muhler => charSprites[2],
+            Conversation.Character.Hannah => charSprites[3],
+            Conversation.Character.Stan => charSprites[4],
+            Conversation.Character.Lambdon => charSprites[5],
+            Conversation.Character.Holy => charSprites[6],
+            Conversation.Character.Shepherd => charSprites[7],
+            _ => empty
+        };
+    }
     public void ConvoStarted(Conversation convo)
     {
         currentConv = convo;
 
         //set both sprites to characters talking
-        if (leftChar != null) leftChar.sprite = currentConv.leftChar;
-        if (rightChar != null) rightChar.sprite = currentConv.rightChar;
+        leftChar.sprite = GetSpriteOfCharacter(currentConv.leftChar);
+        rightChar.sprite = GetSpriteOfCharacter(currentConv.rightChar);
 
         isConvoEnded = false; responseIndex = 0; textCharName.text = " ";
 
@@ -203,10 +227,14 @@ public class ConvController : MonoBehaviour
 
         if (!isNarrConvo)
         {
-            leftCharBg.gameObject.SetActive(true);
-            rightCharBg.gameObject.SetActive(true);
-            AudioController.musicPlay?.Invoke(currentConv.leftChar.name);
-            AudioController.musicPlay?.Invoke(currentConv.rightChar.name);
+            if (firstTimeSpeaking)
+            {
+                leftCharBg.gameObject.SetActive(true);
+                rightCharBg.gameObject.SetActive(true);
+                AudioController.musicPlay?.Invoke(currentConv.leftChar.ToString());
+                AudioController.musicPlay?.Invoke(currentConv.rightChar.ToString());
+            }
+            firstTimeSpeaking = false;
             DisplayOptions();
         }
     }
@@ -235,35 +263,37 @@ public class ConvController : MonoBehaviour
         //go through each text block/response
         if (responseIndex < numOfResponses)
         {
-            string whoIsSpeaking; string spokenText;
+            string spokenText;
 
             if (isNarrConvo)
             {
-                //who is talking       0 - left      1 - right
-                if (currentConv.NarrativeDataSet[responseIndex].ZeroOrOne == 0) whoIsSpeaking = "left"; else whoIsSpeaking = "right";
+
+                Conversation.Talking talk = currentConv.NarrativeDataSet[responseIndex].talking;
+
                 spokenText = currentConv.NarrativeDataSet[responseIndex].textSet;
 
-                if (whoIsSpeaking == "left")
-                {
-                    if (!leftSpoke) FirstWords(leftChar.sprite.name, leftCharBg, ref leftSpoke);
 
-                    ShowWhoIsSpeaking(leftChar.sprite.name, spokenText);
+                if (talk == Conversation.Talking.left)
+                {
+                    if (!leftSpoke) FirstWords(currentConv.leftChar.ToString(), leftCharBg, ref leftSpoke);
+
+                    ShowWhoIsSpeaking(currentConv.leftChar.ToString(), spokenText);
                 }
-                if (whoIsSpeaking == "right")
+                if (talk == Conversation.Talking.right)
                 {
-                    if (!rightSpoke) FirstWords(rightChar.sprite.name, rightCharBg, ref rightSpoke);
+                    if (!rightSpoke) FirstWords(currentConv.rightChar.ToString(), rightCharBg, ref rightSpoke);
 
-                    ShowWhoIsSpeaking(rightChar.sprite.name, spokenText);
+                    ShowWhoIsSpeaking(currentConv.rightChar.ToString(), spokenText);
                 }
             }
             else
             {
                 spokenText = selectedOption.responses[responseIndex];
 
-                if (currentConv.leftChar.name != "Porker")
-                    ShowWhoIsSpeaking(currentConv.leftChar.name, spokenText);
+                if (currentConv.leftChar != Conversation.Character.Porker)
+                    ShowWhoIsSpeaking(currentConv.leftChar.ToString(), spokenText);
                 else
-                    ShowWhoIsSpeaking(currentConv.rightChar.name, spokenText);
+                    ShowWhoIsSpeaking(currentConv.rightChar.ToString(), spokenText);
             }
 
             responseIndex++;
@@ -282,24 +312,25 @@ public class ConvController : MonoBehaviour
                 CheckForRemovingOptions();
                 CheckForAddingOptions();
 
-                //is not exit button
-                if (!selectedOption.isExitOption)
+                //we leave the conversation
+                if (selectedOption.isExitOption)
+                {
+                    EndCurrentConvo();
+                    npc.conversation = currentConv;
+                }
+                else
                 {
 
+                    //get the nextConvo, remove this one 
                     Conversation temp = selectedOption.nextConvo;
-
                     currentConv.optionDataSet.Remove(selectedOption);
 
+                    //start the next or continue (next opiton) current one
                     if (temp != null)
                     {
                         currentConv = temp;
                     }
                     ConvoStarted(currentConv);
-                }
-                else
-                {
-                    EndCurrentConvo();
-                    npc.conversation = currentConv;
                 }
             }
         }
@@ -307,14 +338,15 @@ public class ConvController : MonoBehaviour
     void EndCurrentConvo()
     {
         textRoom.text = "";
+        firstTimeSpeaking = true;
 
         leftCharBg.gameObject.SetActive(false); leftSpoke = false;
-        AudioController.musicStop?.Invoke(currentConv.leftChar.name);
+        AudioController.musicStop?.Invoke(currentConv.leftChar.ToString());
 
-        if (currentConv.rightChar != null)
+        if (currentConv.rightChar != Conversation.Character.Noone)
         {
             rightCharBg.gameObject.SetActive(false); rightSpoke = false;
-            AudioController.musicStop?.Invoke(currentConv.rightChar.name);
+            AudioController.musicStop?.Invoke(currentConv.rightChar.ToString());
         }
 
 

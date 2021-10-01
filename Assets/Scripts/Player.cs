@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float speed;
     private Rigidbody2D rb;
     private UIhandler uIhandler;
-    public ConvController convController;
+    private ConvController convController;
     public Conversation introConvo;
     public List<string> reachOptions = new List<string>();
     private bool isWalking;
@@ -30,9 +30,9 @@ public class Player : MonoBehaviour
     }
     void Awake()
     {
-        cam = Camera.main;
+        uIhandler = Camera.main.GetComponent<UIhandler>();
+        convController = Camera.main.GetComponent<ConvController>();
         rb = GetComponent<Rigidbody2D>();
-        uIhandler = cam.GetComponent<UIhandler>();
         anim = GetComponent<Animator>();
         instance = this;
     }

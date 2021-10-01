@@ -64,13 +64,33 @@ public class Conversation : ScriptableObject
         [TextArea(2, 5)]
         public string textSet;
         public AudioClip textSetAudio;
-        public int ZeroOrOne;
+        public Talking talking;
     }
+    public enum Talking
+    {
+        left,
+        right
+    }
+
     [Header("Narrative")]
     public List<NarrativeData> NarrativeDataSet = new List<NarrativeData>();
 
+    public enum Character
+    {
+        Noone,
+        Porker,
+        Hamilton,
+        Muhler,
+        Hannah,
+        Stan,
+        Lambdon,
+        Holy,
+        Shepherd
+    }
+
+
     [Header("Basic")]
-    public Sprite leftChar;
-    public Sprite rightChar;
+    public Character leftChar;
+    public Character rightChar;
     public Conversation nextConvo;
 }
