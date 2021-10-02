@@ -10,7 +10,7 @@ public class TextWritter : MonoBehaviour
     private int index = 0;
     private float textRevealSpeed; private float textStayTime;
     public static bool textEnded;
-    public void Write(string text, TMP_Text UiText, bool convo, bool forMonologue = false)
+    public void Write(string text, TMP_Text UiText, bool convo, bool forMonologue = false, bool forPickingUpItem = false)
     {
         if(forMonologue)
         {
@@ -29,11 +29,11 @@ public class TextWritter : MonoBehaviour
         index = 0;
         textEnded = false;
         StopAllCoroutines();
-        StartCoroutine(WriteC(text, UiText, convo, forMonologue));
+        StartCoroutine(WriteC(text, UiText, convo, forMonologue,forPickingUpItem));
     }
 
 
-    private IEnumerator WriteC(string text, TMP_Text UiText, bool convo, bool forMonologue = false)
+    private IEnumerator WriteC(string text, TMP_Text UiText, bool convo, bool forMonologue = false, bool forPickingUpItem = false)
     {
         while (index < text.Length && !textEnded)
         {
@@ -57,6 +57,10 @@ public class TextWritter : MonoBehaviour
         if(forMonologue)
         {
             UIhandler.instance.monologueBG.SetActive(false);
+        }
+        if(forPickingUpItem)
+        {
+            Inventory.instance.pickingUpAnItem = false;
         }
 
         if (!convo)

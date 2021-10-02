@@ -70,20 +70,22 @@ public class Object : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (EventSystem.current.IsPointerOverGameObject() || Inventory.instance.pickingUpAnItem) return;
 
 
         //range check
         if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
         if (canPickUp && outOfReach) reachDesc = player.reachOptions[UnityEngine.Random.Range(0, player.reachOptions.Count)];
+        else reachDesc = "";
 
-        textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false, true);
+        textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false, true, true);
 
 
         //pickup
         if (canPickUp && !outOfReach && !useItem.isItemInHand)
         {
+            inventory.pickingUpAnItem = true;
             PickingUp();
         }
 

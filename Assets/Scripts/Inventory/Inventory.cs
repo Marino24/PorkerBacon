@@ -13,9 +13,12 @@ public class Inventory : MonoBehaviour
     public bool invOpen;
 
     public Animation inventoryAnim;
+    public bool pickingUpAnItem;
+    public static Inventory instance;
 
     void Awake()
     {
+        instance = this;
         items = itemsDisplay.GetComponentsInChildren<Image>();
         empty = items[0].sprite;
 

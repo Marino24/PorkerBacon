@@ -13,6 +13,8 @@ public class UIhandler : MonoBehaviour
     public GameObject monologue;
     public TMP_Text monologueText;
     public GameObject monologueBG;
+    public Vector3 monologueBGOffset;
+
     public Player player;
     public static UIhandler instance;
 
@@ -79,7 +81,6 @@ public class UIhandler : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameisPaused) Resume(); else Pause();

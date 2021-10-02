@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        uIhandler.monologue.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 3f, 0));
+        uIhandler.monologue.transform.position = Camera.main.WorldToScreenPoint(transform.position + uIhandler.monologueBGOffset);
         if (isWalking)
         {
             anim.SetBool("isWalking", true);
