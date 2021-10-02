@@ -63,6 +63,7 @@ public class Object : MonoBehaviour
         usedAnItem = null;
     }
 
+
     void OnMouseExit()
     {
         MouseUi.hooveringItem?.Invoke("idle");
@@ -83,16 +84,7 @@ public class Object : MonoBehaviour
         //pickup
         if (canPickUp && !outOfReach && !useItem.isItemInHand)
         {
-            if (objName == "Mud")
-            {
-                Player.instance.DigIt();
-            }
-
-            pickedAnItem?.Invoke(itemSpriteUI, objName);
-
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
-
+            PickingUp();
         }
 
         if (correctItem != null)
@@ -105,5 +97,20 @@ public class Object : MonoBehaviour
             }
         }
 
+    }
+
+    private void PickingUp()
+    {
+        MusicProgressTracker.FirstItemPickedUp();
+
+        if (objName == "Mud")
+        {
+            Player.instance.DigIt();
+        }
+
+        pickedAnItem?.Invoke(itemSpriteUI, objName);
+
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 }
