@@ -45,8 +45,6 @@ public class ConvController : MonoBehaviour
         SetUpOptionButtons();
         cam = Camera.main;
         textWritter = cam.GetComponent<TextWritter>();
-
-        //startConvo += ConvoStarted;
     }
     private void OnEnable()
     {
@@ -57,6 +55,7 @@ public class ConvController : MonoBehaviour
     {
         startConvo = null;
         endConvo = null;
+        introOver = null;
     }
 
 

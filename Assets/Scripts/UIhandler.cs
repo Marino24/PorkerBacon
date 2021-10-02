@@ -57,10 +57,7 @@ public class UIhandler : MonoBehaviour
     void Awake()
     {
         Resume();  //THIS IS IMPORTANT
-        instance = this;
         menu.SetActive(false);
-        //ConvController.startConvo += x => StartConversation();
-        //ConvController.endConvo += EndConversation;
 
         foreach (Transform sound in allSounds)
         {
@@ -75,6 +72,7 @@ public class UIhandler : MonoBehaviour
 
     private void OnEnable()
     {
+        instance = this;
         ConvController.startConvo += x => StartConversation();
         ConvController.endConvo += EndConversation;
     }
@@ -86,7 +84,6 @@ public class UIhandler : MonoBehaviour
         {
             if (GameisPaused) Resume(); else Pause();
         }
-
 
     }
 

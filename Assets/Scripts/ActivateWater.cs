@@ -10,6 +10,10 @@ public class ActivateWater : MonoBehaviour
     private void Awake()
     {
         item = gameObject.GetComponent<Object>();
+    }
+
+    private void OnEnable()
+    {
         Object.pickedAnItem += Activate;
     }
     private void Activate(Sprite correctItem, string x)

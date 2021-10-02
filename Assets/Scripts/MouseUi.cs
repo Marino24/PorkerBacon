@@ -18,12 +18,20 @@ public class MouseUi : MonoBehaviour
     {
         currentCursor = cursors[0];
         Cursor.SetCursor(currentCursor.texture[frame], currentCursor.offset, CursorMode.Auto);
-        hooveringItem += ChangeCursor;
+    }
 
+    private void OnEnable()
+    {
+        hooveringItem += ChangeCursor;
         ConvController.startConvo += x => InConversation();
         ConvController.endConvo += OutConversation;
     }
 
+    private void OnDisable()
+    {
+
+        hooveringItem = null;
+    }
     private void Update()
     {
         if (animate && !inConvo)

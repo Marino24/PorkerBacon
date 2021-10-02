@@ -26,6 +26,22 @@ public class Inventory : MonoBehaviour
         Object.usedAnItem += ItemUsed;
     }
 
+    private void OnEnable()
+    {
+        Object.pickedAnItem += ItemStored;
+        Object.pickedAnItem += ShowItemStored;
+        Object.usedAnItem += ItemUsed;
+    }
+
+    private void OnDisable()
+    {
+        /*
+        Object.pickedAnItem -= ItemStored;
+        Object.pickedAnItem -= ShowItemStored;
+        Object.usedAnItem -= ItemUsed;
+        */
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I) || Input.GetMouseButtonDown(1))

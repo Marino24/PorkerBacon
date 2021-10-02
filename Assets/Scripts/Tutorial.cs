@@ -14,14 +14,10 @@ public class Tutorial : MonoBehaviour
     public Conversation introConvo;
 
 
-
-
-
-    void Awake()
+    private void OnEnable()
     {
         Object.pickedAnItem += ShowInvetoryTip;
         ConvController.introOver += ShowMovementTip;
-
         //cause object gets destroyed and this works for every object this logic of firsttiming like this doesnt work
         //have to reverse the logic so its here (same for music when first item picked up)
     }

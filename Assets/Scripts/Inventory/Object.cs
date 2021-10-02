@@ -57,6 +57,12 @@ public class Object : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        pickedAnItem = null;
+        usedAnItem = null;
+    }
+
     void OnMouseExit()
     {
         MouseUi.hooveringItem?.Invoke("idle");

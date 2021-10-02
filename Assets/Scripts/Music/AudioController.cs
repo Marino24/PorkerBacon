@@ -18,13 +18,12 @@ public class AudioController : MonoBehaviour
 
     void OnDisable()
     {
-        musicPlay -= UnMuteMusic;
-        musicStop -= MuteMusic;
+        musicPlay = null;
+        musicStop = null;
     }
 
     public static IEnumerator Fade(AudioSource audioSource, float duration, float targetVolume)
     {
-        Debug.Log("faaadiing");
         audioSource.mute = !audioSource.mute;
         float currentTime = 0;
         float start = audioSource.volume;
