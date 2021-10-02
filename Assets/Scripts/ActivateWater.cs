@@ -20,8 +20,7 @@ public class ActivateWater : MonoBehaviour
     {
         if (correctItem == item.itemSpriteUI)
         {
-            bowlAnimator.enabled = true;
-            bowlAnimator.Play("Filling");
+            bowlAnimator.SetBool("filling",true);
             //some warnings happen idk what they mean
         }
     }
