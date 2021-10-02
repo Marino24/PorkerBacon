@@ -5182,7 +5182,7 @@ MonoBehaviour:
   canPickUp: 0
   objDesc: How would i remove it
   itemSpriteUI: {fileID: 0}
-  objName: 
+  objName: Latch
   reach: 15
   correctItem: {fileID: 21300000, guid: 7d54017963b644c4e8497f11d16e1215, type: 3}
 --- !u!61 &1202859704
@@ -6425,7 +6425,7 @@ MonoBehaviour:
   canPickUp: 0
   objDesc: I can see way back there oh the wonders
   itemSpriteUI: {fileID: 0}
-  objName: 
+  objName: Fence
   reach: 15
   correctItem: {fileID: 0}
 --- !u!61 &1421420457
@@ -9094,7 +9094,7 @@ MonoBehaviour:
   canPickUp: 0
   objDesc: How do i get it open
   itemSpriteUI: {fileID: 0}
-  objName: 
+  objName: Gate
   reach: 15
   correctItem: {fileID: 0}
 --- !u!61 &2049940888

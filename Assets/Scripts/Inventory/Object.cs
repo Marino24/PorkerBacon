@@ -44,6 +44,7 @@ public class Object : MonoBehaviour
     public Sprite correctItem;
     void OnMouseOver()
     {
+        if(uIhandler.conversationStage.activeSelf) return;
         if (useItem.isItemInHand)
         {
             MouseUi.hooveringItem?.Invoke("combo");
@@ -53,8 +54,8 @@ public class Object : MonoBehaviour
         if (canPickUp)
         {
             MouseUi.hooveringItem?.Invoke("item");
-            uIhandler.HoverOn(objName);
         }
+        uIhandler.HoverOn(objName);
 
     }
 
