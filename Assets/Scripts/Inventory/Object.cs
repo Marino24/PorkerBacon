@@ -53,6 +53,7 @@ public class Object : MonoBehaviour
         if (canPickUp)
         {
             MouseUi.hooveringItem?.Invoke("item");
+            uIhandler.HoverOn(objName);
         }
 
     }
@@ -67,6 +68,7 @@ public class Object : MonoBehaviour
     void OnMouseExit()
     {
         MouseUi.hooveringItem?.Invoke("idle");
+        uIhandler.HoverOff();
     }
     void OnMouseDown()
     {

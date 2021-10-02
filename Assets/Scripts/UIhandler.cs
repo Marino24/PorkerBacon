@@ -15,6 +15,10 @@ public class UIhandler : MonoBehaviour
     public GameObject monologueBG;
     public Vector3 monologueBGOffset;
 
+    public GameObject hoveringInfo;
+    public TMPro.TMP_Text hoveringText;
+    public Vector3 hoveringOffset;
+
     public Player player;
     public static UIhandler instance;
 
@@ -107,6 +111,19 @@ public class UIhandler : MonoBehaviour
         monologue.SetActive(true);
         player.enabled = true;
 
+    }
+
+    public void HoverOn(string info)
+    {
+        hoveringInfo.SetActive(true);
+        hoveringText.text = info;
+        hoveringInfo.transform.position = Input.mousePosition + hoveringOffset;
+    }
+
+    public void HoverOff()
+    {
+        hoveringInfo.SetActive(false);
+        hoveringText.text = "";
     }
 
 }
