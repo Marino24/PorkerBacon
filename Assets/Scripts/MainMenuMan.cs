@@ -17,6 +17,7 @@ public class MainMenuMan : MonoBehaviour
     void Awake()
     {
         Time.timeScale = 1f;
+        AudioListener.pause = false;
         if(PlayerPrefs.GetInt("firstTimePlay",1) == 0)
         {
             continueButton.SetActive(true);
