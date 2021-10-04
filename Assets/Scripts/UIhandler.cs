@@ -69,11 +69,12 @@ public class UIhandler : MonoBehaviour
         {
             sound.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SoundVal", 50);
         }
-
+        /*
         foreach (Transform music in allMusics)
         {
             music.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVal", 50);
         }
+        */
     }
 
     private void OnEnable()

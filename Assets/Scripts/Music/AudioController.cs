@@ -5,16 +5,28 @@ using System;
 
 public class AudioController : MonoBehaviour
 {
-    public AudioSource[] audioSources;
+    public List<AudioSource> audioSources = new List<AudioSource>();
 
     public static Action<string> musicPlay;
     public static Action<string> musicStop;
 
     void OnEnable()
     {
+        DontDestroyOnLoad(gameObject);
+
         musicPlay += UnMuteMusic;
         musicStop += MuteMusic;
+
+        foreach (Transform track in transform)
+        {
+            audioSources.Add(track.GetComponent<AudioSource>());
+            TrackState.Add(track.name, false);
+        }
+
+        musicPlay?.Invoke("Room");
+
     }
+
 
     void OnDisable()
     {
@@ -22,6 +34,7 @@ public class AudioController : MonoBehaviour
         musicStop = null;
     }
 
+    #region PlayTrack
     public static IEnumerator Fade(AudioSource audioSource, float duration, float targetVolume)
     {
         audioSource.mute = !audioSource.mute;
@@ -39,7 +52,7 @@ public class AudioController : MonoBehaviour
 
     public void UnMuteMusic(string musicName)
     {
-        for (int i = 0; i < audioSources.Length; i++)
+        for (int i = 0; i < audioSources.Count; i++)
         {
             if (audioSources[i].gameObject.name == musicName)
             {
@@ -51,7 +64,7 @@ public class AudioController : MonoBehaviour
 
     public void MuteMusic(string musicName)
     {
-        for (int i = 0; i < audioSources.Length; i++)
+        for (int i = 0; i < audioSources.Count; i++)
         {
             if (audioSources[i].gameObject.name == musicName)
             {
@@ -60,7 +73,18 @@ public class AudioController : MonoBehaviour
             }
         }
     }
+    #endregion
+    public static Dictionary<string, bool> TrackState = new Dictionary<string, bool>();
 
-
-
+    public static void PlayTrackFirstTime(string x)
+    {
+        if (TrackState.ContainsKey(x))
+        {
+            if (!TrackState[x])
+            {
+                musicPlay?.Invoke(x);
+                TrackState[x] = true;
+            }
+        }
+    }
 }

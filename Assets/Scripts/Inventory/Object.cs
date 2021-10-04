@@ -44,7 +44,7 @@ public class Object : MonoBehaviour
     public Sprite correctItem;
     void OnMouseOver()
     {
-        if(uIhandler.conversationStage.activeSelf) return;
+        if (uIhandler.conversationStage.activeSelf) return;
         if (useItem.isItemInHand)
         {
             MouseUi.hooveringItem?.Invoke("combo");
@@ -97,6 +97,7 @@ public class Object : MonoBehaviour
             if (useItem.itemInHand.sprite == correctItem && !outOfReach)
             {
                 //do stuff
+                AudioController.PlayTrackFirstTime("EscapeArtist");
                 textWritter.Write("Thats all folks thanks", uIhandler.monologueText, false);
                 usedAnItem?.Invoke(useItem.itemInHand.sprite);
             }
@@ -106,7 +107,7 @@ public class Object : MonoBehaviour
 
     private void PickingUp()
     {
-        MusicProgressTracker.FirstItemPickedUp();
+        AudioController.PlayTrackFirstTime("FirstItem");
 
         if (objName == "Mud")
         {
