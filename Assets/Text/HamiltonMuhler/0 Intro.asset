@@ -17,46 +17,46 @@ MonoBehaviour:
   allOptions: []
   NarrativeDataSet:
   - textSet: I was a piglet born with hope and joy
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: 8401b1dc0f6069047b72ac3e56d43013, type: 3}
     talking: 0
   - textSet: (A fitting occupation for a boy.)
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: 861c0ce3f58af2b40bf776cc6d06efc2, type: 3}
     talking: 0
   - textSet: I thought not how our parents disappear
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: b4e363307312b7741912327b48f086cf, type: 3}
     talking: 0
   - textSet: Nor why some wear a number in their ear.
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: f5224bbf56c35374f8b942ac0bb6f59f, type: 3}
     talking: 0
   - textSet: 'I used to oink with certainty and charm:'
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: 415327cbc9d96ab48876ca665e5d1a2d, type: 3}
     talking: 0
-  - textSet: The finest female pigs come from the Farm.
-    textSetAudio: {fileID: 0}
+  - textSet: '"The finest female pigs come from the Farm."'
+    textSetAudio: {fileID: 8300000, guid: 3966068cf3211584fb78872eff35a4b1, type: 3}
     talking: 0
-  - textSet: But that would not behoove me much right now
-    textSetAudio: {fileID: 0}
+  - textSet: But that would not behoove me much right now;
+    textSetAudio: {fileID: 8300000, guid: 5bd2368c9ea48a14a9a98c13eb5ff846, type: 3}
     talking: 0
   - textSet: It won't unmove the curtains for the Sow.
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: c85c7b0d08772b44cab45c05c63c02cc, type: 3}
     talking: 0
   - textSet: 'And everything I grew to dread and fear:'
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: a694a4ecfc4fecf4cbf60a07e9cf4a07, type: 3}
     talking: 0
   - textSet: 'I must confess: I found it all right here.'
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: 4a82b6ac92430ff4e858d422034915da, type: 3}
     talking: 0
   - textSet: 'The mess. The stress. The lonely, daily chore:'
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: af9735073cf4d0c48b2edcf8f2dc3a70, type: 3}
     talking: 0
   - textSet: I found it in the Jailing of a Boar.
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: 596dfee45a0bdca47bd5152df4e7ec9c, type: 3}
     talking: 0
   - textSet: 'So now that I am old, my thought is New:'
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: cba23e4188abce944bde52ae46240874, type: 3}
     talking: 0
   - textSet: The unforetold shall be my point of view.
-    textSetAudio: {fileID: 0}
+    textSetAudio: {fileID: 8300000, guid: 8e7b2e9360d8d504588f360d60d02de3, type: 3}
     talking: 0
   leftChar: 1
   rightChar: 0

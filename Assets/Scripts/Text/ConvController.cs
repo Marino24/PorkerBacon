@@ -74,7 +74,7 @@ public class ConvController : MonoBehaviour
     }
     void DisplayOptions()
     {
-
+        //first line dialogue?
         textWritter.Write(currentConv.firstLine, textRoom, true);
         //set buttons
         for (int i = 0; i < currentConv.optionDataSet.Count; i++)
@@ -97,7 +97,7 @@ public class ConvController : MonoBehaviour
         }
 
         //write out your option
-        ShowWhoIsSpeaking("Porker", selectedOption.option);
+        ShowWhoIsSpeaking("Porker", selectedOption.option, selectedOption.optionAudio);
     }
     #endregion
 
@@ -188,6 +188,7 @@ public class ConvController : MonoBehaviour
     }
     #endregion
 
+    #region CharName>Sprite(for revision)
     //this whole thing does not need to be here, but it is for now
     public Sprite[] charSprites = new Sprite[8]; public Sprite empty;
     Sprite GetSpriteOfCharacter(Conversation.Character x)
@@ -207,6 +208,7 @@ public class ConvController : MonoBehaviour
             _ => empty
         };
     }
+    #endregion
     public void ConvoStarted(Conversation convo)
     {
         currentConv = convo;
@@ -247,12 +249,13 @@ public class ConvController : MonoBehaviour
         lefRight = true;
     }
 
-    void ShowWhoIsSpeaking(string charName, string spokenText)
+    void ShowWhoIsSpeaking(string charName, string spokenText, AudioClip clip)
     {
         textCharName.text = charName;
         textWritter.ColorText(charName, textRoom);
         textWritter.ColorText(charName, textCharName);
         textWritter.Write(spokenText, textRoom, true);
+        AudioController.playClip?.Invoke(clip);
         //add code for enlargment/animation here
 
     }
@@ -263,6 +266,7 @@ public class ConvController : MonoBehaviour
         if (responseIndex < numOfResponses)
         {
             string spokenText;
+            AudioClip spokenClip;
 
             if (isNarrConvo)
             {
@@ -270,29 +274,31 @@ public class ConvController : MonoBehaviour
                 Conversation.Talking talk = currentConv.NarrativeDataSet[responseIndex].talking;
 
                 spokenText = currentConv.NarrativeDataSet[responseIndex].textSet;
+                spokenClip = currentConv.NarrativeDataSet[responseIndex].textSetAudio;
 
 
                 if (talk == Conversation.Talking.left)
                 {
                     if (!leftSpoke) FirstWords(currentConv.leftChar.ToString(), leftCharBg, ref leftSpoke);
 
-                    ShowWhoIsSpeaking(currentConv.leftChar.ToString(), spokenText);
+                    ShowWhoIsSpeaking(currentConv.leftChar.ToString(), spokenText, spokenClip);
                 }
                 if (talk == Conversation.Talking.right)
                 {
                     if (!rightSpoke) FirstWords(currentConv.rightChar.ToString(), rightCharBg, ref rightSpoke);
 
-                    ShowWhoIsSpeaking(currentConv.rightChar.ToString(), spokenText);
+                    ShowWhoIsSpeaking(currentConv.rightChar.ToString(), spokenText, spokenClip);
                 }
             }
             else
             {
                 spokenText = selectedOption.responses[responseIndex];
+                spokenClip = selectedOption.responsesAudio[responseIndex];
 
                 if (currentConv.leftChar != Conversation.Character.Porker)
-                    ShowWhoIsSpeaking(currentConv.leftChar.ToString(), spokenText);
+                    ShowWhoIsSpeaking(currentConv.leftChar.ToString(), spokenText, spokenClip);
                 else
-                    ShowWhoIsSpeaking(currentConv.rightChar.ToString(), spokenText);
+                    ShowWhoIsSpeaking(currentConv.rightChar.ToString(), spokenText, spokenClip);
             }
 
             responseIndex++;
@@ -311,25 +317,35 @@ public class ConvController : MonoBehaviour
                 CheckForRemovingOptions();
                 CheckForAddingOptions();
 
-                //we leave the conversation
-                if (selectedOption.isExitOption)
+                //we leave the conversation (option stays)
+                if (selectedOption.isStickyOption)
                 {
                     EndCurrentConvo();
                     npc.conversation = currentConv;
                 }
                 else
                 {
-
-                    //get the nextConvo, remove this one 
-                    Conversation temp = selectedOption.nextConvo;
-                    currentConv.optionDataSet.Remove(selectedOption);
-
-                    //start the next or continue (next opiton) current one
-                    if (temp != null)
+                    //we leave, option gets removed
+                    if (selectedOption.isExitOption)
                     {
-                        currentConv = temp;
+                        currentConv.optionDataSet.Remove(selectedOption);
+                        EndCurrentConvo();
+                        npc.conversation = currentConv;
                     }
-                    ConvoStarted(currentConv);
+                    else
+                    {
+                        //we continue on as normal
+
+                        Conversation temp = selectedOption.nextConvo;
+                        currentConv.optionDataSet.Remove(selectedOption);
+                        //gets next if any
+                        if (temp != null)
+                        {
+                            currentConv = temp;
+                        }
+                        ConvoStarted(currentConv);
+                    }
+
                 }
             }
         }

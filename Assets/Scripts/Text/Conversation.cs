@@ -23,6 +23,7 @@ public class Conversation : ScriptableObject
         public List<string> removedOptions = new List<string>();
 
         public bool isExitOption = false;
+        public bool isStickyOption = false;
 
     }
 
@@ -68,8 +69,11 @@ public class Conversation : ScriptableObject
     }
     public enum Talking
     {
+        none,
         left,
-        right
+        right,
+        mid,
+
     }
 
     [Header("Narrative")]

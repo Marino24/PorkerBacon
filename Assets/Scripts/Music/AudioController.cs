@@ -9,6 +9,7 @@ public class AudioController : MonoBehaviour
 
     public static Action<string> musicPlay;
     public static Action<string> musicStop;
+    public static Action<AudioClip> playClip;
 
     void OnEnable()
     {
@@ -16,6 +17,7 @@ public class AudioController : MonoBehaviour
 
         musicPlay += UnMuteMusic;
         musicStop += MuteMusic;
+        playClip += PlayClip;
 
         foreach (Transform track in transform)
         {
@@ -32,9 +34,10 @@ public class AudioController : MonoBehaviour
     {
         musicPlay = null;
         musicStop = null;
+        playClip = null;
     }
 
-    #region PlayTrack
+    #region UnMute/Mute track
     public static IEnumerator Fade(AudioSource audioSource, float duration, float targetVolume)
     {
         audioSource.mute = !audioSource.mute;
@@ -52,6 +55,7 @@ public class AudioController : MonoBehaviour
 
     public void UnMuteMusic(string musicName)
     {
+
         for (int i = 0; i < audioSources.Count; i++)
         {
             if (audioSources[i].gameObject.name == musicName)
@@ -76,6 +80,12 @@ public class AudioController : MonoBehaviour
     #endregion
     public static Dictionary<string, bool> TrackState = new Dictionary<string, bool>();
 
+    public void PlayClip(AudioClip spokenClip)
+    {
+        audioSources[0].Stop();
+        if (spokenClip != null)
+            audioSources[0].PlayOneShot(spokenClip);
+    }
     public static void PlayTrackFirstTime(string x)
     {
         if (TrackState.ContainsKey(x))
