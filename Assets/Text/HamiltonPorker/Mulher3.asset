@@ -15,7 +15,10 @@ MonoBehaviour:
   firstLine: 
   OptionDataSet: []
   allOptions: []
-  NarrativeDataSet: []
-  leftChar: 0
-  rightChar: 0
-  nextConvo: {fileID: 0}
+  NarrativeDataSet:
+  - textSet: Or bring more Harm to those who quarter you.
+    textSetAudio: {fileID: 8300000, guid: 5f134008e340a2c4a81e9dcbfe8980ef, type: 3}
+    talking: 2
+  leftChar: 1
+  rightChar: 3
+  nextConvo: {fileID: 11400000, guid: 351c2cdb2a84aaa498a55adf2d293ad3, type: 2}

@@ -10,21 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6128031103636b1419b08310897ecd58, type: 3}
-  m_Name: MuhlerInOut
+  m_Name: Muhler1
   m_EditorClassIdentifier: 
   firstLine: 
   OptionDataSet: []
   allOptions: []
   NarrativeDataSet:
   - textSet: Back then, that fence was not so shocking."
-    textSetAudio: {fileID: 0}
-    talking: 0
-  - textSet: Since I tried again, I've had some trouble walking.
-    textSetAudio: {fileID: 0}
-    talking: 0
-  - textSet: And NO issue talking.
-    textSetAudio: {fileID: 0}
-    talking: 0
-  leftChar: 2
+    textSetAudio: {fileID: 8300000, guid: 3bc17933827daa246a3aec9deb76be8b, type: 3}
+    talking: 2
+  leftChar: 1
   rightChar: 3
-  nextConvo: {fileID: 11400000, guid: 351c2cdb2a84aaa498a55adf2d293ad3, type: 2}
+  nextConvo: {fileID: 11400000, guid: 50e83f9750cde0b408e819c9ead5ac8a, type: 2}

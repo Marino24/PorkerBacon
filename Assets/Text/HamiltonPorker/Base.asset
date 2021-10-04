@@ -17,76 +17,86 @@ MonoBehaviour:
   - optionName: A
     requiredAmount: 1
     option: 'Hamilton, please: spare this mulish man.'
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 90ccac4b9e31a1444b4b29dccbee824a, type: 3}
     abbOption: 
     responses:
     - Hey, man. Whose side are you on?
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: f709dd759f8a01c46aed12642afcfacc, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions:
     - b
     removedOptions: []
     isExitOption: 0
+    isStickyOption: 0
   allOptions:
   - optionName: A
     requiredAmount: 1
     option: 'Hamilton, please: spare this mulish man.'
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 90ccac4b9e31a1444b4b29dccbee824a, type: 3}
     abbOption: 
     responses:
     - Hey, man. Whose side are you on?
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: f709dd759f8a01c46aed12642afcfacc, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions:
     - b
     removedOptions: []
     isExitOption: 0
-  - optionName: C
-    requiredAmount: 1
-    option: "I don\u2019t mean to cast it in your face, Ham."
-    optionAudio: {fileID: 0}
-    abbOption: 
-    responses:
-    - "It\u2019s all right. I could use a stratagem from time to time."
-    responsesAudio: []
-    nextConvo: {fileID: 0}
-    unlockedOptions:
-    - e
-    removedOptions: []
-    isExitOption: 0
+    isStickyOption: 0
   - optionName: B
     requiredAmount: 1
     option: "That\u2019s the trouble with us pigs, you see: we see too much of either
       side, and not enough of what\u2019s before us, right under our noses."
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 3b69065ec68f9234192fce3c3adbc1a7, type: 3}
     abbOption: "That\u2019s the trouble with us pigs, you see..."
     responses:
     - That is spoken like a pearl.
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: 34b4027f81fa1c04e894c59cf36955a4, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions:
     - c
     - d
     removedOptions: []
     isExitOption: 0
+    isStickyOption: 0
+  - optionName: C
+    requiredAmount: 1
+    option: "I don\u2019t mean to cast it in your face, Ham."
+    optionAudio: {fileID: 8300000, guid: 3546623004d973046aca5f05b588462e, type: 3}
+    abbOption: 
+    responses:
+    - "It\u2019s all right. I could use a stratagem from time to time."
+    responsesAudio:
+    - {fileID: 8300000, guid: a1c8c4eda1b25564a99df81016a47a23, type: 3}
+    nextConvo: {fileID: 0}
+    unlockedOptions:
+    - e
+    removedOptions: []
+    isExitOption: 0
+    isStickyOption: 0
   - optionName: D
     requiredAmount: 1
     option: How did you get across the Fence?
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 2b93ce1c711d0f746987f296f283efb5, type: 3}
     abbOption: 
     responses:
     - I burrowed. That's just Common Sense.
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: a765024fe5d387f46b7d0b113ca4c716, type: 3}
     nextConvo: {fileID: 11400000, guid: 577e7785b8b7814488f8062f1f64c464, type: 2}
     unlockedOptions:
     - e
     removedOptions:
     - c
     isExitOption: 0
+    isStickyOption: 0
   - optionName: E
     requiredAmount: 1
     option: I am due three days from now.
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: fdc90660955d6aa408157916dc8d1810, type: 3}
     abbOption: 
     responses:
     - You?? Holy Cow.
@@ -97,22 +107,31 @@ MonoBehaviour:
     - He will die far faster. Damn.
     - 'I swear: I will not let you come to harm;'
     - The two of us shall quit this Cursed Farm.
-    responsesAudio: []
-    nextConvo: {fileID: 0}
+    responsesAudio:
+    - {fileID: 8300000, guid: 2a03fbbd8aeeba44cb18615ed832b8c4, type: 3}
+    - {fileID: 8300000, guid: ea2cdd7f4a527c142b1ec336f5f5503d, type: 3}
+    - {fileID: 8300000, guid: 2b26aeecd684a7545ade0fd3f128dc87, type: 3}
+    - {fileID: 8300000, guid: ba20e68a05c88a24c83f4b57984ed831, type: 3}
+    - {fileID: 8300000, guid: 5754380865df199429d09f404b033ee0, type: 3}
+    - {fileID: 8300000, guid: ba3473dc29da34d4fb9c5643bf21fcd8, type: 3}
+    - {fileID: 8300000, guid: 9558d730c2ad326498346bb6308773c5, type: 3}
+    - {fileID: 8300000, guid: fbe96833d7aca9d4796a04e128fa2d8f, type: 3}
+    nextConvo: {fileID: 11400000, guid: e16f016483b9b314f89c355827b1a404, type: 2}
     unlockedOptions:
     - f
     removedOptions:
     - c
     - d
     isExitOption: 0
+    isStickyOption: 0
   - optionName: F
     requiredAmount: 1
     option: Thanks, but no more. Just one retort will do.
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 7937585ca28c5f74fb5824fc60075d28, type: 3}
     abbOption: 
     responses: []
     responsesAudio: []
-    nextConvo: {fileID: 0}
+    nextConvo: {fileID: 11400000, guid: 7ea93e8f5acdd4e468e6d30e3018d5a6, type: 2}
     unlockedOptions:
     - g
     - h
@@ -120,122 +139,143 @@ MonoBehaviour:
     - j
     removedOptions: []
     isExitOption: 0
+    isStickyOption: 0
   - optionName: G
     requiredAmount: 1
     option: You ever wonder what The Holy One would say?
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: ff86c7ae603838641a799107e574f4ec, type: 3}
     abbOption: 
     responses:
     - Don't know her. I'd steer clear, though, anyway.
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: ec7abb5a1ba1b124b85fcfa56639473f, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
     isExitOption: 0
+    isStickyOption: 0
   - optionName: H
     requiredAmount: 1
     option: Maybe the Chicken Flock would like to talk.
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 0196e9e08844edf4d95b3835b23e7baa, type: 3}
     abbOption: 
     responses:
     - It cannot hurt. They love to squawk.
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: 0c0aba8ea8d25124092b6355556f92d7, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions:
     - k
     - o
     removedOptions: []
-    isExitOption: 0
+    isExitOption: 1
+    isStickyOption: 0
   - optionName: I
     requiredAmount: 1
     option: And what about the Sheep? Are they Good Friends?
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: dab19168a4fdaad41801abc699ae6c74, type: 3}
     abbOption: 
     responses:
     - 'To one another: yes. But us? Depends.'
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: f846c3fdb1c9c63428fd72d50c2a6ac6, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
     isExitOption: 0
+    isStickyOption: 0
   - optionName: J
     requiredAmount: 1
     option: You think the Shepherd Dog cares for our woes?
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 37658f1869fa0a9429b13040b750b21e, type: 3}
     abbOption: 
     responses:
     - Not really. But keep Dreaming, I suppose.
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: 594977185a0778c46805b8b82a799d4d, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
     isExitOption: 0
+    isStickyOption: 0
   - optionName: K
     requiredAmount: 1
     option: How is a pig to reach the Chickens then?
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: b3eb506cafdd7774fbadee68f8e31dbc, type: 3}
     abbOption: 
     responses:
     - I'd start by picking Items from the Pen.
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: 06267d4a81e14a448accd798eb80f095, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions:
     - l
     removedOptions: []
     isExitOption: 0
+    isStickyOption: 0
   - optionName: L
     requiredAmount: 1
     option: I picked some Items. Now what do I do?
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 855e93dbb66eaff4f8ef5ef877b8866f, type: 3}
     abbOption: 
     responses:
     - Look in your Inventory for some Clue.
     - If stars align, some Items can combine.
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: 8257286b2dee5b34bb7fc0577393127a, type: 3}
+    - {fileID: 8300000, guid: 14c555cd505b5474ca2213fd88caaaeb, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions:
     - m
     removedOptions: []
     isExitOption: 0
+    isStickyOption: 0
   - optionName: M
     requiredAmount: 1
     option: I think this combo's good, possibly Great.
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 308506bcd5b5eb14fb3145c89c911512, type: 3}
     abbOption: 
     responses:
     - Then test it there upon that wooden Gate.
     - 'But do beware: our fate is in your hooves.'
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: f8a3fc0786b248045bd960f3dc42387b, type: 3}
+    - {fileID: 8300000, guid: e2afd572fcd0fa5438ce874c79b8feca, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions:
     - n
     removedOptions: []
     isExitOption: 0
+    isStickyOption: 0
   - optionName: N
     requiredAmount: 1
     option: 'Don''t worry: I know how to make my moves.'
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 1e0839aba33b75c40b268f5e5fcf25d9, type: 3}
     abbOption: 
     responses:
     - You'll have to, long before morale improves.
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: acbe15e89dd049a40a10fe88f969d59a, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
     isExitOption: 0
+    isStickyOption: 0
   - optionName: O
     requiredAmount: 1
     option: Thank you for all your help, comrade in arms.
-    optionAudio: {fileID: 0}
+    optionAudio: {fileID: 8300000, guid: 76b88fab25e77b143a096c72d4badcfb, type: 3}
     abbOption: 
     responses:
     - Hog Speed you, Porker Bacon. Death to Farms.
-    responsesAudio: []
+    responsesAudio:
+    - {fileID: 8300000, guid: 0052d085c1218744394608aab40cebe3, type: 3}
     nextConvo: {fileID: 0}
     unlockedOptions: []
     removedOptions: []
     isExitOption: 1
+    isStickyOption: 1
   NarrativeDataSet: []
-  leftChar: 2
-  rightChar: 1
+  leftChar: 1
+  rightChar: 2
   nextConvo: {fileID: 0}

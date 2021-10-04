@@ -16,9 +16,9 @@ MonoBehaviour:
   OptionDataSet: []
   allOptions: []
   NarrativeDataSet:
-  - textSet: Or bring more Harm to those who quarter you.
-    textSetAudio: {fileID: 0}
-    talking: 0
-  leftChar: 2
-  rightChar: 1
+  - textSet: And NO issue talking.
+    textSetAudio: {fileID: 8300000, guid: 3a3761f6177c5fb46ae4451c003b3ba6, type: 3}
+    talking: 2
+  leftChar: 1
+  rightChar: 3
   nextConvo: {fileID: 11400000, guid: 351c2cdb2a84aaa498a55adf2d293ad3, type: 2}
