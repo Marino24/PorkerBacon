@@ -6,7 +6,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SoundEffects
+  m_Name: Sound
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 3dcf9eb6b240f5148852c97fc6758697
   m_Children: []
@@ -48,7 +48,11 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: c2794d08a852df1469887fde8b14b543
+    name: MusicVol
+  - guid: 9c2a88174c6adb24abb030798b8de6c7
+    name: SoundVol
   m_AudioMixerGroupViews:
   - guids:
     - 80c633fe3cc5af747a6995c68e5473ba

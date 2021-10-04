@@ -2,36 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Options : MonoBehaviour
 {
-    public Transform allSounds;
-    public Transform allMusics;
+    public AudioMixer mixer;
     public Slider soundSlider;
     public Slider musicSlider;
-
     public TMPro.TMP_Dropdown resDropDown;
-
     public Resolution[] compatibleRes;
+
 
 
     void Start()
     {
-        soundSlider.value = PlayerPrefs.GetFloat("SoundVal",50f);
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVal",50f);
+        soundSlider.value = PlayerPrefs.GetFloat("SoundVal", 50f);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVal", 50f);
 
-        foreach (Transform sound in allSounds)
-        {
-            sound.GetComponent<AudioSource>().volume = soundSlider.value;
-        }
-
-        foreach (Transform music in allMusics)
-        {
-            music.GetComponent<AudioSource>().volume = musicSlider.value;
-        }        
-
-
-
+        mixer.SetFloat("MusicVol", Mathf.Log10(musicSlider.value) * 20);
+        mixer.SetFloat("SoundVol", Mathf.Log10(musicSlider.value) * 20);
 
         compatibleRes = Screen.resolutions;
         TMPro.TMP_Dropdown.OptionDataList optionDataList = new TMPro.TMP_Dropdown.OptionDataList();
@@ -39,7 +28,7 @@ public class Options : MonoBehaviour
         int currentOption = 0;
         foreach (Resolution res in compatibleRes)
         {
-            if(res.width == Screen.currentResolution.width && res.height == Screen.currentResolution.height && res.refreshRate == Screen.currentResolution.refreshRate)
+            if (res.width == Screen.currentResolution.width && res.height == Screen.currentResolution.height && res.refreshRate == Screen.currentResolution.refreshRate)
             {
                 //Debug.Log("We came here!" + count.ToString());
                 //resDropDown.SetValueWithoutNotify(count);
@@ -57,24 +46,18 @@ public class Options : MonoBehaviour
 
     public void ChangeSound()
     {
-        PlayerPrefs.SetFloat("SoundVal",soundSlider.value);
-        foreach (Transform sound in allSounds)
-        {
-            sound.GetComponent<AudioSource>().volume = soundSlider.value;
-        }
+        PlayerPrefs.SetFloat("SoundVal", soundSlider.value);
+        mixer.SetFloat("SoundVol", Mathf.Log10(musicSlider.value) * 20);
     }
 
     public void ChangeMusic()
     {
-        PlayerPrefs.SetFloat("MusicVal",musicSlider.value);
-        foreach (Transform music in allMusics)
-        {
-            music.GetComponent<AudioSource>().volume = musicSlider.value;
-        }    
+        PlayerPrefs.SetFloat("MusicVal", musicSlider.value);
+        mixer.SetFloat("MusicVol", Mathf.Log10(musicSlider.value) * 20);
     }
 
     public void ChangeResolution()
     {
-        Screen.SetResolution(compatibleRes[resDropDown.value-1].width,compatibleRes[resDropDown.value-1].height,FullScreenMode.ExclusiveFullScreen,compatibleRes[resDropDown.value-1].refreshRate);
+        Screen.SetResolution(compatibleRes[resDropDown.value - 1].width, compatibleRes[resDropDown.value - 1].height, FullScreenMode.ExclusiveFullScreen, compatibleRes[resDropDown.value - 1].refreshRate);
     }
 }

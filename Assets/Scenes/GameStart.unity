@@ -2782,10 +2782,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 605643263}
   m_HandleRect: {fileID: 1842433820}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5110,8 +5110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43301a5770247734d922cc0c698b4636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allSounds: {fileID: 182161832}
-  allMusics: {fileID: 401301566}
+  mixer: {fileID: 24100000, guid: 5d386f60fc825b0448db99964c4aceb7, type: 2}
   soundSlider: {fileID: 643520326}
   musicSlider: {fileID: 2082866828}
   resDropDown: {fileID: 165395281}
@@ -7936,10 +7935,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1694222884}
   m_HandleRect: {fileID: 612720870}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
