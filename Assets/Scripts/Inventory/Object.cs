@@ -36,8 +36,7 @@ public class Object : MonoBehaviour
     public bool canPickUp;
     public string objDesc; private string reachDesc;
     public Sprite itemSpriteUI;
-    public string objName; private string hiddenName;
-    public bool nameHiden;
+    public string objName;
     public float reach = 15f; private bool outOfReach;
 
 
@@ -56,7 +55,6 @@ public class Object : MonoBehaviour
         {
             MouseUi.hooveringItem?.Invoke("item");
         }
-<<<<<<< Updated upstream
         if(objName == "Egg")
         {
             uIhandler.HoverOn("???");
@@ -64,21 +62,7 @@ public class Object : MonoBehaviour
         {
             uIhandler.HoverOn(objName);
         }
-=======
->>>>>>> Stashed changes
 
-        uIhandler.HoverOn(hiddenName ?? objName);
-    }
-
-    private void Start()
-    {
-        if (nameHiden)
-        {
-            for (int i = 0; i < name.Length; i++)
-            {
-                hiddenName += "?";
-            }
-        }
     }
 
     private void OnDisable()
@@ -124,19 +108,7 @@ public class Object : MonoBehaviour
         }
         else
         {
-<<<<<<< Updated upstream
             textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false, true, true);
-=======
-            //this cant work like this for everything
-            //this is only meant for the door in Scene1 
-            if (useItem.itemInHand.sprite == correctItem && !outOfReach)
-            {
-                //do stuff
-                AudioController.PlayTrackFirstTime("EscapeArtist");
-                textWritter.Write("Thats all folks thanks", uIhandler.monologueText, false);
-                usedAnItem?.Invoke(useItem.itemInHand.sprite);
-            }
->>>>>>> Stashed changes
         }
 
     }
@@ -145,7 +117,6 @@ public class Object : MonoBehaviour
     {
         AudioController.PlayTrackFirstTime("FirstItem");
 
-        //this cant work like this for everything
         if (objName == "Mud")
         {
             Player.instance.DigIt();
