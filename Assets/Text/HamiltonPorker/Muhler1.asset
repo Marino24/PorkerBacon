@@ -16,7 +16,7 @@ MonoBehaviour:
   OptionDataSet: []
   allOptions: []
   NarrativeDataSet:
-  - textSet: Back then, that fence was not so shocking."
+  - textSet: Back then, that fence was not so shocking.
     textSetAudio: {fileID: 8300000, guid: 3bc17933827daa246a3aec9deb76be8b, type: 3}
     talking: 2
   leftChar: 1

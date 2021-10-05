@@ -2737,6 +2737,7 @@ MonoBehaviour:
   objDesc: I dig it
   itemSpriteUI: {fileID: 21300000, guid: d5c2c3ea350e78c4c873441bb30d3152, type: 3}
   objName: Mud
+  nameHiden: 0
   reach: 10
   correctItem: {fileID: 0}
 --- !u!61 &629683692
@@ -4659,7 +4660,12 @@ MonoBehaviour:
   objDesc: It might be usefull
   itemSpriteUI: {fileID: 21300000, guid: 1a2f7b28887c5744e99184e3533d6aff, type: 3}
   objName: Nail
+<<<<<<< Updated upstream
   reach: 15
+=======
+  nameHiden: 0
+  reach: 10
+>>>>>>> Stashed changes
   correctItem: {fileID: 0}
 --- !u!61 &1084830750
 BoxCollider2D:
@@ -4975,7 +4981,12 @@ MonoBehaviour:
   objDesc: How would i remove it
   itemSpriteUI: {fileID: 0}
   objName: Latch
+<<<<<<< Updated upstream
   reach: 15
+=======
+  nameHiden: 0
+  reach: 10
+>>>>>>> Stashed changes
   correctItem: {fileID: 21300000, guid: 7d54017963b644c4e8497f11d16e1215, type: 3}
 --- !u!61 &1202859704
 BoxCollider2D:
@@ -6090,6 +6101,7 @@ MonoBehaviour:
   objDesc: I can see way back there oh the wonders
   itemSpriteUI: {fileID: 0}
   objName: Fence
+  nameHiden: 0
   reach: 15
   correctItem: {fileID: 0}
 --- !u!61 &1421420457
@@ -6303,7 +6315,12 @@ MonoBehaviour:
   objDesc: My string
   itemSpriteUI: {fileID: 21300000, guid: 99e44a4c9a0c9de40a6a95b6896a00ec, type: 3}
   objName: String
+<<<<<<< Updated upstream
   reach: 15
+=======
+  nameHiden: 0
+  reach: 10
+>>>>>>> Stashed changes
   correctItem: {fileID: 0}
 --- !u!61 &1467089726
 BoxCollider2D:
@@ -7907,7 +7924,12 @@ MonoBehaviour:
   objDesc: 'Oh look an egg '
   itemSpriteUI: {fileID: 21300000, guid: 1047cfa14ee43544cbf0998d80ddd5ae, type: 3}
   objName: Egg
+<<<<<<< Updated upstream
   reach: 15
+=======
+  nameHiden: 1
+  reach: 10
+>>>>>>> Stashed changes
   correctItem: {fileID: 0}
 --- !u!61 &1940832346
 BoxCollider2D:
@@ -8660,7 +8682,12 @@ MonoBehaviour:
   objDesc: How do i get it open
   itemSpriteUI: {fileID: 0}
   objName: Gate
+<<<<<<< Updated upstream
   reach: 15
+=======
+  nameHiden: 0
+  reach: 10
+>>>>>>> Stashed changes
   correctItem: {fileID: 0}
 --- !u!61 &2049940888
 BoxCollider2D:
