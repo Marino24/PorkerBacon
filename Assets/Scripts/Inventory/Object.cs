@@ -36,7 +36,8 @@ public class Object : MonoBehaviour
     public bool canPickUp;
     public string objDesc; private string reachDesc;
     public Sprite itemSpriteUI;
-    public string objName;
+    public string objName; private string hiddenName;
+    public bool nameHiden;
     public float reach = 15f; private bool outOfReach;
 
 
@@ -55,14 +56,19 @@ public class Object : MonoBehaviour
         {
             MouseUi.hooveringItem?.Invoke("item");
         }
-        if(objName == "Egg")
-        {
-            uIhandler.HoverOn("???");
-        } else
-        {
-            uIhandler.HoverOn(objName);
-        }
+        uIhandler.HoverOn(hiddenName ?? objName);
 
+    }
+
+    private void Start()
+    {
+        if (nameHiden)
+        {
+            for (int i = 0; i < name.Length; i++)
+            {
+                hiddenName += "?";
+            }
+        }
     }
 
     private void OnDisable()
