@@ -36,7 +36,7 @@ public class MainMenuMan : MonoBehaviour
     public void ContinueGame()
     {
         //load from the save point
-        SceneManager.LoadSceneAsync("Day1", LoadSceneMode.Single);
+        LvlLoader.instance.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void NewGame()
@@ -46,7 +46,7 @@ public class MainMenuMan : MonoBehaviour
         {
             PlayerPrefs.SetInt("firstTimePlay",0);
         }
-        SceneManager.LoadSceneAsync("Day1", LoadSceneMode.Single);
+        LvlLoader.instance.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void OpenSettings()

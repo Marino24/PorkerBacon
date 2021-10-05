@@ -55,7 +55,8 @@ public class UIhandler : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadSceneAsync(0);
+        Resume();
+        LvlLoader.instance.LoadScene(0);
     }
 
     public void Quit()
