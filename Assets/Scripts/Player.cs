@@ -108,4 +108,12 @@ public class Player : MonoBehaviour
         anim.SetBool("isDiggingMud", false);
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.transform.CompareTag("Day1End"))
+        {
+            //End day1, show credits
+        }
+    }
+
 }

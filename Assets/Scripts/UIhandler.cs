@@ -30,6 +30,12 @@ public class UIhandler : MonoBehaviour
     [Header("Menu")]
     public GameObject MenuStage;
 
+    public GameObject originalDoorObj;
+    public GameObject doorObj;
+
+    public GameObject defaultBorder;
+    public GameObject endBorder;
+
 
     public static bool GameisPaused = false;
     public void Resume()
@@ -77,6 +83,15 @@ public class UIhandler : MonoBehaviour
             if (GameisPaused) Resume(); else Pause();
         }
 
+    }
+
+    public void OpenTheGate()
+    {
+        originalDoorObj.SetActive(false);
+        doorObj.SetActive(true);
+        doorObj.GetComponent<EndDoor>().OpenGate();
+        defaultBorder.SetActive(false);
+        endBorder.SetActive(true);
     }
 
 

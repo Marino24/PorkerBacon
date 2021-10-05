@@ -55,7 +55,13 @@ public class Object : MonoBehaviour
         {
             MouseUi.hooveringItem?.Invoke("item");
         }
-        uIhandler.HoverOn(objName);
+        if(objName == "Egg")
+        {
+            uIhandler.HoverOn("???");
+        } else
+        {
+            uIhandler.HoverOn(objName);
+        }
 
     }
 
@@ -82,7 +88,7 @@ public class Object : MonoBehaviour
         if (canPickUp && outOfReach) reachDesc = player.reachOptions[UnityEngine.Random.Range(0, player.reachOptions.Count)];
         else reachDesc = "";
 
-        textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false, true, true);
+        //textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false, true, true);
 
 
         //pickup
@@ -92,15 +98,17 @@ public class Object : MonoBehaviour
             PickingUp();
         }
 
-        if (correctItem != null)
+        if (correctItem != null && useItem.itemInHand.sprite == correctItem && !outOfReach)
         {
-            if (useItem.itemInHand.sprite == correctItem && !outOfReach)
-            {
-                //do stuff
-                AudioController.PlayTrackFirstTime("EscapeArtist");
-                textWritter.Write("Thats all folks thanks", uIhandler.monologueText, false);
-                usedAnItem?.Invoke(useItem.itemInHand.sprite);
-            }
+            //do stuff
+            AudioController.PlayTrackFirstTime("EscapeArtist");
+            //textWritter.Write("Thats all folks thanks", uIhandler.monologueText, false);
+            uIhandler.OpenTheGate();
+            usedAnItem?.Invoke(useItem.itemInHand.sprite);
+        }
+        else
+        {
+            textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false, true, true);
         }
 
     }
