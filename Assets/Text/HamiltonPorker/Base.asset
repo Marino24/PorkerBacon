@@ -168,7 +168,7 @@ MonoBehaviour:
     - k
     - o
     removedOptions: []
-    isExitOption: 1
+    isExitOption: 0
     isStickyOption: 0
   - optionName: I
     requiredAmount: 1

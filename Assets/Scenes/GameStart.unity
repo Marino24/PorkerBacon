@@ -671,7 +671,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Move around, collect items, talk to others and escape before its too late!
+  m_text: Move around, collect items, talk to others and escape before it's too late!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1799b2da8531f7a40851ad7daa3458cc, type: 2}
   m_sharedMaterial: {fileID: -1838154324949620949, guid: 1799b2da8531f7a40851ad7daa3458cc,

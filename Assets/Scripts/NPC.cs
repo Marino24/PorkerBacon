@@ -57,6 +57,7 @@ public class NPC : MonoBehaviour
     {
         convCtrl.npc = this;
         Debug.Log(conversation);
+        //do we hardcode the 3 lines convo to start, it has to play before the Options?
         ConvController.startConvo?.Invoke(conversation);
     }
 }
