@@ -5473,7 +5473,7 @@ MonoBehaviour:
   itemSpriteUI: {fileID: 0}
   objName: Latch
   nameHiden: 0
-  reach: 15
+  reach: 18
   outOfReachDialogues:
   - If ever one should wish to catch a boar,  One need but put a latch upon the door.
   withinReachDialogues:
@@ -6460,6 +6460,7 @@ MonoBehaviour:
   speed: 10
   introConvo: {fileID: 11400000, guid: ccf6c0146c0243645b4ad0bc7380f48b, type: 2}
   npcReach: 11
+  hooklinePos: {x: 4.6, y: -6.3, z: -5}
   level1Over: 0
 --- !u!61 &1357008100
 BoxCollider2D:
@@ -7154,7 +7155,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05, y: -0.1}
+  m_Offset: {x: 0.049999952, y: -0.1566447}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7165,7 +7166,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.54, y: 0.68}
+  m_Size: {x: 1.2972379, y: 0.24302888}
   m_EdgeRadius: 0
 --- !u!4 &1559941014 stripped
 Transform:

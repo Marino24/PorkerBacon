@@ -95,12 +95,6 @@ public class Object : MonoBehaviour
         //range check
         if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
-        //if (canPickUp && outOfReach) reachDesc = player.reachOptions[UnityEngine.Random.Range(0, player.reachOptions.Count)];
-        //else reachDesc = "";
-
-        //textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false, true, true);
-
-
         //pickup
         if (canPickUp && !outOfReach && !useItem.isItemInHand)
         {
@@ -112,19 +106,21 @@ public class Object : MonoBehaviour
         {
             //do stuff
             AudioController.PlayTrackFirstTime("EscapeArtist");
-            //textWritter.Write("Thats all folks thanks", uIhandler.monologueText, false);
-            uIhandler.OpenTheGate();
+            Player.instance.UseHookline();
             usedAnItem?.Invoke(useItem.itemInHand.sprite);
+            Inventory.invOpen = false;
+            inventory.inventoryAnim.Play("CloseInventory");
         }
         else
         {
-            if(outOfReach)
+            if (outOfReach)
             {
-                int rand = UnityEngine.Random.Range(0,outOfReachDialogues.Count-1);
+                int rand = UnityEngine.Random.Range(0, outOfReachDialogues.Count - 1);
                 textWritter.Write(outOfReachDialogues[rand], uIhandler.monologueText, false, true, true);
-            } else 
+            }
+            else
             {
-                int rand = UnityEngine.Random.Range(0,withinReachDialogues.Count-1);
+                int rand = UnityEngine.Random.Range(0, withinReachDialogues.Count - 1);
                 textWritter.Write(withinReachDialogues[rand], uIhandler.monologueText, false, true, true);
             }
         }

@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
-    private Camera cam;
     private Animator anim;
 
     public float speed;
@@ -13,10 +12,10 @@ public class Player : MonoBehaviour
     private UIhandler uIhandler;
     private ConvController convController;
     public Conversation introConvo;
-    //public List<string> reachOptions = new List<string>();
     private bool isWalking;
     public static Player instance;
     public float npcReach = 15f;
+    public Vector3 hooklinePos; private int hooklineSetupState = 0;
     public bool level1Over;
     private TextWritter textWritter;
 
@@ -69,7 +68,7 @@ public class Player : MonoBehaviour
                     NPC npc = hit.collider.GetComponent<NPC>();
                     if (npc != null && !npc.useItem.isItemInHand)
                     {
-                        if(Vector2.Distance(transform.position, npc.transform.position) < npcReach)
+                        if (Vector2.Distance(transform.position, npc.transform.position) < npcReach)
                         {
                             npc.StartConvoWithMe();
                         }
@@ -86,41 +85,91 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        float xPos = Input.GetAxis("Horizontal");
-        float yPos = Input.GetAxis("Vertical");
+        //normal movement
+        if (hooklineSetupState == 0)
+        {
+            float xPos = Input.GetAxis("Horizontal");
+            float yPos = Input.GetAxis("Vertical");
 
-        if (xPos != 0 || yPos != 0)
+            if (xPos != 0 || yPos != 0)
+            {
+                isWalking = true;
+            }
+            else
+            {
+                isWalking = false;
+            }
+
+            Vector3 move = new Vector2(xPos, yPos);
+
+            rb.velocity = move * speed;
+
+            if (xPos < 0) transform.rotation = Quaternion.Euler(0, 180, 0);
+            if (xPos > 0) transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        }
+        if (hooklineSetupState == 1)
         {
             isWalking = true;
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0.5f, -9, -5), step);
+
+            if (transform.position.x < 0.5f) transform.rotation = Quaternion.Euler(0, 0, 0);
+            if (transform.position.x > 0.5f) transform.rotation = Quaternion.Euler(0, 180, 0);
+
+            if (Vector2.Distance(transform.position, new Vector3(0.5f, -9, -5)) < 0.1f)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                hooklineSetupState = 2;
+            }
         }
-        else
+        if (hooklineSetupState == 2)
         {
-            isWalking = false;
+            isWalking = true;
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, hooklinePos, step);
+
+            if (Vector2.Distance(transform.position, hooklinePos) < 0.15f)
+            {
+                UseHookline();
+                hooklineSetupState = 3;
+            }
         }
-
-        Vector3 move = new Vector2(xPos, yPos);
-
-        rb.velocity = move * speed;
-
-        if (xPos < 0) transform.rotation = Quaternion.Euler(0, 180, 0);
-        if (xPos > 0) transform.rotation = Quaternion.Euler(0, 0, 0); ;
-
     }
-
     public void DigIt()
     {
         anim.SetBool("isWalking", false);
         anim.SetBool("isDiggingMud", true);
     }
 
+    public void UseHookline()
+    {
+        if (hooklineSetupState != 0)
+        {
+            anim.SetBool("isUsingHookline", true);
+            anim.SetBool("isWalking", false);
+
+            uIhandler.OpenTheGate();
+            hooklineSetupState = 0;
+        }
+        else hooklineSetupState = 1;
+
+
+
+    }
+
     public void StopDig()
     {
         anim.SetBool("isDiggingMud", false);
     }
+    public void StopHookline()
+    {
+        anim.SetBool("isUsingHookline", false);
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.transform.CompareTag("Day1End") && !level1Over)
+        if (other.transform.CompareTag("Day1End") && !level1Over)
         {
             //End day1, show credits
             level1Over = true;

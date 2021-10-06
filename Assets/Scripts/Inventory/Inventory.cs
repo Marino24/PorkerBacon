@@ -10,13 +10,13 @@ public class Inventory : MonoBehaviour
     private Image[] items; private TextMeshProUGUI[] itemNames;
     public GameObject itemsDisplay; public Sprite empty;
     public Image itemStored;
-    public bool invOpen;
+    public static bool invOpen;
 
     public Animation inventoryAnim;
-    public bool importantMessage;  
+    public bool importantMessage;
     //This message will keep being displayed until its fully shown
     //We r using it when picking up item
-    
+
     public static Inventory instance;
 
     void Awake()

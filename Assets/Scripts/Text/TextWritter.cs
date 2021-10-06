@@ -21,8 +21,8 @@ public class TextWritter : MonoBehaviour
         }
         else
         {
-            textRevealSpeed = 0.08f;
-            textStayTime = 1f;
+            textRevealSpeed = 0.05f;
+            textStayTime = 0.5f;
         }
         index = 0;
         textEnded = false;
