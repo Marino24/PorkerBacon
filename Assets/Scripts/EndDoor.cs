@@ -11,8 +11,4 @@ public class EndDoor : MonoBehaviour
         GetComponent<Animator>().enabled = true;
         GetComponent<AudioSource>().Play();
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("GAME OVER");
-    }
 }

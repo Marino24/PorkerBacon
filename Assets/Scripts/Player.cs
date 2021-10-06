@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public static Player instance;
     public float npcReach = 15f;
 
+    public bool level1Over;
+
     void Start()
     {
         if (introConvo != null)
@@ -110,9 +112,11 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.transform.CompareTag("Day1End"))
+        if(other.transform.CompareTag("Day1End") && !level1Over)
         {
             //End day1, show credits
+            level1Over = true;
+            Debug.Log("CONGRATS YOU FREE!?");
         }
     }
 
