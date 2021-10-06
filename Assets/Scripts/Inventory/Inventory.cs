@@ -26,10 +26,6 @@ public class Inventory : MonoBehaviour
         empty = items[0].sprite;
 
         itemNames = itemsDisplay.GetComponentsInChildren<TextMeshProUGUI>();
-
-        //Object.pickedAnItem += ItemStored;
-        //Object.pickedAnItem += ShowItemStored;
-        //Object.usedAnItem += ItemUsed;
     }
 
     private void OnEnable()
@@ -41,11 +37,9 @@ public class Inventory : MonoBehaviour
 
     private void OnDisable()
     {
-        ///*
         Object.pickedAnItem -= ItemStored;
         Object.pickedAnItem -= ShowItemStored;
         Object.usedAnItem -= ItemUsed;
-        //*/
     }
 
     void Update()
