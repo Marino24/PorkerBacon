@@ -13,7 +13,10 @@ public class Inventory : MonoBehaviour
     public bool invOpen;
 
     public Animation inventoryAnim;
-    public bool pickingUpAnItem;
+    public bool importantMessage;  
+    //This message will keep being displayed until its fully shown
+    //We r using it when picking up item
+    
     public static Inventory instance;
 
     void Awake()

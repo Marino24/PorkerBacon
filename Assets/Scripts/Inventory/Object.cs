@@ -34,11 +34,15 @@ public class Object : MonoBehaviour
 
     [Tooltip("Is this an item")]
     public bool canPickUp;
-    public string objDesc; private string reachDesc;
+    //public string objDesc; private string reachDesc;
     public Sprite itemSpriteUI;
     public string objName; private string hiddenName;
     public bool nameHiden;
     public float reach = 15f; private bool outOfReach;
+
+    public List<string> outOfReachDialogues = new List<string>();
+    public List<string> withinReachDialogues = new List<string>();
+
 
 
     [Tooltip("What item should be used on this")]
@@ -85,14 +89,14 @@ public class Object : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (EventSystem.current.IsPointerOverGameObject() || Inventory.instance.pickingUpAnItem) return;
+        if (EventSystem.current.IsPointerOverGameObject() || Inventory.instance.importantMessage) return;
 
 
         //range check
         if (Vector2.Distance(transform.position, player.transform.position) > reach) outOfReach = true; else outOfReach = false;
 
-        if (canPickUp && outOfReach) reachDesc = player.reachOptions[UnityEngine.Random.Range(0, player.reachOptions.Count)];
-        else reachDesc = "";
+        //if (canPickUp && outOfReach) reachDesc = player.reachOptions[UnityEngine.Random.Range(0, player.reachOptions.Count)];
+        //else reachDesc = "";
 
         //textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false, true, true);
 
@@ -100,7 +104,7 @@ public class Object : MonoBehaviour
         //pickup
         if (canPickUp && !outOfReach && !useItem.isItemInHand)
         {
-            inventory.pickingUpAnItem = true;
+            inventory.importantMessage = true;
             PickingUp();
         }
 
@@ -114,7 +118,15 @@ public class Object : MonoBehaviour
         }
         else
         {
-            textWritter.Write(objDesc + " " + reachDesc, uIhandler.monologueText, false, true, true);
+            if(outOfReach)
+            {
+                int rand = UnityEngine.Random.Range(0,outOfReachDialogues.Count-1);
+                textWritter.Write(outOfReachDialogues[rand], uIhandler.monologueText, false, true, true);
+            } else 
+            {
+                int rand = UnityEngine.Random.Range(0,withinReachDialogues.Count-1);
+                textWritter.Write(withinReachDialogues[rand], uIhandler.monologueText, false, true, true);
+            }
         }
 
     }

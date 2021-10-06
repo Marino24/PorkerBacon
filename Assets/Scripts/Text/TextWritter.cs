@@ -58,7 +58,7 @@ public class TextWritter : MonoBehaviour
         }
         if (forPickingUpItem)
         {
-            Inventory.instance.pickingUpAnItem = false;
+            Inventory.instance.importantMessage = false;
         }
 
         if (!convo)

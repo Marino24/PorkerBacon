@@ -1822,7 +1822,7 @@ MonoBehaviour:
   itemStored: {fileID: 2046247680}
   invOpen: 0
   inventoryAnim: {fileID: 1946433561}
-  pickingUpAnItem: 0
+  importantMessage: 0
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2920,11 +2920,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canPickUp: 1
-  objDesc: I dig it
   itemSpriteUI: {fileID: 21300000, guid: d5c2c3ea350e78c4c873441bb30d3152, type: 3}
   objName: Mud
   nameHiden: 0
   reach: 10
+  outOfReachDialogues:
+  - The mud pile is too far away to dig.  Perhaps I'll move in close and find a twig.
+  withinReachDialogues:
+  - 'Such is the life of pigs: to sort through dirt.  Well, I suppose that taking
+    some won''t hurt.'
   correctItem: {fileID: 0}
 --- !u!61 &629683692
 BoxCollider2D:
@@ -3563,7 +3567,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -5145,11 +5149,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canPickUp: 1
-  objDesc: It might be usefull
   itemSpriteUI: {fileID: 21300000, guid: 1a2f7b28887c5744e99184e3533d6aff, type: 3}
   objName: Nail
   nameHiden: 0
   reach: 15
+  outOfReachDialogues:
+  - It would appear the wood right here has cracked;  I'd have to move in near if
+    I'm to act.
+  withinReachDialogues:
+  - Ow! That rusted nail has cut my hoof;  Now I get to carry it as proof.
   correctItem: {fileID: 0}
 --- !u!61 &1084830750
 BoxCollider2D:
@@ -5462,11 +5470,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canPickUp: 0
-  objDesc: How would i remove it
   itemSpriteUI: {fileID: 0}
   objName: Latch
   nameHiden: 0
   reach: 15
+  outOfReachDialogues:
+  - If ever one should wish to catch a boar,  One need but put a latch upon the door.
+  withinReachDialogues:
+  - If ever one should wish to catch a boar,  One need but put a latch upon the door.
   correctItem: {fileID: 21300000, guid: 7d54017963b644c4e8497f11d16e1215, type: 3}
 --- !u!61 &1202859704
 BoxCollider2D:
@@ -5618,6 +5629,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useItem: {fileID: 0}
   correctItem: gun
+  outOfReachDialogue: That's Hamilton, my friend and fellow stock.  I'd have to move
+    in close if we're to talk.
   conversation: {fileID: 11400000, guid: 351c2cdb2a84aaa498a55adf2d293ad3, type: 2}
 --- !u!1 &1237726112
 GameObject:
@@ -6446,11 +6459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   introConvo: {fileID: 11400000, guid: ccf6c0146c0243645b4ad0bc7380f48b, type: 2}
-  reachOptions:
-  - too far
-  - oh nah
-  - cant get it
   npcReach: 11
+  level1Over: 0
 --- !u!61 &1357008100
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6511,7 +6521,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: a24167ea1d8de914c9a4a625b4e51a3e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -6710,11 +6720,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canPickUp: 0
-  objDesc: I can see way back there oh the wonders
   itemSpriteUI: {fileID: 0}
   objName: Fence
   nameHiden: 0
-  reach: 15
+  reach: 9999
+  outOfReachDialogues: []
+  withinReachDialogues:
+  - So many days I've wondered what's Beyond...  ... and many ways I blundered to
+    abscond.
   correctItem: {fileID: 0}
 --- !u!61 &1421420457
 BoxCollider2D:
@@ -6924,11 +6937,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canPickUp: 1
-  objDesc: My string
   itemSpriteUI: {fileID: 21300000, guid: 99e44a4c9a0c9de40a6a95b6896a00ec, type: 3}
   objName: String
   nameHiden: 0
   reach: 15
+  outOfReachDialogues:
+  - I could go for a drink, like any swine;  Too bad I have to walk and pull the
+    line.
+  withinReachDialogues:
+  - It seems that, like my dreams and fading hope,  The water's at the end of its
+    own rope.
   correctItem: {fileID: 0}
 --- !u!61 &1467089726
 BoxCollider2D:
@@ -8446,11 +8464,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canPickUp: 1
-  objDesc: 'Oh look an egg '
   itemSpriteUI: {fileID: 21300000, guid: 1047cfa14ee43544cbf0998d80ddd5ae, type: 3}
   objName: Egg
   nameHiden: 1
   reach: 15
+  outOfReachDialogues:
+  - What is that hiding near my drinking bowl?  I ought to move in close to see it
+    whole.
+  withinReachDialogues:
+  - An egg from Easter past; now here's a gem.  It's not much use to me, but less
+    for them.
   correctItem: {fileID: 0}
 --- !u!61 &1940832346
 BoxCollider2D:
@@ -9200,11 +9223,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canPickUp: 0
-  objDesc: How do i get it open
   itemSpriteUI: {fileID: 0}
   objName: Gate
   nameHiden: 0
   reach: 15
+  outOfReachDialogues:
+  - 'This door which stands before me, locked, unbarred:  No more does stand between
+    me and the Yard.'
+  withinReachDialogues:
+  - 'This door which stands before me, locked, unbarred:  No more does stand between
+    me and the Yard.'
   correctItem: {fileID: 0}
 --- !u!61 &2049940888
 BoxCollider2D:

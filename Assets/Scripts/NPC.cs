@@ -16,6 +16,7 @@ public class NPC : MonoBehaviour
 
     [Header("Data")]
     public string correctItem;
+    public string outOfReachDialogue;
 
 
     public Conversation conversation;

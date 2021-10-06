@@ -13,12 +13,12 @@ public class Player : MonoBehaviour
     private UIhandler uIhandler;
     private ConvController convController;
     public Conversation introConvo;
-    public List<string> reachOptions = new List<string>();
+    //public List<string> reachOptions = new List<string>();
     private bool isWalking;
     public static Player instance;
     public float npcReach = 15f;
-
     public bool level1Over;
+    private TextWritter textWritter;
 
     void Start()
     {
@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     }
     void Awake()
     {
+        textWritter = Camera.main.GetComponent<TextWritter>();
         uIhandler = Camera.main.GetComponent<UIhandler>();
         convController = Camera.main.GetComponent<ConvController>();
         rb = GetComponent<Rigidbody2D>();
@@ -66,9 +67,16 @@ public class Player : MonoBehaviour
                 {
                     Debug.Log(hit.collider.name);
                     NPC npc = hit.collider.GetComponent<NPC>();
-                    if (npc != null && !npc.useItem.isItemInHand && Vector2.Distance(transform.position, npc.transform.position) < npcReach)
+                    if (npc != null && !npc.useItem.isItemInHand)
                     {
-                        npc.StartConvoWithMe();
+                        if(Vector2.Distance(transform.position, npc.transform.position) < npcReach)
+                        {
+                            npc.StartConvoWithMe();
+                        }
+                        else
+                        {
+                            textWritter.Write(npc.outOfReachDialogue, uIhandler.monologueText, false, true, false);
+                        }
                     }
                 }
             }
