@@ -131,8 +131,9 @@ public class Player : MonoBehaviour
 
             if (Vector2.Distance(transform.position, hooklinePos) < 0.15f)
             {
-                UseHookline();
+                isWalking = false;
                 hooklineSetupState = 3;
+                UseHookline();
             }
         }
     }
@@ -149,13 +150,14 @@ public class Player : MonoBehaviour
             anim.SetBool("isUsingHookline", true);
             anim.SetBool("isWalking", false);
 
-            uIhandler.OpenTheGate();
             hooklineSetupState = 0;
         }
         else hooklineSetupState = 1;
+    }
 
-
-
+    public void OpenGATEAfterHookline()
+    {
+        uIhandler.OpenTheGate();
     }
 
     public void StopDig()
