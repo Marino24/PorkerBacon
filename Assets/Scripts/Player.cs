@@ -175,6 +175,7 @@ public class Player : MonoBehaviour
         {
             //End day1, show credits
             level1Over = true;
+            LvlLoader.instance.LoadScene(2);
             Debug.Log("CONGRATS YOU FREE!?");
         }
     }
