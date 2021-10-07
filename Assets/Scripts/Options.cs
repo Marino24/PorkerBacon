@@ -35,6 +35,8 @@ public class Options : MonoBehaviour
                 //Debug.Log("We came here!" + count.ToString());
                 //resDropDown.SetValueWithoutNotify(count);
                 currentOption = count;
+                //Debug.Log("Current Res: " + res.width.ToString() +"x" + res.height.ToString() +" & "+ res.refreshRate.ToString());
+                //Screen.SetResolution(res.width,res.height,FullScreenMode.ExclusiveFullScreen,res.refreshRate);
             }
             TMPro.TMP_Dropdown.OptionData optionData = new TMPro.TMP_Dropdown.OptionData();
             optionData.text = res.width + "x" + res.height + " & " + res.refreshRate + "Hz";
