@@ -86,9 +86,4 @@ public class TextWritter : MonoBehaviour
         UiText.color = color;
     }
 
-
-
-
-
-
 }

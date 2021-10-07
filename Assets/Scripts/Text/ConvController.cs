@@ -235,6 +235,7 @@ public class ConvController : MonoBehaviour
                 AudioController.musicPlay?.Invoke(currentConv.leftChar.ToString());
                 AudioController.musicPlay?.Invoke(currentConv.rightChar.ToString());
             }
+            npc.conversation = currentConv;
             firstTimeSpeaking = false;
             DisplayOptions();
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using System;
 
 public class Options : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Options : MonoBehaviour
         mixer.SetFloat("SoundVol", Mathf.Log10(musicSlider.value) * 20);
 
         compatibleRes = Screen.resolutions;
+
         TMPro.TMP_Dropdown.OptionDataList optionDataList = new TMPro.TMP_Dropdown.OptionDataList();
         int count = 0;
         int currentOption = 0;
@@ -60,4 +62,5 @@ public class Options : MonoBehaviour
     {
         Screen.SetResolution(compatibleRes[resDropDown.value - 1].width, compatibleRes[resDropDown.value - 1].height, FullScreenMode.ExclusiveFullScreen, compatibleRes[resDropDown.value - 1].refreshRate);
     }
+
 }
