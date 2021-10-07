@@ -37,6 +37,7 @@ public class Conversation : ScriptableObject
     public List<OptionData> optionDataSet = new List<OptionData>();
 
     public OptionData[] allOptions;
+    public List<string> triggerActionByIndex = new List<string>();
 
     private Dictionary<OptionData, int> UnlockableOptionsDataSet = new Dictionary<OptionData, int>(); //original one
     public Dictionary<OptionData, int> unlockableOptionsDataSet = new Dictionary<OptionData, int>();

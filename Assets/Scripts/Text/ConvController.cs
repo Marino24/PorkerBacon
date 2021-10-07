@@ -237,6 +237,7 @@ public class ConvController : MonoBehaviour
             }
             npc.conversation = currentConv;
             firstTimeSpeaking = false;
+            AudioController.playClip?.Invoke(null);
             DisplayOptions();
         }
     }
@@ -317,6 +318,7 @@ public class ConvController : MonoBehaviour
 
                 CheckForRemovingOptions();
                 CheckForAddingOptions();
+                CheckForActions();
 
                 //we leave the conversation (option stays)
                 if (selectedOption.isStickyOption)
@@ -348,6 +350,16 @@ public class ConvController : MonoBehaviour
                     }
 
                 }
+            }
+        }
+    }
+    void CheckForActions()
+    {
+        for (int i = 0; i < currentConv.triggerActionByIndex.Count; i++)
+        {
+            if (currentConv.triggerActionByIndex[i] == selectedOption.optionName)
+            {
+                npc.triggeringAction(i);
             }
         }
     }

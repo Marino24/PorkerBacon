@@ -275,6 +275,8 @@ MonoBehaviour:
     removedOptions: []
     isExitOption: 1
     isStickyOption: 1
+  triggerActionByIndex:
+  - H
   NarrativeDataSet: []
   leftChar: 1
   rightChar: 2

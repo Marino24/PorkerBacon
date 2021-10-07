@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using System;
 
 public class NPC : MonoBehaviour
 {
     public UseItem useItem;
     private ConvController convCtrl;
+
+    public Action<int> triggeringAction;
+    public List<UnityEvent> actions = new List<UnityEvent>();
 
     void Awake()
     {
@@ -17,9 +22,17 @@ public class NPC : MonoBehaviour
     [Header("Data")]
     public string correctItem;
     public string outOfReachDialogue;
-
-
     public Conversation conversation;
+
+    private void OnEnable()
+    {
+        triggeringAction += FireEvent;
+    }
+
+    private void OnDisable()
+    {
+        triggeringAction -= FireEvent;
+    }
 
     void OnMouseOver()
     {
@@ -60,5 +73,10 @@ public class NPC : MonoBehaviour
         Debug.Log(conversation);
         //do we hardcode the 3 lines convo to start, it has to play before the Options?
         ConvController.startConvo?.Invoke(conversation);
+    }
+
+    public void FireEvent(int i)
+    {
+        actions[i].Invoke();
     }
 }
