@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
+
+    void Update()
+    {
+        if(Input.anyKeyDown)
+        {
+            StartTHEGame();
+        }
+    }
     public void StartTHEGame()
     {
         GetComponent<Animator>().enabled = true;

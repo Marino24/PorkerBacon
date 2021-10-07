@@ -37,6 +37,7 @@ public class UIhandler : MonoBehaviour
     public GameObject endBorder;
 
 
+
     public static bool GameisPaused = false;
     public void Resume()
     {
@@ -58,6 +59,7 @@ public class UIhandler : MonoBehaviour
         Resume();
         LvlLoader.instance.LoadScene(0);
     }
+
 
     public void Quit()
     {

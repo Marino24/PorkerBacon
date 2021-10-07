@@ -14,6 +14,8 @@ public class MainMenuMan : MonoBehaviour
     public GameObject howToPlayPanel;
     public GameObject settingsPanel;
 
+    public GameObject gameStartPanel;
+
     void Awake()
     {
         Time.timeScale = 1f;
@@ -22,6 +24,7 @@ public class MainMenuMan : MonoBehaviour
         {
             continueButton.SetActive(true);
         }
+        gameStartPanel.SetActive(true);
     }
 
 
