@@ -399,11 +399,11 @@ public class ConvController : MonoBehaviour
     void Update()
     {
         //advance convo 
-        if (!isConvoEnded && EventSystem.current.IsPointerOverGameObject())
+        if (!isConvoEnded && EventSystem.current.IsPointerOverGameObject() && !UIhandler.GameisPaused)
         {
             if (isNarrConvo)
             {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0) && !UIhandler.GameisPaused)
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
                 {
                     //advance the narrative...
                     if (TextWritter.textEnded) AdvanceConvo(currentConv.NarrativeDataSet.Count);
@@ -413,7 +413,7 @@ public class ConvController : MonoBehaviour
             }
             else
             {
-                if (isOptionSelected && Input.GetKeyDown(KeyCode.Space))
+                if (isOptionSelected && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
                 {
                     //advance the responses...
                     if (TextWritter.textEnded) AdvanceConvo(selectedOption.responses.Count);

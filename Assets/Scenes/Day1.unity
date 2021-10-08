@@ -2928,6 +2928,7 @@ MonoBehaviour:
   withinReachDialogues:
   - 'Such is the life of pigs: to sort through dirt.  Well, I suppose that taking
     some won''t hurt.'
+  specialDialog: 
   correctItem: {fileID: 0}
 --- !u!61 &629683692
 BoxCollider2D:
@@ -5208,6 +5209,7 @@ MonoBehaviour:
     I'm to act.
   withinReachDialogues:
   - Ow! That rusted nail has cut my hoof;  Now I get to carry it as proof.
+  specialDialog: 
   correctItem: {fileID: 0}
 --- !u!61 &1084830750
 BoxCollider2D:
@@ -5528,6 +5530,8 @@ MonoBehaviour:
   - If ever one should wish to catch a boar,  One need but put a latch upon the door.
   withinReachDialogues:
   - If ever one should wish to catch a boar,  One need but put a latch upon the door.
+  specialDialog: I'd use this hook and line upon the latch,  But I'm too far away
+    for such a catch.
   correctItem: {fileID: 21300000, guid: 7d54017963b644c4e8497f11d16e1215, type: 3}
 --- !u!61 &1202859704
 BoxCollider2D:
@@ -6794,6 +6798,7 @@ MonoBehaviour:
   withinReachDialogues:
   - So many days I've wondered what's Beyond...  ... and many ways I blundered to
     abscond.
+  specialDialog: 
   correctItem: {fileID: 0}
 --- !u!61 &1421420457
 BoxCollider2D:
@@ -7013,6 +7018,7 @@ MonoBehaviour:
   withinReachDialogues:
   - It seems that, like my dreams and fading hope,  The water's at the end of its
     own rope.
+  specialDialog: 
   correctItem: {fileID: 0}
 --- !u!61 &1467089726
 BoxCollider2D:
@@ -8706,6 +8712,7 @@ MonoBehaviour:
   withinReachDialogues:
   - An egg from Easter past; now here's a gem.  It's not much use to me, but less
     for them.
+  specialDialog: 
   correctItem: {fileID: 0}
 --- !u!61 &1940832346
 BoxCollider2D:
@@ -9465,6 +9472,7 @@ MonoBehaviour:
   withinReachDialogues:
   - 'This door which stands before me, locked, unbarred:  No more does stand between
     me and the Yard.'
+  specialDialog: 
   correctItem: {fileID: 0}
 --- !u!61 &2049940888
 BoxCollider2D:

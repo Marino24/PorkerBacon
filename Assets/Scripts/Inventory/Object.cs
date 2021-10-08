@@ -43,6 +43,8 @@ public class Object : MonoBehaviour
     public List<string> outOfReachDialogues = new List<string>();
     public List<string> withinReachDialogues = new List<string>();
 
+    public string specialDialog;
+
 
 
     [Tooltip("What item should be used on this")]
@@ -115,16 +117,40 @@ public class Object : MonoBehaviour
         {
             if (outOfReach)
             {
-                int rand = UnityEngine.Random.Range(0, outOfReachDialogues.Count - 1);
-                textWritter.Write(outOfReachDialogues[rand], uIhandler.monologueText, false, true, true);
+                if(objName == "Latch")
+                {
+                    if(useItem.itemInHand.sprite != null && useItem.itemInHand.sprite.name == "inv-hook-and-linel")
+                    {
+                        textWritter.Write(specialDialog, uIhandler.monologueText, false, true, true);
+                    }
+                    else
+                    {
+                        ShowOutOfReachDialogue();
+                    }
+                }
+                else
+                { 
+                    ShowOutOfReachDialogue();
+                }
             }
             else
             {
-                int rand = UnityEngine.Random.Range(0, withinReachDialogues.Count - 1);
-                textWritter.Write(withinReachDialogues[rand], uIhandler.monologueText, false, true, true);
+                ShowWithinReachDialogue();
             }
         }
 
+    }
+
+    void ShowOutOfReachDialogue()
+    {
+        int rand = UnityEngine.Random.Range(0, outOfReachDialogues.Count - 1);
+        textWritter.Write(outOfReachDialogues[rand], uIhandler.monologueText, false, true, true);
+    }
+
+    void ShowWithinReachDialogue()
+    {
+        int rand = UnityEngine.Random.Range(0, withinReachDialogues.Count - 1);
+        textWritter.Write(withinReachDialogues[rand], uIhandler.monologueText, false, true, true);
     }
 
     private void PickingUp()
