@@ -7,6 +7,7 @@ using TMPro;
 
 public class UseItem : MonoBehaviour
 {
+    public UnlockNewOption unlockNewOption;
     private Camera cam;
     private Inventory inventory;
     public Image itemInHand;
@@ -70,6 +71,7 @@ public class UseItem : MonoBehaviour
                         previousButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
                         currentButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
                         inventory.ItemStored(v.result, v.resultName);
+                        unlockNewOption.FirstRecipe(); //bad
                         StopUsing();
                         return;
                     }

@@ -208,42 +208,7 @@ MonoBehaviour:
     responsesAudio:
     - {fileID: 8300000, guid: 06267d4a81e14a448accd798eb80f095, type: 3}
     nextConvo: {fileID: 0}
-    unlockedOptions:
-    - l
-    removedOptions: []
-    isExitOption: 0
-    isStickyOption: 0
-  - optionName: L
-    requiredAmount: 1
-    option: I picked some Items. Now what do I do?
-    optionAudio: {fileID: 8300000, guid: 855e93dbb66eaff4f8ef5ef877b8866f, type: 3}
-    abbOption: 
-    responses:
-    - Look in your Inventory for some Clue.
-    - If stars align, some Items can combine.
-    responsesAudio:
-    - {fileID: 8300000, guid: 8257286b2dee5b34bb7fc0577393127a, type: 3}
-    - {fileID: 8300000, guid: 14c555cd505b5474ca2213fd88caaaeb, type: 3}
-    nextConvo: {fileID: 0}
-    unlockedOptions:
-    - m
-    removedOptions: []
-    isExitOption: 0
-    isStickyOption: 0
-  - optionName: M
-    requiredAmount: 1
-    option: I think this combo's good, possibly Great.
-    optionAudio: {fileID: 8300000, guid: 308506bcd5b5eb14fb3145c89c911512, type: 3}
-    abbOption: 
-    responses:
-    - Then test it there upon that wooden Gate.
-    - 'But do beware: our fate is in your hooves.'
-    responsesAudio:
-    - {fileID: 8300000, guid: f8a3fc0786b248045bd960f3dc42387b, type: 3}
-    - {fileID: 8300000, guid: e2afd572fcd0fa5438ce874c79b8feca, type: 3}
-    nextConvo: {fileID: 0}
-    unlockedOptions:
-    - n
+    unlockedOptions: []
     removedOptions: []
     isExitOption: 0
     isStickyOption: 0
@@ -281,3 +246,4 @@ MonoBehaviour:
   leftChar: 1
   rightChar: 2
   nextConvo: {fileID: 0}
+  forceInstaShowcase: 0

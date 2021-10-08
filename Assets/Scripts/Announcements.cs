@@ -7,10 +7,6 @@ public class Announcements : MonoBehaviour
 {
     public TextMeshProUGUI uiText;
 
-    private void Start()
-    {
-        ChickenMission();
-    }
     public void ChickenMission()
     {
         //show Mission unlockeds

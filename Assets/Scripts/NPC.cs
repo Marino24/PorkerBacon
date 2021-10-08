@@ -20,10 +20,18 @@ public class NPC : MonoBehaviour
     }
 
     [Header("Data")]
-    public string correctItem;
+
+    public List<GivenItem> givenItems = new List<GivenItem>();
     public string outOfReachDialogue;
     public Conversation conversation;
 
+    [System.Serializable]
+    public class GivenItem
+    {
+        public Sprite correctItem;
+        public UnityEvent<NPC> action;
+
+    }
     private void OnEnable()
     {
         triggeringAction += FireEvent;
@@ -46,25 +54,17 @@ public class NPC : MonoBehaviour
 
     void OnMouseDown()
     {
-        /*
-        if (useItem.itemUsed == "")
+        if (conversation.name != "Base") return;
+        if (useItem.isItemInHand)
         {
-            //default text for just interacting
-            textRoom.text = dialogue;
-
+            foreach (var item in givenItems)
+            {
+                if (item.correctItem = useItem.itemInHand.sprite)
+                {
+                    item.action.Invoke(this);
+                }
+            }
         }
-        else if (useItem.itemUsed == correctItem)
-        {
-            textRoom.text = "Thats what i needed, thank you!";
-            useItem.item.sprite = null;
-            useItem.item.gameObject.name = "Empty";
-        }
-        else
-        {
-            textRoom.text = "Whats that?";
-        }
-
-        */
     }
 
     public void StartConvoWithMe()

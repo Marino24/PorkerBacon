@@ -9,7 +9,6 @@ public class Conversation : ScriptableObject
     public class OptionData
     {
         public string optionName = " ";
-
         public int requiredAmount = 1;
         [TextArea]
         public string option;
@@ -50,6 +49,10 @@ public class Conversation : ScriptableObject
     [System.NonSerialized]
     public List<OptionData> alreadyRemovedOptionDataSet = new List<OptionData>();
 
+    private Dictionary<OptionData, string> ToBeAddedOptionDataSet = new Dictionary<OptionData, string>(); //original one
+    [System.NonSerialized]
+    public Dictionary<OptionData, string> toBeAddedOptionDataSet = new Dictionary<OptionData, string>();
+
 
     private void OnEnable()
     {
@@ -57,6 +60,7 @@ public class Conversation : ScriptableObject
         unlockableOptionsDataSet = new Dictionary<OptionData, int>(UnlockableOptionsDataSet);
         alreadyUnlockedOptionDataSet = new List<OptionData>(AlreadyUnlockedOptionDataSet);
         alreadyRemovedOptionDataSet = new List<OptionData>(AlreadyRemovedOptionDataSet);
+        toBeAddedOptionDataSet = new Dictionary<OptionData, string>(ToBeAddedOptionDataSet);
     }
 
 
@@ -98,4 +102,5 @@ public class Conversation : ScriptableObject
     public Character leftChar;
     public Character rightChar;
     public Conversation nextConvo;
+    public bool forceInstaShowcase;
 }

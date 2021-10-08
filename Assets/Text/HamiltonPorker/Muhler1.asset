@@ -15,6 +15,7 @@ MonoBehaviour:
   firstLine: 
   OptionDataSet: []
   allOptions: []
+  triggerActionByIndex: []
   NarrativeDataSet:
   - textSet: Back then, that fence was not so shocking.
     textSetAudio: {fileID: 8300000, guid: 3bc17933827daa246a3aec9deb76be8b, type: 3}
@@ -22,3 +23,4 @@ MonoBehaviour:
   leftChar: 1
   rightChar: 3
   nextConvo: {fileID: 11400000, guid: 50e83f9750cde0b408e819c9ead5ac8a, type: 2}
+  forceInstaShowcase: 1

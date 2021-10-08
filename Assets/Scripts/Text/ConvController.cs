@@ -23,7 +23,6 @@ public class ConvController : MonoBehaviour
     [Header("References")]
     public Conversation currentConv;
     private GameObject[] buttons = new GameObject[10]; /*how many are max*/  public GameObject OptionButton;
-    public GameObject MusicManager;
 
 
     [Header("References - UI")]
@@ -37,7 +36,7 @@ public class ConvController : MonoBehaviour
     private bool isNarrConvo;
     private bool isConvoEnded;
 
-    private bool isOptionSelected; private Conversation.OptionData selectedOption; private bool firstTimeSpeaking;
+    public bool isOptionSelected; public Conversation.OptionData selectedOption; private bool firstTimeSpeaking;
     private int responseIndex;
 
     void Awake()
@@ -63,7 +62,6 @@ public class ConvController : MonoBehaviour
     #region Button Options setup
     void SetUpOptionButtons()
     {
-
         for (int i = 0; i < buttons.Length; i++)
         {
             GameObject buttonObj = Instantiate(OptionButton, convoOptions.transform.position, Quaternion.identity, convoOptions);
@@ -92,7 +90,6 @@ public class ConvController : MonoBehaviour
         for (int i = 0; i < buttons.Length; i++)
         {
             if (buttons[i] == EventSystem.current.currentSelectedGameObject) selectedOption = currentConv.optionDataSet[i];
-
             buttons[i].SetActive(false);
         }
 
@@ -186,6 +183,42 @@ public class ConvController : MonoBehaviour
             currentConv.alreadyUnlockedOptionDataSet.Add(unlockedOption);
         }
     }
+
+    void AddUnlockedOptions()
+    {
+        Conversation.OptionData newlyAddedOption = null;
+        //go through each option that could be added
+        if (currentConv.toBeAddedOptionDataSet.Count == 0) return;
+        foreach (KeyValuePair<Conversation.OptionData, string> entry in currentConv.toBeAddedOptionDataSet)
+        {
+            int counter = 0;
+            //go through all of the required options to add the new one
+            for (int i = 0; i < entry.Value.Length; i++)
+            {
+                if (counter != i) break;
+
+                //check for all of the removed ones if they match
+                foreach (var removed in currentConv.alreadyRemovedOptionDataSet)
+                {
+                    if (entry.Value[i].ToString().ToUpper() == removed.optionName)
+                    {
+                        counter++;
+                        break;
+                    }
+                }
+            }
+            if (counter == entry.Value.Length)
+            {
+                newlyAddedOption = entry.Key;
+            }
+        }
+        if (newlyAddedOption != null)
+        {
+            currentConv.toBeAddedOptionDataSet.Remove(newlyAddedOption);
+            currentConv.optionDataSet.Add(newlyAddedOption);
+        }
+    }
+
     #endregion
 
     #region CharName>Sprite(for revision)
@@ -212,6 +245,7 @@ public class ConvController : MonoBehaviour
     public void ConvoStarted(Conversation convo)
     {
         currentConv = convo;
+        AddUnlockedOptions(); //check for any new options
 
         //set both sprites to characters talking
         leftChar.sprite = GetSpriteOfCharacter(currentConv.leftChar);
@@ -238,7 +272,11 @@ public class ConvController : MonoBehaviour
             npc.conversation = currentConv;
             firstTimeSpeaking = false;
             AudioController.playClip?.Invoke(null);
-            DisplayOptions();
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].SetActive(false);
+            }
+            if (!isOptionSelected) DisplayOptions();
         }
     }
 
@@ -261,7 +299,7 @@ public class ConvController : MonoBehaviour
         //add code for enlargment/animation here
 
     }
-    void AdvanceConvo(int numOfResponses)
+    public void AdvanceConvo(int numOfResponses)
     {
 
         //go through each text block/response
@@ -278,6 +316,11 @@ public class ConvController : MonoBehaviour
                 spokenText = currentConv.NarrativeDataSet[responseIndex].textSet;
                 spokenClip = currentConv.NarrativeDataSet[responseIndex].textSetAudio;
 
+                if (currentConv.forceInstaShowcase)
+                {
+                    FirstWords("", leftCharBg, ref leftSpoke);
+                    FirstWords("", leftCharBg, ref leftSpoke);
+                }
 
                 if (talk == Conversation.Talking.left)
                 {
@@ -331,6 +374,7 @@ public class ConvController : MonoBehaviour
                     //we leave, option gets removed
                     if (selectedOption.isExitOption)
                     {
+                        currentConv.alreadyRemovedOptionDataSet.Add(selectedOption);
                         currentConv.optionDataSet.Remove(selectedOption);
                         EndCurrentConvo();
                         npc.conversation = currentConv;
@@ -340,6 +384,7 @@ public class ConvController : MonoBehaviour
                         //we continue on as normal
 
                         Conversation temp = selectedOption.nextConvo;
+                        currentConv.alreadyRemovedOptionDataSet.Add(selectedOption);
                         currentConv.optionDataSet.Remove(selectedOption);
                         //gets next if any
                         if (temp != null)
@@ -413,7 +458,7 @@ public class ConvController : MonoBehaviour
             }
             else
             {
-                if (isOptionSelected && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
+                if (isOptionSelected && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)))
                 {
                     //advance the responses...
                     if (TextWritter.textEnded) AdvanceConvo(selectedOption.responses.Count);

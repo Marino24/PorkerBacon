@@ -15,6 +15,7 @@ MonoBehaviour:
   firstLine: 
   OptionDataSet: []
   allOptions: []
+  triggerActionByIndex: []
   NarrativeDataSet:
   - textSet: Since I tried again, I've had some trouble walking.
     textSetAudio: {fileID: 8300000, guid: 45619e921bf492148bccbbc9bd9c9959, type: 3}
@@ -22,3 +23,4 @@ MonoBehaviour:
   leftChar: 1
   rightChar: 2
   nextConvo: {fileID: 11400000, guid: eca9684a37b6e654c9626074a44550d2, type: 2}
+  forceInstaShowcase: 1

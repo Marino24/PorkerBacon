@@ -1798,6 +1798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee85470be3f85b4dbf90987fb63a5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockNewOption: {fileID: 888910864}
   itemInHand: {fileID: 2063182690}
   combos:
   - result: {fileID: 21300000, guid: 7d54017963b644c4e8497f11d16e1215, type: 3}
@@ -1849,7 +1850,6 @@ MonoBehaviour:
   currentConv: {fileID: 0}
   OptionButton: {fileID: 305334903858373336, guid: e6b77bf7adeddd547bb97387442f4418,
     type: 3}
-  MusicManager: {fileID: 0}
   textRoom: {fileID: 1334895147}
   textCharName: {fileID: 896181345}
   convoOptions: {fileID: 1818339743}
@@ -1857,6 +1857,20 @@ MonoBehaviour:
   leftCharBg: {fileID: 965214337}
   rightChar: {fileID: 295493517}
   rightCharBg: {fileID: 102188521}
+  isOptionSelected: 0
+  selectedOption:
+    optionName: ' '
+    requiredAmount: 1
+    option: 
+    optionAudio: {fileID: 0}
+    abbOption: 
+    responses: []
+    responsesAudio: []
+    nextConvo: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
+    isExitOption: 0
+    isStickyOption: 0
   charSprites:
   - {fileID: 21300000, guid: 40fb50b1480cee946bceb75035e13ae0, type: 3}
   - {fileID: 21300000, guid: 009e68829190986498b073ef096f3286, type: 3}
@@ -3990,6 +4004,88 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &888910862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 888910863}
+  - component: {fileID: 888910864}
+  m_Layer: 0
+  m_Name: UnlockNewOptions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &888910863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888910862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1568534805}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &888910864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888910862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45a69e2c2f68d445869a027150ce5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 11400000, guid: 351c2cdb2a84aaa498a55adf2d293ad3, type: 2}
+  firstItem:
+    optionName: L
+    requiredAmount: 1
+    option: I picked some Items. Now what do I do?
+    optionAudio: {fileID: 8300000, guid: 855e93dbb66eaff4f8ef5ef877b8866f, type: 3}
+    abbOption: 
+    responses:
+    - Look in your Inventory for some Clue.
+    - If stars align, some Items can combine.
+    responsesAudio:
+    - {fileID: 8300000, guid: 8257286b2dee5b34bb7fc0577393127a, type: 3}
+    - {fileID: 8300000, guid: 14c555cd505b5474ca2213fd88caaaeb, type: 3}
+    nextConvo: {fileID: 0}
+    unlockedOptions: []
+    removedOptions: []
+    isExitOption: 0
+    isStickyOption: 0
+  firstItemReq: hk
+  firstRecipe:
+    optionName: M
+    requiredAmount: 1
+    option: I think this combo's good, possibly Great.
+    optionAudio: {fileID: 8300000, guid: 308506bcd5b5eb14fb3145c89c911512, type: 3}
+    abbOption: 
+    responses:
+    - Then test it there upon that wooden Gate.
+    - 'But do beware: our fate is in your hooves.'
+    responsesAudio:
+    - {fileID: 8300000, guid: f8a3fc0786b248045bd960f3dc42387b, type: 3}
+    - {fileID: 8300000, guid: e2afd572fcd0fa5438ce874c79b8feca, type: 3}
+    nextConvo: {fileID: 0}
+    unlockedOptions:
+    - n
+    removedOptions:
+    - l
+    isExitOption: 0
+    isStickyOption: 0
+  firstRecipeReq: hk
 --- !u!1 &896181344
 GameObject:
   m_ObjectHideFlags: 0
@@ -5697,7 +5793,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  correctItem: gun
+  givenItems:
+  - correctItem: {fileID: 21300000, guid: 7d54017963b644c4e8497f11d16e1215, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906841207}
+          m_TargetAssemblyTypeName: ItemActions, Assembly-CSharp
+          m_MethodName: Hookline
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   outOfReachDialogue: That's Hamilton, my friend and fellow stock.  I'd have to move
     in close if we're to talk.
   conversation: {fileID: 11400000, guid: 415e71d5192763c4686bfe8d91b55088, type: 2}
@@ -7273,6 +7385,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 989535683}
+  - {fileID: 1906841206}
+  - {fileID: 888910863}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8274,6 +8388,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871970944}
   m_CullTransparentMesh: 1
+--- !u!1 &1906841205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1906841206}
+  - component: {fileID: 1906841207}
+  m_Layer: 0
+  m_Name: ItemActions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1906841206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906841205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1568534805}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1906841207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906841205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e944e1f7d3ae7214d8f9b1e4e87731be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convController: {fileID: 519420036}
+  option:
+    optionName: M
+    requiredAmount: 1
+    option: I think this combo's good, possibly Great.
+    optionAudio: {fileID: 8300000, guid: 308506bcd5b5eb14fb3145c89c911512, type: 3}
+    abbOption: 
+    responses:
+    - Then test it there upon that wooden Gate.
+    - 'But do beware: our fate is in your hooves.'
+    responsesAudio:
+    - {fileID: 8300000, guid: f8a3fc0786b248045bd960f3dc42387b, type: 3}
+    - {fileID: 8300000, guid: e2afd572fcd0fa5438ce874c79b8feca, type: 3}
+    nextConvo: {fileID: 0}
+    unlockedOptions:
+    - n
+    removedOptions: []
+    isExitOption: 0
+    isStickyOption: 0
 --- !u!1 &1920941346
 GameObject:
   m_ObjectHideFlags: 0

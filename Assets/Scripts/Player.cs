@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
     private Animator anim;
-
     public float speed;
     private Rigidbody2D rb;
     private UIhandler uIhandler;
@@ -136,6 +135,31 @@ public class Player : MonoBehaviour
                 UseHookline();
             }
         }
+    }
+
+    //for once we refactor, something like this replaces above
+    public IEnumerator SetUpPosition(Vector3[] positions)
+    {
+        for (int i = 0; i < positions.Length;)
+        {
+            isWalking = true;
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, positions[i], step);
+
+            if (transform.position.x < positions[i].x)
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            else
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+
+            if (Vector2.Distance(transform.position, positions[i]) < 0.1f)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0); //right
+                i++;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+        isWalking = false;
+        //do X
     }
     public void DigIt()
     {

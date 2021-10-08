@@ -34,7 +34,6 @@ public class Object : MonoBehaviour
 
     [Tooltip("Is this an item")]
     public bool canPickUp;
-    //public string objDesc; private string reachDesc;
     public Sprite itemSpriteUI;
     public string objName; private string hiddenName;
     public bool nameHiden;
@@ -117,9 +116,9 @@ public class Object : MonoBehaviour
         {
             if (outOfReach)
             {
-                if(objName == "Latch")
+                if (objName == "Latch")
                 {
-                    if(useItem.itemInHand.sprite != null && useItem.itemInHand.sprite.name == "inv-hook-and-linel")
+                    if (useItem.itemInHand.sprite != null && useItem.itemInHand.sprite.name == "inv-hook-and-linel")
                     {
                         textWritter.Write(specialDialog, uIhandler.monologueText, false, true, true);
                     }
@@ -129,7 +128,7 @@ public class Object : MonoBehaviour
                     }
                 }
                 else
-                { 
+                {
                     ShowOutOfReachDialogue();
                 }
             }

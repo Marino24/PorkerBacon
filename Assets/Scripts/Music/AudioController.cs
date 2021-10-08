@@ -60,7 +60,7 @@ public class AudioController : MonoBehaviour
         {
             if (audioSources[i].gameObject.name == musicName)
             {
-                StartCoroutine(Fade(audioSources[i], 8f, 1));
+                StartCoroutine(Fade(audioSources[i], 6f, 1));
                 break;
             }
         }
