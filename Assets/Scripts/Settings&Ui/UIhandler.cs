@@ -36,8 +36,6 @@ public class UIhandler : MonoBehaviour
     public GameObject defaultBorder;
     public GameObject endBorder;
 
-
-
     public static bool GameisPaused = false;
     public void Resume()
     {
@@ -102,7 +100,8 @@ public class UIhandler : MonoBehaviour
     {
         conversationStage.SetActive(true);
         inventory.SetActive(false);
-        monologueText.text = ""; monologue.SetActive(false);
+        monologueText.text = ""; monologueBG.SetActive(false); monologue.SetActive(false);
+        HoverOff();
         player.InConversation();
     }
 

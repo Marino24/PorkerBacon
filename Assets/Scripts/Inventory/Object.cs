@@ -35,7 +35,7 @@ public class Object : MonoBehaviour
     [Tooltip("Is this an item")]
     public bool canPickUp;
     public Sprite itemSpriteUI;
-    public string objName; private string hiddenName;
+    public string objName; public string itemName; private string hiddenName;
     public bool nameHiden;
     public float reach = 15f; private bool outOfReach;
 
@@ -161,7 +161,7 @@ public class Object : MonoBehaviour
             Player.instance.DigIt();
         }
 
-        pickedAnItem?.Invoke(itemSpriteUI, objName);
+        pickedAnItem?.Invoke(itemSpriteUI, itemName);
 
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;

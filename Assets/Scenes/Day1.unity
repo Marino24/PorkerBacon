@@ -308,8 +308,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: d0d7ee4305e9de44e8184f73ebdb4fb9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2d85421f3e9925a4096409878019a3f8, type: 2}
+  m_sharedMaterial: {fileID: -1838154324949620949, guid: 2d85421f3e9925a4096409878019a3f8,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2939,7 +2940,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPickUp: 1
   itemSpriteUI: {fileID: 21300000, guid: d5c2c3ea350e78c4c873441bb30d3152, type: 3}
-  objName: Mud
+  objName: Loose mud
+  itemName: Mud
   nameHiden: 0
   reach: 10
   outOfReachDialogues:
@@ -3781,8 +3783,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: d0d7ee4305e9de44e8184f73ebdb4fb9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2d85421f3e9925a4096409878019a3f8, type: 2}
+  m_sharedMaterial: {fileID: -1838154324949620949, guid: 2d85421f3e9925a4096409878019a3f8,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4360,8 +4363,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: d0d7ee4305e9de44e8184f73ebdb4fb9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2d85421f3e9925a4096409878019a3f8, type: 2}
+  m_sharedMaterial: {fileID: -1838154324949620949, guid: 2d85421f3e9925a4096409878019a3f8,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5302,6 +5306,7 @@ MonoBehaviour:
   canPickUp: 1
   itemSpriteUI: {fileID: 21300000, guid: 1a2f7b28887c5744e99184e3533d6aff, type: 3}
   objName: Crack in Fence
+  itemName: Nail
   nameHiden: 0
   reach: 15
   outOfReachDialogues:
@@ -5624,6 +5629,7 @@ MonoBehaviour:
   canPickUp: 0
   itemSpriteUI: {fileID: 0}
   objName: Latch
+  itemName: 
   nameHiden: 0
   reach: 18
   outOfReachDialogues:
@@ -7031,6 +7037,7 @@ MonoBehaviour:
   canPickUp: 0
   itemSpriteUI: {fileID: 0}
   objName: Fence
+  itemName: 
   nameHiden: 0
   reach: 9999
   outOfReachDialogues: []
@@ -7247,7 +7254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPickUp: 1
   itemSpriteUI: {fileID: 21300000, guid: 99e44a4c9a0c9de40a6a95b6896a00ec, type: 3}
-  objName: String
+  objName: Water spout
+  itemName: String
   nameHiden: 0
   reach: 15
   outOfReachDialogues:
@@ -8702,8 +8710,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: d0d7ee4305e9de44e8184f73ebdb4fb9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2d85421f3e9925a4096409878019a3f8, type: 2}
+  m_sharedMaterial: {fileID: -1838154324949620949, guid: 2d85421f3e9925a4096409878019a3f8,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9040,6 +9049,7 @@ MonoBehaviour:
   canPickUp: 1
   itemSpriteUI: {fileID: 21300000, guid: 1047cfa14ee43544cbf0998d80ddd5ae, type: 3}
   objName: Egg
+  itemName: 
   nameHiden: 1
   reach: 15
   outOfReachDialogues:
@@ -9800,6 +9810,7 @@ MonoBehaviour:
   canPickUp: 0
   itemSpriteUI: {fileID: 0}
   objName: Gate
+  itemName: 
   nameHiden: 0
   reach: 15
   outOfReachDialogues:
