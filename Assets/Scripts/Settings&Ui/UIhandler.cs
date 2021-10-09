@@ -100,12 +100,10 @@ public class UIhandler : MonoBehaviour
 
     public void StartConversation()
     {
-
         conversationStage.SetActive(true);
         inventory.SetActive(false);
         monologueText.text = ""; monologue.SetActive(false);
-        player.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; player.enabled = false;
-
+        player.InConversation();
     }
 
     public void EndConversation()

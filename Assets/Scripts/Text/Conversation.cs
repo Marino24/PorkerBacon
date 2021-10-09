@@ -101,6 +101,7 @@ public class Conversation : ScriptableObject
     [Header("Basic")]
     public Character leftChar;
     public Character rightChar;
+    public Character midChar;
     public Conversation nextConvo;
     public bool forceInstaShowcase;
 }

@@ -81,7 +81,7 @@ public class TextWritter : MonoBehaviour
             "Lambdon" => new Color32(179, 134, 0, 255),
             "Holy" => new Color32(153, 0, 153, 255),
             "Shepherd" => new Color32(0, 0, 0, 255),
-            _ => new Color32(1, 1, 1, 1),
+            _ => new Color32(255, 255, 255, 255),
         };
         UiText.color = color;
     }

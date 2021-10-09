@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         //Check if found a npc available (Hamilton)
         if (Input.GetMouseButtonDown(0))
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
+            if (EventSystem.current.IsPointerOverGameObject() && !Inventory.instance.importantMessage)
             {
                 Debug.Log("Sending a ray!");
                 RaycastHit2D hit;
@@ -80,6 +80,14 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+
+    public void InConversation()
+    {
+        rb.velocity = Vector3.zero;
+        isWalking = false;
+        anim.SetBool("isWalking", false);
+        enabled = false;
     }
 
     void FixedUpdate()

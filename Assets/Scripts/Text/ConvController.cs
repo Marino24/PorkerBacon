@@ -31,6 +31,7 @@ public class ConvController : MonoBehaviour
     public RectTransform convoOptions;
     public Image leftChar; public Image leftCharBg; private bool leftSpoke;
     public Image rightChar; public Image rightCharBg; private bool rightSpoke;
+    public Image midChar;
 
     //convo var
     private bool isNarrConvo;
@@ -246,10 +247,12 @@ public class ConvController : MonoBehaviour
     {
         currentConv = convo;
         AddUnlockedOptions(); //check for any new options
+        NarrativeActions.checkForActions?.Invoke();
 
         //set both sprites to characters talking
         leftChar.sprite = GetSpriteOfCharacter(currentConv.leftChar);
         rightChar.sprite = GetSpriteOfCharacter(currentConv.rightChar);
+        midChar.sprite = GetSpriteOfCharacter(currentConv.midChar);
 
         isConvoEnded = false; responseIndex = 0; textCharName.text = " ";
 
@@ -333,6 +336,12 @@ public class ConvController : MonoBehaviour
                     if (!rightSpoke) FirstWords(currentConv.rightChar.ToString(), rightCharBg, ref rightSpoke);
 
                     ShowWhoIsSpeaking(currentConv.rightChar.ToString(), spokenText, spokenClip);
+                }
+
+                if (talk == Conversation.Talking.mid)
+                {
+
+                    ShowWhoIsSpeaking("", spokenText, spokenClip);
                 }
             }
             else

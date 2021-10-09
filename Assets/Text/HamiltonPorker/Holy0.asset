@@ -15,6 +15,7 @@ MonoBehaviour:
   firstLine: 
   OptionDataSet: []
   allOptions: []
+  triggerActionByIndex: []
   NarrativeDataSet:
   - textSet: '[At this point, the Mule has returned to his oats. Porker glimpses
       the Holy One standing just beyond the Electric Fence.]'
@@ -22,4 +23,6 @@ MonoBehaviour:
     talking: 3
   leftChar: 1
   rightChar: 2
+  midChar: 7
   nextConvo: {fileID: 11400000, guid: 351c2cdb2a84aaa498a55adf2d293ad3, type: 2}
+  forceInstaShowcase: 1

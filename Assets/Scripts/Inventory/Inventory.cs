@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour
 
     private void OnEnable()
     {
+        invOpen = false;
         Object.pickedAnItem += ItemStored;
         Object.pickedAnItem += ShowItemStored;
         Object.usedAnItem += ItemUsed;
