@@ -24,7 +24,6 @@ public class ItemPickupsActions : MonoBehaviour
         Debug.Log(correctItem);
         if (correctItem == nail)
         {
-            Debug.Log("sss");
             crackedFence.sprite = brokenFence;
         }
     }
